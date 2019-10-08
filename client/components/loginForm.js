@@ -1,6 +1,7 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import PropTypes from 'prop-types'
+import {Link} from 'react-router-dom'
 import {auth} from '../store'
 
 const LoginForm = props => {
@@ -37,11 +38,13 @@ const LoginForm = props => {
             </div>
 
             <div className="button-container">
-              <button type="login">Login</button>
+              <button type="submit">Login</button>
             </div>
-            <div className="button-container">
-              <button type="google">Login with Google</button>
-            </div>
+            <Link to="/">
+              <div className="button-container">
+                <button type="button">Home</button>
+              </div>
+            </Link>
           </div>
         </div>
       </form>

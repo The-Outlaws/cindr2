@@ -37,6 +37,7 @@ export const auth = (
   firstName,
   age,
   height,
+  orientation,
   gender
 ) => async dispatch => {
   let res
@@ -47,6 +48,7 @@ export const auth = (
       firstName,
       age,
       height,
+      orientation,
       gender
     })
   } catch (authError) {
