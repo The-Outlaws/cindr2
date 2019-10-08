@@ -9,13 +9,25 @@ export default class GameContainer extends React.Component {
     }
   }
   componentDidMount() {
-    if (!this.state.game) this.setState({game: new Game()})
-    else {
-      this.state.game.scene.start('Boot')
-    }
+    this.setState({game: new Game()})
+  }
+
+  componentWillUnmount() {
+    this.state.game.destroy(true)
   }
 
   render() {
     return <div className="game" />
   }
 }
+// const GameContainer = (props) => {
+//   return (
+//     <div id='game-container'></div>
+//   )
+// }
+
+// const mapStateToProps = () => ({
+
+// })
+
+// export default connect(mapStateToProps)(GameContainer)
