@@ -24,7 +24,7 @@ const User = db.define('user', {
       return () => this.getDataValue('salt')
     }
   },
-  googleId: {
+  facebookId: {
     type: Sequelize.STRING
   },
   firstName: {
@@ -43,6 +43,9 @@ const User = db.define('user', {
   },
   age: {
     type: Sequelize.INTEGER,
+    validate: {
+      min: 18
+    },
     allowNull: false
   },
   orientation: {
