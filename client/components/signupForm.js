@@ -2,6 +2,7 @@ import React from 'react'
 import {connect} from 'react-redux'
 import PropTypes from 'prop-types'
 import {auth} from '../store'
+import {Link} from 'react-router-dom'
 
 class SignupForm extends React.Component {
   constructor() {
@@ -69,20 +70,28 @@ class SignupForm extends React.Component {
               <div className="input-box">
                 <input
                   type="text"
+                  placeholder="Orientation"
+                  className="form-control"
+                  name="orientation"
+                />
+              </div>
+              <div className="input-box">
+                <input
+                  type="text"
                   placeholder="Gender"
                   className="form-control"
                   name="gender"
                 />
               </div>
               <div className="button-container">
-                <button type="photo">
+                <button type="button">
                   {this.state.isEdit
                     ? 'Edit Profile Photo'
                     : 'Upload Profile Photo'}
                 </button>
               </div>
               <div className="button-container">
-                <button type="avatar">
+                <button type="button">
                   {this.state.isEdit
                     ? 'Edit your Avatar'
                     : 'Select your Avatar'}
@@ -92,6 +101,12 @@ class SignupForm extends React.Component {
               <div className="submitButton-container">
                 <button type="submit">Submit</button>
               </div>
+
+              <Link to="/">
+                <div className="submitButton-container">
+                  <button type="submit">Home</button>
+                </div>
+              </Link>
             </div>
           </div>
         </form>
@@ -114,8 +129,20 @@ const mapDispatch = dispatch => {
       const firstName = evt.target.firstName.value
       const age = evt.target.age.value
       const height = evt.target.height.value
+      const orientation = evt.target.orientation.value
       const gender = evt.target.gender.value
-      dispatch(auth(formName, email, password, firstName, age, height, gender))
+      dispatch(
+        auth(
+          formName,
+          email,
+          password,
+          firstName,
+          age,
+          height,
+          orientation,
+          gender
+        )
+      )
     }
   }
 }

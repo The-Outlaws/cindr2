@@ -1,3 +1,110 @@
+import React from 'react'
+import PropTypes from 'prop-types'
+import {connect} from 'react-redux'
+
+/**
+ * COMPONENT
+ */
+class Profile extends React.Component {
+  toggleEdit() {
+    window.location.pathname = '/signup'
+  }
+
+  render() {
+    console.log('PROFILE! ', this.props)
+    const {
+      email,
+      password,
+      firstName,
+      age,
+      height,
+      orientation,
+      gender
+    } = this.props
+
+    return (
+      <div className="login-form">
+        <div className="container">
+          <div className="img">
+            <img src="/troll128.png" alt="cute troll 128" />
+          </div>
+
+          <div className="heading">
+            <h4>{firstName}'s Profile</h4>
+          </div>
+          <div className="form-fields">
+            <div>
+              <p className="form-inputs">{firstName}</p>
+            </div>
+            <div>
+              <p className="form-inputs">{email}</p>
+            </div>
+            <div>
+              <p className="form-inputs">***** {password}</p>
+            </div>
+            <div>
+              <p className="form-inputs">{age}</p>
+            </div>
+            <div>
+              <p className="form-inputs">{height}</p>
+            </div>
+            <div>
+              <p className="form-inputs">{orientation}</p>
+            </div>
+            <div>
+              <p className="form-inputs">{gender}</p>
+            </div>
+            <div>{/* <img src={this.props.photo} /> */}</div>
+            <div>{/* <img src={this.props.avatar} /> */}</div>
+          </div>
+          <div className="form-fields">
+            <div className="submitButton-container">
+              {/* <button type="edit">Edit</button> */}
+              <button type="edit" onClick={this.toggleEdit}>
+                Edit
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    )
+  }
+}
+
+/**
+ * CONTAINER
+ */
+const mapState = state => {
+  return {
+    email: state.user.email,
+    firstName: state.user.firstName,
+    password: state.user.password,
+    age: state.user.age,
+    height: state.user.height,
+    orientation: state.user.orientation,
+    gender: state.user.gender
+  }
+}
+
+export const ProfileInfo = connect(mapState)(Profile)
+
+// export default connect(mapState)(Profile)
+
+/**
+ * PROP TYPES
+ */
+Profile.propTypes = {
+  email: PropTypes.string,
+  firstName: PropTypes.string,
+  password: PropTypes.string,
+  age: PropTypes.number,
+  height: PropTypes.number,
+  orientation: PropTypes.string,
+  gender: PropTypes.string
+}
+
+//OLD CODE - PLEASE KEEP FOR NOW
+
 // class Profile extends React.Component {
 //   constructor() {
 //     super()
@@ -95,86 +202,3 @@
 // })
 
 // export const ProfileInfo = connect(mapStateToProps)(Profile)
-
-import React from 'react'
-import PropTypes from 'prop-types'
-import {connect} from 'react-redux'
-
-/**
- * COMPONENT
- */
-class Profile extends React.Component {
-  constructor() {
-    super()
-  }
-
-  render() {
-    console.log('PROFILE! ', this.props)
-    const {email, password, firstName, age, height, gender} = this.props
-
-    return (
-      <div className="login-form">
-        <div className="container">
-          <div className="img">
-            <img src="/troll128.png" alt="cute troll 128" />
-          </div>
-
-          <div className="heading">
-            <h4>{firstName}'s Profile</h4>
-          </div>
-          <div className="form-fields">
-            <div>
-              <p className="form-inputs">{firstName}</p>
-            </div>
-            <div>
-              <p className="form-inputs">{age}</p>
-            </div>
-            <div>
-              <p className="form-inputs">{height}</p>
-            </div>
-            <div>{/* <img src={this.props.photo} /> */}</div>
-            <div>{/* <img src={this.props.avatar} /> */}</div>
-          </div>
-          <div className="form-fields">
-            <div className="submitButton-container">
-              <button type="edit">Edit</button>
-              {/* <button type="edit" onClick={this.toggleEdit}>
-                     Edit
-                   </button> */}
-            </div>
-          </div>
-        </div>
-      </div>
-    )
-  }
-}
-
-/**
- * CONTAINER
- */
-const mapState = state => {
-  return {
-    email: state.user.email,
-    firstName: state.user.firstName,
-    password: state.user.password,
-    age: state.user.age,
-    height: state.user.height,
-    gender: state.user.gender
-  }
-}
-
-export const ProfileInfo = connect(mapState)(Profile)
-
-// export default connect(mapState)(Profile)
-
-/**
- * PROP TYPES
- */
-Profile.propTypes = {
-  email: PropTypes.string,
-  firstName: PropTypes.string,
-  password: PropTypes.string,
-  age: PropTypes.number,
-  height: PropTypes.number,
-  gender: PropTypes.string
-}
