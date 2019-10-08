@@ -1,0 +1,26 @@
+{
+  "short_name": "Cindr",
+  "name": "Cindr",
+  "icons": [
+    {
+      "src": "troll128.png",
+      "type": "image/png",
+      "sizes": "128x128"
+    },
+    {
+      "src": "troll256.png",
+      "type": "image/png",
+      "sizes": "256x256"
+    },
+    {
+      "src": "troll512.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ],
+  "start_url": "/index.html",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "theme_color": "#C352CD",
+  "background_color": "#C352CD"
+}
