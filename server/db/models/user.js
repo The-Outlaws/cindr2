@@ -24,8 +24,42 @@ const User = db.define('user', {
       return () => this.getDataValue('salt')
     }
   },
-  googleId: {
+  facebookId: {
     type: Sequelize.STRING
+  },
+  firstName: {
+    type: Sequelize.STRING,
+    allowNull: false
+  },
+  photo: {
+    type: Sequelize.STRING
+  },
+  avatar: {
+    type: Sequelize.STRING
+  },
+  height: {
+    type: Sequelize.INTEGER,
+    allowNull: false
+  },
+  age: {
+    type: Sequelize.INTEGER,
+    validate: {
+      min: 18
+    },
+    allowNull: false
+  },
+  orientation: {
+    type: Sequelize.STRING
+  },
+  gender: {
+    type: Sequelize.STRING,
+    allowNull: false
+  },
+  isLoggedIn: {
+    type: Sequelize.BOOLEAN
+  },
+  isAdmin: {
+    type: Sequelize.BOOLEAN
   }
 })
 
