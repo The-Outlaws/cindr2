@@ -30,7 +30,7 @@ class Routes extends Component {
             {/* Routes placed here are only available after logging in */}
             <Route path="/home" component={UserHome} />
             <Route path="/profile" component={Profile} />
-            <Route exact path="/game" component={Game} />
+            <Route path="/game" component={Game} />
             <Route path="/map" component={MapHistory} />
             <Route path="/matches" component={Matches} />
           </Switch>

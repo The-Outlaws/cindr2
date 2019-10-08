@@ -20,14 +20,3 @@ export default class GameContainer extends React.Component {
     return <div className="game" />
   }
 }
-// const GameContainer = (props) => {
-//   return (
-//     <div id='game-container'></div>
-//   )
-// }
-
-// const mapStateToProps = () => ({
-
-// })
-
-// export default connect(mapStateToProps)(GameContainer)
