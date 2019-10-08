@@ -3,6 +3,7 @@ import {connect} from 'react-redux'
 import PropTypes from 'prop-types'
 import {auth} from '../store'
 import {Link} from 'react-router-dom'
+import Dropzone from 'react-dropzone'
 
 class SignupForm extends React.Component {
   constructor() {
@@ -11,7 +12,6 @@ class SignupForm extends React.Component {
       isEdit: false
     }
   }
-
   render() {
     const {name, handleSubmit} = this.props
     return (
@@ -84,11 +84,49 @@ class SignupForm extends React.Component {
                 />
               </div>
               <div className="button-container">
-                <button type="button">
-                  {this.state.isEdit
-                    ? 'Edit Profile Photo'
-                    : 'Upload Profile Photo'}
-                </button>
+                <Dropzone
+                  onDrop={this.onDrop}
+                  accept="image/png, image/jpeg"
+                  minSize={0}
+                  maxSize={5242880}
+                >
+                  {({
+                    getRootProps,
+                    getInputProps,
+                    isDragActive,
+                    isDragReject,
+                    rejectedFiles,
+                    acceptedFiles
+                  }) => {
+                    const isFileTooLarge =
+                      rejectedFiles.length > 0 &&
+                      rejectedFiles[0].size > maxSize
+                    return (
+                      <div {...getRootProps()}>
+                        <input {...getInputProps()} name="photo" />
+                        {!isDragActive &&
+                          'Click here or drop a file to upload!'}
+                        {isDragActive &&
+                          !isDragReject &&
+                          "Drop it like it's hot!"}
+                        {isDragReject && 'File type not accepted, sorry!'}
+                        {isFileTooLarge && (
+                          <div className="text-danger mt-2">
+                            File is too large.
+                          </div>
+                        )}
+                        <ul className="list-group mt-2">
+                          {acceptedFiles.length > 0 &&
+                            acceptedFiles.map(acceptedFile => (
+                              <li className="list-group-item list-group-item-success">
+                                {acceptedFile.name}
+                              </li>
+                            ))}
+                        </ul>
+                      </div>
+                    )
+                  }}
+                </Dropzone>
               </div>
               <div className="button-container">
                 <button type="button">
@@ -131,6 +169,7 @@ const mapDispatch = dispatch => {
       const height = evt.target.height.value
       const orientation = evt.target.orientation.value
       const gender = evt.target.gender.value
+      const photo = evt.target.photo.value
       dispatch(
         auth(
           formName,
@@ -140,7 +179,8 @@ const mapDispatch = dispatch => {
           age,
           height,
           orientation,
-          gender
+          gender,
+          photo
         )
       )
     }
