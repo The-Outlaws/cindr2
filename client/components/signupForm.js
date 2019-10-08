@@ -13,7 +13,6 @@ class SignupForm extends React.Component {
 
   render() {
     const {name, handleSubmit} = this.props
-    console.log('THIS.PROPS ', this.props)
     return (
       <div className="login-form">
         <form onSubmit={handleSubmit} name={name}>
@@ -115,7 +114,7 @@ const mapDispatch = dispatch => {
       const firstName = evt.target.firstName.value
       const age = evt.target.age.value
       const height = evt.target.height.value
-      const gender = evt.target.height.value
+      const gender = evt.target.gender.value
       dispatch(auth(formName, email, password, firstName, age, height, gender))
     }
   }
