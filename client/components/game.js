@@ -9,10 +9,14 @@ export default class GameContainer extends React.Component {
     }
   }
   componentDidMount() {
-    this.game = new Game()
+    this.setState({game: new Game()})
+  }
+
+  componentWillUnmount() {
+    this.state.game.destroy(true)
   }
 
   render() {
-    return <div>This is where your game lives!</div>
+    return <div className="game" />
   }
 }
