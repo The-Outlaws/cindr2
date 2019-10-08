@@ -28,7 +28,7 @@ User.belongsToMany(Room, {through: 'UserRoom'})
 Answer.belongsToMany(User, {through: 'UserAnswer'})
 User.belongsToMany(Answer, {through: 'UserAnswer'})
 
-User.belongsToMany(User, {as: 'Match'})
+User.belongsToMany(User, {as: 'Match', through: 'UserMatch'})
 
 module.exports = {
   User,
