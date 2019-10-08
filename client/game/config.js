@@ -5,8 +5,8 @@ export default {
   parent: 'content',
 
   backgroundColor: '#ccccc',
-  width: window.innerWidth * window.devicePixelRatio,
-  height: window.innerWidth * window.devicePixelRatio,
+  //width: window.innerWidth * window.devicePixelRatio,
+  //height: window.innerWidth * window.devicePixelRatio,
 
   physics: {
     default: 'arcade',

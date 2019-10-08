@@ -9,10 +9,13 @@ export default class GameContainer extends React.Component {
     }
   }
   componentDidMount() {
-    this.game = new Game()
+    if (!this.state.game) this.setState({game: new Game()})
+    else {
+      this.state.game.scene.start('Boot')
+    }
   }
 
   render() {
-    return <div>This is where your game lives!</div>
+    return <div className="game" />
   }
 }
