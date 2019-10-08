@@ -6,10 +6,10 @@ import {me} from './store'
 import Game from './components/game'
 import {MapHistory} from './components/mapHistory'
 import {Matches} from './components/matches'
-import Profile from './components/profile'
+import {ProfileInfo} from './components/profile'
 import {HomePage} from './components/homePage'
-import {SignupTest} from './components/signupForm'
-import {LoginTest} from './components/loginForm'
+import {Signup} from './components/signupForm'
+import {Login} from './components/loginForm'
 
 /**
  * COMPONENT
@@ -27,13 +27,13 @@ class Routes extends Component {
       <Switch>
         {/* Routes placed here are available to all visitors */}
         <Route exact path="/" component={HomePage} />
-        <Route path="/login" component={LoginTest} />
-        <Route path="/signup" component={SignupTest} />
+        <Route path="/login" component={Login} />
+        <Route path="/signup" component={Signup} />
         {isLoggedIn && (
           <Switch>
             {/* Routes placed here are only available after logging in */}
             {/* <Route path="/home" component={UserHome} /> */}
-            <Route path="/profile" component={Profile} />
+            <Route path="/profile" component={ProfileInfo} />
             <Route path="/game" component={Game} />
             <Route path="/map" component={MapHistory} />
             <Route path="/matches" component={Matches} />

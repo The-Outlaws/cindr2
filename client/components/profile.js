@@ -1,6 +1,3 @@
-// import React from 'react'
-// import {connect} from 'react-redux'
-
 // class Profile extends React.Component {
 //   constructor() {
 //     super()
@@ -106,43 +103,50 @@ import {connect} from 'react-redux'
 /**
  * COMPONENT
  */
-export const Profile = props => {
-  const {email, password, firstName, age, height, gender} = props
+class Profile extends React.Component {
+  constructor() {
+    super()
+  }
 
-  return (
-    <div className="login-form">
-      <div className="container">
-        <div className="img">
-          <img src="/troll128.png" alt="cute troll 128" />
-        </div>
+  render() {
+    console.log('PROFILE! ', this.props)
+    const {email, password, firstName, age, height, gender} = this.props
 
-        <div className="heading">
-          <h4>{firstName}'s Profile</h4>
-        </div>
-        <div className="form-fields">
-          <div>
-            <p className="form-inputs">{firstName}</p>
+    return (
+      <div className="login-form">
+        <div className="container">
+          <div className="img">
+            <img src="/troll128.png" alt="cute troll 128" />
           </div>
-          <div>
-            <p className="form-inputs">{age}</p>
+
+          <div className="heading">
+            <h4>{firstName}'s Profile</h4>
           </div>
-          <div>
-            <p className="form-inputs">{height}</p>
+          <div className="form-fields">
+            <div>
+              <p className="form-inputs">{firstName}</p>
+            </div>
+            <div>
+              <p className="form-inputs">{age}</p>
+            </div>
+            <div>
+              <p className="form-inputs">{height}</p>
+            </div>
+            <div>{/* <img src={this.props.photo} /> */}</div>
+            <div>{/* <img src={this.props.avatar} /> */}</div>
           </div>
-          <div>{/* <img src={this.props.photo} /> */}</div>
-          <div>{/* <img src={this.props.avatar} /> */}</div>
-        </div>
-        <div className="form-fields">
-          <div className="submitButton-container">
-            <button type="edit">Edit</button>
-            {/* <button type="edit" onClick={this.toggleEdit}>
+          <div className="form-fields">
+            <div className="submitButton-container">
+              <button type="edit">Edit</button>
+              {/* <button type="edit" onClick={this.toggleEdit}>
                      Edit
                    </button> */}
+            </div>
           </div>
         </div>
       </div>
-    </div>
-  )
+    )
+  }
 }
 
 /**
@@ -159,7 +163,9 @@ const mapState = state => {
   }
 }
 
-export default connect(mapState)(Profile)
+export const ProfileInfo = connect(mapState)(Profile)
+
+// export default connect(mapState)(Profile)
 
 /**
  * PROP TYPES

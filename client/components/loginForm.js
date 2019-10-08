@@ -65,7 +65,7 @@ const mapDispatch = dispatch => {
   }
 }
 
-export const LoginTest = connect(mapLogin, mapDispatch)(LoginForm)
+export const Login = connect(mapLogin, mapDispatch)(LoginForm)
 
 //PROP TYPES
 LoginForm.propTypes = {

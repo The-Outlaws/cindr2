@@ -120,7 +120,7 @@ const mapDispatch = dispatch => {
   }
 }
 
-export const SignupTest = connect(mapSignup, mapDispatch)(SignupForm)
+export const Signup = connect(mapSignup, mapDispatch)(SignupForm)
 
 //PROP TYPES
 SignupForm.propTypes = {
