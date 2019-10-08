@@ -1,12 +1,21 @@
 import Phaser from 'phaser'
 
+const width = window.innerWidth * window.devicePixelRatio
+const height = window.innerHeight * window.devicePixelRatio
+
 export default {
   type: Phaser.AUTO,
   parent: 'content',
 
   backgroundColor: '#ccccc',
-  width: window.innerWidth * window.devicePixelRatio,
-  height: window.innerWidth * window.devicePixelRatio,
+  width: width,
+  height: height,
+
+  scale: {
+    mode: Phaser.Scale.FIT,
+    width: width,
+    height: height
+  },
 
   physics: {
     default: 'arcade',
