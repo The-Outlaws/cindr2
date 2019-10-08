@@ -18,7 +18,7 @@ export class HomePage extends React.Component {
   render() {
     return (
       <div className="home-container">
-        {/* <img src={troll} alt="cute troll" /> */}
+        <img src="/troll512.png" alt="cute troll" />
         <div className="heading">
           <h4>Cindr</h4>
         </div>

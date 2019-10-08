@@ -19,7 +19,7 @@ class SignupForm extends React.Component {
         <form onSubmit={handleSubmit} name={name}>
           <div className="container">
             <div className="img">
-              {/* <img src={troll} alt="cute troll 128" /> */}
+              <img src="/troll256.png" alt="cute troll 128" />
             </div>
 
             <div className="heading">
