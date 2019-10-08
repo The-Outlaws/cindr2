@@ -1,13 +1,23 @@
 'use strict'
 
 const db = require('../server/db')
-const {User} = require('../server/db/models')
+const {User, Room, Question, Answer} = require('../server/db/models')
 
 async function seed() {
   await db.sync({force: true})
   console.log('db synced!')
 
   const users = await Promise.all([
+    User.create({
+      firstName: 'Petra',
+      height: 65,
+      email: 'petra@email.com',
+      gender: 'Female',
+      password: '123password',
+      age: 29,
+      orientation: 'likes men',
+      isAdmin: true
+    }),
     User.create({
       firstName: 'Guenna',
       height: 45,
@@ -144,8 +154,47 @@ async function seed() {
       orientation: 'hub'
     })
   ])
+  const rooms = await Promise.all([
+    Room.create({name: 'Quaint Cottage', trollRoom: false}),
+    Room.create({name: 'Evil Castle', trollRoom: false}),
+    Room.create({name: 'Haunted Lair', trollRoom: false}),
+    Room.create({name: 'Whimsical Meadow', trollRoom: false}),
+    Room.create({name: 'Happy Kitchen', trollRoom: false}),
+    Room.create({name: 'Cozy Hut', trollRoom: false}),
+    Room.create({name: 'Cavernous Cave', trollRoom: false}),
+    Room.create({name: 'Limey Cave', trollRoom: false}),
+    Room.create({name: 'Frozen the Musical', trollRoom: true}),
+    Room.create({name: 'The Dungeon', trollRoom: false}),
+    Room.create({name: 'The Office', trollRoom: true}),
+    Room.create({name: 'Fluffy Cloud', trollRoom: false}),
+    Room.create({name: 'Green Grove', trollRoom: false}),
+    Room.create({name: 'Wise Tree', trollRoom: false}),
+    Room.create({name: 'Awkward Tree House', trollRoom: true})
+  ])
 
-  console.log(`seeded ${users.length} users`)
+  const questions = await Promise.all([
+    Question.create({content: 'Who strikes your fancy?', roomId: 1}),
+    Question.create({
+      content: 'This castle is filled with ghosts. What to do?',
+      roomId: 2
+    })
+  ])
+
+  const answers = await Promise.all([
+    Answer.create({content: 'Friend', roomRoute: 2, questionId: 1}),
+    Answer.create({content: 'Date', roomRoute: 3, questionId: 1}),
+    Answer.create({
+      content: 'Meet some friendly ghosts',
+      roomRoute: 3,
+      questionId: 2
+    }),
+    Answer.create({content: 'Run the f*** away', roomRoute: 4, questionId: 2})
+  ])
+  console.log(
+    `seeded ${users.length} users, ${rooms.length} rooms, ${
+      questions.length
+    } questions, ${answers.length} answers`
+  )
   console.log(`seeded successfully`)
 }
 
