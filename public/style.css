@@ -221,3 +221,8 @@ code {
 .login-form .container .form-fields .submitButton-container button:hover {
   background-color: #414855;
 }
+
+.game {
+  display: flex;
+  justify-content: center;
+}
