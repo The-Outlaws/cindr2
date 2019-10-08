@@ -43,6 +43,9 @@ const User = db.define('user', {
   },
   age: {
     type: Sequelize.INTEGER,
+    validate: {
+      min: 18
+    },
     allowNull: false
   },
   orientation: {
