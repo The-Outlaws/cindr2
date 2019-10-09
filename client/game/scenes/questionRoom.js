@@ -34,6 +34,8 @@ export default class QuestionRoom extends Phaser.Scene {
       y: 700,
       asset: 'troll'
     })
+    this.avatar.body.setVelocity(100, 200)
+
     this.add.existing(this.avatar)
     //this.add.existing(this.bg)
 
