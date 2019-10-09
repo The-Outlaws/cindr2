@@ -3,6 +3,7 @@ import { Navbar } from './components';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Routes from './routes';
+import store from './store';
 
 const App = ({ isLoggedIn }) => {
   return (
