@@ -15,7 +15,7 @@ export default class DestinationRoom extends Phaser.Scene {
 
   create() {
     this.add.text(200, 200, 'Wherefore art thou Romeo?');
-    this.add.text(450, 600, 'Right here');
+    this.add.text(550, 500, 'Right here');
     this.add.text(300, 600, 'Baby I was born this way');
 
     this.avatar = new Avatar({

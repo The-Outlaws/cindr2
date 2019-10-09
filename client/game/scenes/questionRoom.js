@@ -65,5 +65,6 @@ export default class QuestionRoom extends Phaser.Scene {
 
       this.avatar.y += this.playerSpeed;
     }
+    this.input.on('pointerdown', () => this.scene.start('DestinationRoom'));
   }
 }
