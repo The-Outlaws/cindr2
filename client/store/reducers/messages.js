@@ -3,8 +3,8 @@ import socket from '../../socket';
 import { GET_MESSAGE, GET_MESSAGES } from './index';
 
 // ACTION CREATORS
-export function getMessage(message) {
-  const action = { type: GET_MESSAGE, message };
+export function getMessage(newMessage) {
+  const action = { type: GET_MESSAGE, newMessage };
   return action;
 }
 
@@ -23,13 +23,15 @@ export const fetchMessages = () => {
   };
 };
 
-export const postMessage = message => {
+export const postMessage = messageCont => {
   return async dispatch => {
-    const response = await axios.post('/api/messages', message);
-    const newMessage = response.data;
-    const action = getMessage(newMessage);
-    dispatch(action);
-    socket.emit('new-message', newMessage);
+    console.log('MESSAGE CONT ', messageCont);
+    const response = await axios.post('/api/messages', messageCont);
+    console.log('RESPONSE ', response);
+    const messageData = response.data;
+    console.log('NEWMESSAGE ', response.data);
+    dispatch(getMessage(messageData));
+    socket.emit('new-message', messageData);
   };
 };
 
@@ -39,7 +41,7 @@ export default function message(state = [], action) {
     case GET_MESSAGES:
       return action.messages;
     case GET_MESSAGE:
-      return [...state.messages, action.message];
+      return [...state.newMessage, action.newMessage];
     default:
       return state;
   }

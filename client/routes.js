@@ -10,6 +10,7 @@ import { ProfileInfo } from './components/profile';
 import { HomePage } from './components/homePage';
 import { Signup } from './components/signupForm';
 import { Login } from './components/loginForm';
+import { Chat } from './components/newMessageEntry';
 
 /**
  * COMPONENT
@@ -36,6 +37,7 @@ class Routes extends Component {
             <Route path="/game" component={Game} />
             <Route path="/map" component={MapHistory} />
             <Route path="/matches" component={Matches} />
+            <Route path="/chat" component={Chat} />
           </Switch>
         )}
         {/* Displays our HomePage component as a fallback */}
