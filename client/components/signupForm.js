@@ -5,6 +5,7 @@ import {auth} from '../store'
 import {Link} from 'react-router-dom'
 import Dropzone from 'react-dropzone'
 import request from 'superagent'
+import AvatarForm from './avatarForm'
 
 const CLOUDINARY_UPLOAD_PRESET = 'drxd8wpf'
 const CLOUDINARY_UPLOAD_URL = `https://api.cloudinary.com/v1_1/dxllpi9sq/image/upload`
@@ -14,10 +15,13 @@ class SignupForm extends React.Component {
     super()
     this.state = {
       isEdit: false,
+      selectAvatar: false,
       uploadedFile: null,
-      uploadedFileCloudinaryUrl: ''
+      uploadedFileCloudinaryUrl: '',
+      image: null
     }
     this.onImageDrop = this.onImageDrop.bind(this)
+    this.chooseAvatar = this.chooseAvatar.bind(this)
   }
 
   onImageDrop(files) {
@@ -38,6 +42,16 @@ class SignupForm extends React.Component {
           uploadedFileCloudinaryUrl: res.body.secure_url
         })
       }
+    })
+  }
+  chooseAvatar() {
+    this.setState({
+      selectAvatar: !this.state.selectAvatar
+    })
+  }
+  handleAvatar(image) {
+    this.setState({
+      avatar: image.src
     })
   }
   render() {
@@ -124,26 +138,20 @@ class SignupForm extends React.Component {
                     getInputProps,
                     isDragActive,
                     isDragReject,
-                    rejectedFiles,
                     acceptedFiles
                   }) => {
-                    const isFileTooLarge =
-                      rejectedFiles.length > 0 &&
-                      rejectedFiles[0].size > maxSize
                     return (
-                      <div {...getRootProps()}>
+                      <div className="heading" {...getRootProps()}>
                         <input {...getInputProps()} />
-                        {!isDragActive &&
-                          'Click here or drop a file to upload!'}
+                        {!isDragActive && (
+                          <h4>
+                            Click here or drop a file to upload your photo!
+                          </h4>
+                        )}
                         {isDragActive &&
                           !isDragReject &&
                           "Drop it like it's hot!"}
                         {isDragReject && 'File type not accepted, sorry!'}
-                        {isFileTooLarge && (
-                          <div className="text-danger mt-2">
-                            File is too large.
-                          </div>
-                        )}
                         <ul className="list-group mt-2">
                           {acceptedFiles.length > 0 &&
                             acceptedFiles.map(acceptedFile => (
@@ -165,11 +173,16 @@ class SignupForm extends React.Component {
                 )}
               </div>
               <div className="button-container">
-                <button type="button">
+                <button type="button" onClick={() => this.chooseAvatar()}>
                   {this.state.isEdit
                     ? 'Edit your Avatar'
                     : 'Select your Avatar'}
                 </button>
+              </div>
+              <div>
+                {this.state.selectAvatar ? (
+                  <AvatarForm handleAvatar={this.handleAvatar.bind(this)} />
+                ) : null}
               </div>
 
               <div className="submitButton-container">
@@ -215,7 +228,8 @@ const mapDispatch = dispatch => {
           height,
           orientation,
           gender,
-          this.state.uploadedFileCloudinaryUrl
+          this.state.uploadedFileCloudinaryUrl,
+          this.state.avatar
         )
       )
     }

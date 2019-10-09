@@ -30,7 +30,8 @@ router.post('/signup', async (req, res, next) => {
       height,
       orientation,
       gender,
-      photo
+      photo,
+      avatar
     } = req.body
     const user = await User.create({
       email: email,
@@ -40,7 +41,8 @@ router.post('/signup', async (req, res, next) => {
       height: height,
       orientation: orientation,
       gender: gender,
-      photo: photo
+      photo: photo,
+      avatar: avatar
     })
     req.login(user, err => (err ? next(err) : res.json(user)))
   } catch (err) {
