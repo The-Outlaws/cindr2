@@ -1,19 +1,19 @@
-import React from 'react'
-import {connect} from 'react-redux'
-import PropTypes from 'prop-types'
-import {auth} from '../store'
-import {Link} from 'react-router-dom'
-import Dropzone from 'react-dropzone'
+import React from 'react';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+import { auth } from '../store';
+import { Link } from 'react-router-dom';
+import Dropzone from 'react-dropzone';
 
 class SignupForm extends React.Component {
   constructor() {
-    super()
+    super();
     this.state = {
       isEdit: false
-    }
+    };
   }
   render() {
-    const {name, handleSubmit} = this.props
+    const { name, handleSubmit } = this.props;
     return (
       <div className="login-form">
         <form onSubmit={handleSubmit} name={name}>
@@ -100,7 +100,7 @@ class SignupForm extends React.Component {
                   }) => {
                     const isFileTooLarge =
                       rejectedFiles.length > 0 &&
-                      rejectedFiles[0].size > maxSize
+                      rejectedFiles[0].size > maxSize;
                     return (
                       <div {...getRootProps()}>
                         <input {...getInputProps()} name="photo" />
@@ -124,7 +124,7 @@ class SignupForm extends React.Component {
                             ))}
                         </ul>
                       </div>
-                    )
+                    );
                   }}
                 </Dropzone>
               </div>
@@ -149,27 +149,27 @@ class SignupForm extends React.Component {
           </div>
         </form>
       </div>
-    )
+    );
   }
 }
 
 const mapSignup = state => {
-  return {name: 'signup', displayName: 'Sign Up', error: state.user.error}
-}
+  return { name: 'signup', displayName: 'Sign Up', error: state.user.error };
+};
 
 const mapDispatch = dispatch => {
   return {
     handleSubmit(evt) {
-      evt.preventDefault()
-      const formName = evt.target.name
-      const email = evt.target.email.value
-      const password = evt.target.password.value
-      const firstName = evt.target.firstName.value
-      const age = evt.target.age.value
-      const height = evt.target.height.value
-      const orientation = evt.target.orientation.value
-      const gender = evt.target.gender.value
-      const photo = evt.target.photo.value
+      evt.preventDefault();
+      const formName = evt.target.name;
+      const email = evt.target.email.value;
+      const password = evt.target.password.value;
+      const firstName = evt.target.firstName.value;
+      const age = evt.target.age.value;
+      const height = evt.target.height.value;
+      const orientation = evt.target.orientation.value;
+      const gender = evt.target.gender.value;
+      const photo = evt.target.photo.value;
       dispatch(
         auth(
           formName,
@@ -182,12 +182,12 @@ const mapDispatch = dispatch => {
           gender,
           photo
         )
-      )
+      );
     }
-  }
-}
+  };
+};
 
-export const Signup = connect(mapSignup, mapDispatch)(SignupForm)
+export const Signup = connect(mapSignup, mapDispatch)(SignupForm);
 
 //PROP TYPES
 SignupForm.propTypes = {
@@ -195,4 +195,4 @@ SignupForm.propTypes = {
   displayName: PropTypes.string.isRequired,
   handleSubmit: PropTypes.func.isRequired,
   error: PropTypes.object
-}
+};

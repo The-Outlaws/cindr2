@@ -11,17 +11,16 @@ export default {
   width: width,
   height: height,
 
-  scale: {
-    mode: Phaser.Scale.FIT,
-    width: width,
-    height: height
-  },
-
   physics: {
     default: 'arcade',
     arcade: {
       gravity: {y: 200}
     }
+  },
+  scale: {
+    mode: Phaser.Scale.FIT,
+    width: width,
+    height: height
   },
 
   localStorageName: 'cindr'
