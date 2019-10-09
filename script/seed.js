@@ -1,18 +1,200 @@
 'use strict'
 
 const db = require('../server/db')
-const {User} = require('../server/db/models')
+const {User, Room, Question, Answer} = require('../server/db/models')
 
 async function seed() {
   await db.sync({force: true})
   console.log('db synced!')
 
   const users = await Promise.all([
-    User.create({email: 'cody@email.com', password: '123'}),
-    User.create({email: 'murphy@email.com', password: '123'})
+    User.create({
+      firstName: 'Petra',
+      height: 65,
+      email: 'petra@email.com',
+      gender: 'Female',
+      password: '123password',
+      age: 29,
+      orientation: 'likes men',
+      isAdmin: true
+    }),
+    User.create({
+      firstName: 'Guenna',
+      height: 45,
+      email: 'gcaizley0@mail.ru',
+      gender: 'Female',
+      password: '3ZvOycTCrZ',
+      age: 21,
+      orientation: '6th generation'
+    }),
+    User.create({
+      firstName: 'Nicki',
+      height: 91,
+      email: 'nwanka1@ftc.gov',
+      gender: 'Female',
+      password: '8ytHCL6LXWvf',
+      age: 30,
+      orientation: 'projection'
+    }),
+    User.create({
+      firstName: 'Lissa',
+      height: 108,
+      email: 'lfitzsimons2@barnesandnoble.com',
+      gender: 'Female',
+      password: '7sAuUY2',
+      age: 91,
+      orientation: 'leverage'
+    }),
+    User.create({
+      firstName: 'Piper',
+      height: 100,
+      email: 'plakenton3@goo.gl',
+      gender: 'Female',
+      password: 'Hh4A5o3n70',
+      age: 59,
+      orientation: 'Visionary'
+    }),
+    User.create({
+      firstName: 'Lyndell',
+      height: 98,
+      email: 'lcasassa4@guardian.co.uk',
+      gender: 'Female',
+      password: 'TUe0UJ',
+      age: 38,
+      orientation: 'Innovative'
+    }),
+    User.create({
+      firstName: 'Abram',
+      height: 83,
+      email: 'abernholt5@va.gov',
+      gender: 'Male',
+      password: 'zdw2LXASO',
+      age: 47,
+      orientation: 'contingency'
+    }),
+    User.create({
+      firstName: 'Jarvis',
+      height: 110,
+      email: 'jjolliss6@google.fr',
+      gender: 'Male',
+      password: '5j41tXPkY',
+      age: 21,
+      orientation: 'Expanded'
+    }),
+    User.create({
+      firstName: 'Riordan',
+      height: 50,
+      email: 'rmcbeith7@t-online.de',
+      gender: 'Male',
+      password: 'hvRZsu',
+      age: 19,
+      orientation: 'Versatile'
+    }),
+    User.create({
+      firstName: 'Nye',
+      height: 94,
+      email: 'npoolman8@icio.us',
+      gender: 'Male',
+      password: 'Bi8zu89al',
+      age: 82,
+      orientation: 'hub'
+    }),
+    User.create({
+      firstName: 'Erasmus',
+      height: 69,
+      email: 'elinge9@pbs.org',
+      gender: 'Male',
+      password: 'Ajpa7ibfBv',
+      age: 18,
+      orientation: 'motivating'
+    }),
+    User.create({
+      firstName: 'Anita',
+      height: 91,
+      email: 'aginnalya@buzzfeed.com',
+      gender: 'Female',
+      password: 'z0Qv8UA',
+      age: 95,
+      orientation: 'Graphical User Interface'
+    }),
+    User.create({
+      firstName: 'Margarita',
+      height: 97,
+      email: 'mdalyellb@stanford.edu',
+      gender: 'Female',
+      password: 'VvtF3vXV9F2r',
+      age: 82,
+      orientation: 'even-keeled'
+    }),
+    User.create({
+      firstName: 'Burch',
+      height: 69,
+      email: 'bstollsteimerc@amazon.de',
+      gender: 'Male',
+      password: 'fdHDykioED6B',
+      age: 99,
+      orientation: 'disintermediate'
+    }),
+    User.create({
+      firstName: 'Weider',
+      height: 110,
+      email: 'wshovelind@earthlink.net',
+      gender: 'Male',
+      password: 'Zp3XcgIUWVp',
+      age: 46,
+      orientation: 'Decentralized'
+    }),
+    User.create({
+      firstName: 'Aaron',
+      height: 82,
+      email: 'adefreitase@msu.edu',
+      gender: 'Male',
+      password: 'OUANudXXHVgm',
+      age: 18,
+      orientation: 'hub'
+    })
+  ])
+  const rooms = await Promise.all([
+    Room.create({name: 'Quaint Cottage', trollRoom: false}),
+    Room.create({name: 'Evil Castle', trollRoom: false}),
+    Room.create({name: 'Haunted Lair', trollRoom: false}),
+    Room.create({name: 'Whimsical Meadow', trollRoom: false}),
+    Room.create({name: 'Happy Kitchen', trollRoom: false}),
+    Room.create({name: 'Cozy Hut', trollRoom: false}),
+    Room.create({name: 'Cavernous Cave', trollRoom: false}),
+    Room.create({name: 'Limey Cave', trollRoom: false}),
+    Room.create({name: 'Frozen the Musical', trollRoom: true}),
+    Room.create({name: 'The Dungeon', trollRoom: false}),
+    Room.create({name: 'The Office', trollRoom: true}),
+    Room.create({name: 'Fluffy Cloud', trollRoom: false}),
+    Room.create({name: 'Green Grove', trollRoom: false}),
+    Room.create({name: 'Wise Tree', trollRoom: false}),
+    Room.create({name: 'Awkward Tree House', trollRoom: true})
   ])
 
-  console.log(`seeded ${users.length} users`)
+  const questions = await Promise.all([
+    Question.create({content: 'Who strikes your fancy?', roomId: 1}),
+    Question.create({
+      content: 'This castle is filled with ghosts. What to do?',
+      roomId: 2
+    })
+  ])
+
+  const answers = await Promise.all([
+    Answer.create({content: 'Friend', roomRoute: 2, questionId: 1}),
+    Answer.create({content: 'Date', roomRoute: 3, questionId: 1}),
+    Answer.create({
+      content: 'Meet some friendly ghosts',
+      roomRoute: 3,
+      questionId: 2
+    }),
+    Answer.create({content: 'Run the f*** away', roomRoute: 4, questionId: 2})
+  ])
+  console.log(
+    `seeded ${users.length} users, ${rooms.length} rooms, ${
+      questions.length
+    } questions, ${answers.length} answers`
+  )
   console.log(`seeded successfully`)
 }
 
