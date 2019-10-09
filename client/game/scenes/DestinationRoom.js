@@ -1,32 +1,22 @@
 import Phaser from 'phaser';
 import Avatar from '../sprites/Avatar';
-//import Background from '../sprites/Background'
 
-export default class QuestionRoom extends Phaser.Scene {
+export default class DestinationRoom extends Phaser.Scene {
   constructor() {
-    super({ key: 'QuestionRoom' });
+    super({ key: 'DestinationRoom' });
   }
   init() {
     this.playerSpeed = 10;
   }
 
   preload() {
-    //this.load.image('crystalBackground', '/CrystalScene.png')
     this.load.image('troll', '/troll128.png');
   }
 
   create() {
-    //this.bg = new Background({
-    //scene: this,
-    //x: 0,
-    //y: 0,
-    //width: this.game.config.width,
-    //height: this.game.config.height,
-    //asset: 'crystalBackground'
-    //})
-    this.add.text(450, 450, 'Question question?');
-    this.add.text(100, 600, 'Anser Anser');
-    this.add.text(300, 600, 'Anwer Anwer');
+    this.add.text(200, 200, 'Wherefore art thou Romeo?');
+    this.add.text(450, 600, 'Right here');
+    this.add.text(300, 600, 'Baby I was born this way');
 
     this.avatar = new Avatar({
       scene: this,
@@ -35,7 +25,6 @@ export default class QuestionRoom extends Phaser.Scene {
       asset: 'troll'
     });
     this.add.existing(this.avatar);
-    //this.add.existing(this.bg)
 
     this.cursors = this.input.keyboard.createCursorKeys();
   }

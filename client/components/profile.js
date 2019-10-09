@@ -1,17 +1,17 @@
-import React from 'react'
-import PropTypes from 'prop-types'
-import {connect} from 'react-redux'
+import React from 'react';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 
 /**
  * COMPONENT
  */
 class Profile extends React.Component {
   toggleEdit() {
-    window.location.pathname = '/signup'
+    window.location.pathname = '/signup';
   }
 
   render() {
-    console.log('PROFILE! ', this.props)
+    console.log('PROFILE! ', this.props);
     const {
       email,
       password,
@@ -20,7 +20,7 @@ class Profile extends React.Component {
       height,
       orientation,
       gender
-    } = this.props
+    } = this.props;
 
     return (
       <div className="login-form">
@@ -67,7 +67,7 @@ class Profile extends React.Component {
           </div>
         </div>
       </div>
-    )
+    );
   }
 }
 
@@ -83,10 +83,10 @@ const mapState = state => {
     height: state.user.height,
     orientation: state.user.orientation,
     gender: state.user.gender
-  }
-}
+  };
+};
 
-export const ProfileInfo = connect(mapState)(Profile)
+export const ProfileInfo = connect(mapState)(Profile);
 
 // export default connect(mapState)(Profile)
 
@@ -101,7 +101,7 @@ Profile.propTypes = {
   height: PropTypes.number,
   orientation: PropTypes.string,
   gender: PropTypes.string
-}
+};
 
 //OLD CODE - PLEASE KEEP FOR NOW
 

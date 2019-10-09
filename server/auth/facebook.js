@@ -1,8 +1,8 @@
-const passport = require('passport')
-const router = require('express').Router()
-const FacebookStrategy = require('passport-facebook').OAuth2Strategy
-const {User} = require('../db/models')
-module.exports = router
+const passport = require('passport');
+const router = require('express').Router();
+const FacebookStrategy = require('passport-facebook').OAuth2Strategy;
+const { User } = require('../db/models');
+module.exports = router;
 
 /**
  * For OAuth keys and other secrets, your Node process will search
@@ -34,16 +34,16 @@ passport.use(
           email: profile.email
         },
         function(err, user) {
-          return cb(err, user)
+          return cb(err, user);
         }
-      )
+      );
     }
   )
-)
+);
 
 // passport.use(strategy)
 
-router.get('/', passport.authenticate('facebook'))
+router.get('/', passport.authenticate('facebook'));
 
 router.get(
   '/callback',
@@ -51,4 +51,4 @@ router.get(
     successRedirect: '/home',
     failureRedirect: '/login'
   })
-)
+);

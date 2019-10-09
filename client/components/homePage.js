@@ -1,18 +1,18 @@
-import React from 'react'
+import React from 'react';
 
 export class HomePage extends React.Component {
   constructor() {
-    super()
-    this.loginClick = this.loginClick.bind(this)
-    this.signupClick = this.signupClick.bind(this)
+    super();
+    this.loginClick = this.loginClick.bind(this);
+    this.signupClick = this.signupClick.bind(this);
   }
 
   loginClick() {
-    window.location.pathname = '/login'
+    window.location.pathname = '/login';
   }
 
   signupClick() {
-    window.location.pathname = '/signup'
+    window.location.pathname = '/signup';
   }
 
   render() {
@@ -35,6 +35,6 @@ export class HomePage extends React.Component {
           </button>
         </div>
       </div>
-    )
+    );
   }
 }

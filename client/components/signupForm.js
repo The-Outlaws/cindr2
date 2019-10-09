@@ -1,61 +1,61 @@
-import React from 'react'
-import {connect} from 'react-redux'
-import PropTypes from 'prop-types'
-import {auth} from '../store'
-import {Link} from 'react-router-dom'
-import Dropzone from 'react-dropzone'
-import request from 'superagent'
-import AvatarForm from './avatarForm'
+import React from 'react';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+import { auth } from '../store';
+import { Link } from 'react-router-dom';
+import Dropzone from 'react-dropzone';
+import request from 'superagent';
+import AvatarForm from './avatarForm';
 
-const CLOUDINARY_UPLOAD_PRESET = 'drxd8wpf'
-const CLOUDINARY_UPLOAD_URL = `https://api.cloudinary.com/v1_1/dxllpi9sq/image/upload`
+const CLOUDINARY_UPLOAD_PRESET = 'drxd8wpf';
+const CLOUDINARY_UPLOAD_URL = `https://api.cloudinary.com/v1_1/dxllpi9sq/image/upload`;
 
 class SignupForm extends React.Component {
   constructor() {
-    super()
+    super();
     this.state = {
       isEdit: false,
       selectAvatar: false,
       uploadedFile: null,
       uploadedFileCloudinaryUrl: '',
       image: null
-    }
-    this.onImageDrop = this.onImageDrop.bind(this)
-    this.chooseAvatar = this.chooseAvatar.bind(this)
+    };
+    this.onImageDrop = this.onImageDrop.bind(this);
+    this.chooseAvatar = this.chooseAvatar.bind(this);
   }
 
   onImageDrop(files) {
     this.setState({
       uploadedFile: files[0]
-    })
-    this.handleImageUpload(files[0])
+    });
+    this.handleImageUpload(files[0]);
   }
   handleImageUpload(file) {
     let upload = request
       .post(CLOUDINARY_UPLOAD_URL)
       .field('upload_preset', CLOUDINARY_UPLOAD_PRESET)
-      .field('file', file)
+      .field('file', file);
     upload.end((err, res) => {
-      if (err) console.error(err)
+      if (err) console.error(err);
       if (res.body.secure_url !== '') {
         this.setState({
           uploadedFileCloudinaryUrl: res.body.secure_url
-        })
+        });
       }
-    })
+    });
   }
   chooseAvatar() {
     this.setState({
       selectAvatar: !this.state.selectAvatar
-    })
+    });
   }
   handleAvatar(image) {
     this.setState({
       avatar: image.src
-    })
+    });
   }
   render() {
-    const {name, handleSubmit} = this.props
+    const { name, handleSubmit } = this.props;
     return (
       <div className="login-form">
         <form onSubmit={handleSubmit.bind(this)} name={name}>
@@ -161,7 +161,7 @@ class SignupForm extends React.Component {
                             ))}
                         </ul>
                       </div>
-                    )
+                    );
                   }}
                 </Dropzone>
               </div>
@@ -198,26 +198,26 @@ class SignupForm extends React.Component {
           </div>
         </form>
       </div>
-    )
+    );
   }
 }
 
 const mapSignup = state => {
-  return {name: 'signup', displayName: 'Sign Up', error: state.user.error}
-}
+  return { name: 'signup', displayName: 'Sign Up', error: state.user.error };
+};
 
 const mapDispatch = dispatch => {
   return {
     handleSubmit(evt) {
-      evt.preventDefault()
-      const formName = evt.target.name
-      const email = evt.target.email.value
-      const password = evt.target.password.value
-      const firstName = evt.target.firstName.value
-      const age = evt.target.age.value
-      const height = evt.target.height.value
-      const orientation = evt.target.orientation.value
-      const gender = evt.target.gender.value
+      evt.preventDefault();
+      const formName = evt.target.name;
+      const email = evt.target.email.value;
+      const password = evt.target.password.value;
+      const firstName = evt.target.firstName.value;
+      const age = evt.target.age.value;
+      const height = evt.target.height.value;
+      const orientation = evt.target.orientation.value;
+      const gender = evt.target.gender.value;
       dispatch(
         auth(
           formName,
@@ -231,12 +231,12 @@ const mapDispatch = dispatch => {
           this.state.uploadedFileCloudinaryUrl,
           this.state.avatar
         )
-      )
+      );
     }
-  }
-}
+  };
+};
 
-export const Signup = connect(mapSignup, mapDispatch)(SignupForm)
+export const Signup = connect(mapSignup, mapDispatch)(SignupForm);
 
 //PROP TYPES
 SignupForm.propTypes = {
@@ -244,4 +244,4 @@ SignupForm.propTypes = {
   displayName: PropTypes.string.isRequired,
   handleSubmit: PropTypes.func.isRequired,
   error: PropTypes.object
-}
+};
