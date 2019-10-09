@@ -1,8 +1,5 @@
 const router = require('express').Router()
 const {User} = require('../db/models')
-const cloudinary = require('cloudinary')
-require('../cloudinary')
-const upload = require('../multer')
 
 module.exports = router
 
@@ -15,16 +12,6 @@ router.get('/', async (req, res, next) => {
       attributes: ['id', 'email']
     })
     res.json(users)
-  } catch (err) {
-    next(err)
-  }
-})
-
-router.post('/uploads', upload.single('image'), async (req, res, next) => {
-  try {
-    const result = await cloudinary.v2.uploader.upload(req.file.path)
-    const user = await User.findByPk(req.user.id)
-    user.update({photo: result.secure_url})
   } catch (err) {
     next(err)
   }

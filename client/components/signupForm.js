@@ -4,19 +4,47 @@ import PropTypes from 'prop-types'
 import {auth} from '../store'
 import {Link} from 'react-router-dom'
 import Dropzone from 'react-dropzone'
+import request from 'superagent'
+
+const CLOUDINARY_UPLOAD_PRESET = 'drxd8wpf'
+const CLOUDINARY_UPLOAD_URL = `https://api.cloudinary.com/v1_1/dxllpi9sq/image/upload`
 
 class SignupForm extends React.Component {
   constructor() {
     super()
     this.state = {
-      isEdit: false
+      isEdit: false,
+      uploadedFile: null,
+      uploadedFileCloudinaryUrl: ''
     }
+    this.onImageDrop = this.onImageDrop.bind(this)
+  }
+
+  onImageDrop(files) {
+    this.setState({
+      uploadedFile: files[0]
+    })
+    this.handleImageUpload(files[0])
+  }
+  handleImageUpload(file) {
+    let upload = request
+      .post(CLOUDINARY_UPLOAD_URL)
+      .field('upload_preset', CLOUDINARY_UPLOAD_PRESET)
+      .field('file', file)
+    upload.end((err, res) => {
+      if (err) console.error(err)
+      if (res.body.secure_url !== '') {
+        this.setState({
+          uploadedFileCloudinaryUrl: res.body.secure_url
+        })
+      }
+    })
   }
   render() {
     const {name, handleSubmit} = this.props
     return (
       <div className="login-form">
-        <form onSubmit={handleSubmit} name={name}>
+        <form onSubmit={handleSubmit.bind(this)} name={name}>
           <div className="container">
             <div className="img">
               <img src="/troll256.png" alt="cute troll 128" />
@@ -85,8 +113,9 @@ class SignupForm extends React.Component {
               </div>
               <div className="button-container">
                 <Dropzone
-                  onDrop={this.onDrop}
+                  onDrop={this.onImageDrop}
                   accept="image/png, image/jpeg"
+                  multiple={false}
                   minSize={0}
                   maxSize={5242880}
                 >
@@ -103,7 +132,7 @@ class SignupForm extends React.Component {
                       rejectedFiles[0].size > maxSize
                     return (
                       <div {...getRootProps()}>
-                        <input {...getInputProps()} name="photo" />
+                        <input {...getInputProps()} />
                         {!isDragActive &&
                           'Click here or drop a file to upload!'}
                         {isDragActive &&
@@ -127,6 +156,13 @@ class SignupForm extends React.Component {
                     )
                   }}
                 </Dropzone>
+              </div>
+              <div>
+                {this.state.uploadedFileCloudinaryUrl === '' ? null : (
+                  <div>
+                    <img src={this.state.uploadedFileCloudinaryUrl} />
+                  </div>
+                )}
               </div>
               <div className="button-container">
                 <button type="button">
@@ -169,7 +205,6 @@ const mapDispatch = dispatch => {
       const height = evt.target.height.value
       const orientation = evt.target.orientation.value
       const gender = evt.target.gender.value
-      const photo = evt.target.photo.value
       dispatch(
         auth(
           formName,
@@ -180,7 +215,7 @@ const mapDispatch = dispatch => {
           height,
           orientation,
           gender,
-          photo
+          this.state.uploadedFileCloudinaryUrl
         )
       )
     }
