@@ -41,7 +41,7 @@ export default function message(state = [], action) {
     case GET_MESSAGES:
       return action.messages;
     case GET_MESSAGE:
-      return [...state.newMessage, action.newMessage];
+      return [state.newMessage, action.newMessage];
     default:
       return state;
   }

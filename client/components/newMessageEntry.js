@@ -66,9 +66,10 @@ import { writeMessage } from '../store/reducers/newMessage';
 // );
 
 function NewMessageEntry(props) {
-  const { newMessage, handleChange, handleSubmit } = props;
+  const { newMessage, user, handleChange, handleSubmit } = props;
   const sendToBack = {
-    content: newMessage
+    content: newMessage,
+    userId: user.id
   };
   console.log('PROPS ', props);
   return (
@@ -101,7 +102,7 @@ function NewMessageEntry(props) {
 const mapStateToProps = function(state) {
   console.log('STATE ', state);
   return {
-    // userId: state.user.id,
+    user: state.user,
     newMessage: state.newMessage
 
     // content: state.content,
