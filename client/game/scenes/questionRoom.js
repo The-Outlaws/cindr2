@@ -1,4 +1,4 @@
-import Phaser from 'phaser';
+import Phaser, { GameObjects } from 'phaser';
 import Avatar from '../sprites/Avatar';
 
 export default class QuestionRoom extends Phaser.Scene {
@@ -29,27 +29,31 @@ export default class QuestionRoom extends Phaser.Scene {
     // Game Objects Leading to Different Rooms
     this.answerA = this.add.text(100, 600, 'Anser Anser');
 
-    // Makes your life choices fall away !!
-    this.physicsObjectA = this.physics.add.existing(this.answerA);
-    this.physicsObjectA.onCollide = true;
+    // Makes your life choices fall away !! aka adds answerA to physics
+    this.physicsObjectA = this.physics.add.existing(this.answerA, 'static');
+    // this.physicsObjectA.onCollide = true;
 
     this.answerB = this.add.text(300, 600, 'Anwer Anwer');
 
     // Avatar
-    this.avatar = new Avatar({
-      scene: this,
-      x: 100,
-      y: 700,
-      asset: 'troll'
-    });
-    this.add.existing(this.avatar);
+    // this.avatar = new Avatar({
+    //   scene: this,
+    //   x: 100,
+    //   y: 700,
+    //   asset: 'troll'
+    // });
 
+    //adds sprite to physics object, disables gravity so it doesn't fall
+    this.avatar = this.physics.add.sprite(100, 700, 'troll');
+    this.avatar.body.setAllowGravity(false);
+
+    //creates a collision between sprite and answer, triggers room change
     this.physics.add.collider(
       this.avatar,
-      this.answerA,
+      this.physicsObjectA,
       () => {
-        console.log('hello');
-        //this.game.scene.start('DestinationRoom')
+        // console.log('hello');
+        this.scene.start('DestinationRoom');
       },
       null,
       this
