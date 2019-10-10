@@ -28,7 +28,9 @@ export const auth = (
   age,
   height,
   orientation,
-  gender
+  gender,
+  photo,
+  avatar
 ) => async dispatch => {
   let res;
   try {
@@ -39,7 +41,9 @@ export const auth = (
       age,
       height,
       orientation,
-      gender
+      gender,
+      photo,
+      avatar
     });
   } catch (authError) {
     return dispatch(getUser({ error: authError }));
