@@ -226,6 +226,7 @@ code {
   margin-top: 0;
   display: flex;
   justify-content: center;
+  font-family: 'Press Start 2P', cursive;
 }
 
 .image_picker {
