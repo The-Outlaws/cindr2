@@ -37,7 +37,7 @@ export default class QuestionRoom extends Phaser.Scene {
 
     // Avatar
     // this.avatar = new Avatar({
-    //   scene: this,
+    //   scene: this.physics,
     //   x: 100,
     //   y: 700,
     //   asset: 'troll'
