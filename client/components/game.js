@@ -1,22 +1,22 @@
-import React from 'react'
-import Game from '../game/main.js'
+import React from 'react';
+import Game from '../game/main.js';
 
 export default class GameContainer extends React.Component {
   constructor() {
-    super()
+    super();
     this.state = {
       game: null
-    }
+    };
   }
   componentDidMount() {
-    this.setState({game: new Game()})
+    this.setState({ game: new Game() });
   }
 
   componentWillUnmount() {
-    this.state.game.destroy(true)
+    this.state.game.destroy(true);
   }
 
   render() {
-    return <div className="game" />
+    return <div className="game" />;
   }
 }
