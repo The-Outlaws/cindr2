@@ -1,167 +1,204 @@
-import React from 'react'
+import React from 'react';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 
-// import pirate from '../../public/pirate.png';
-
+/**
+ * COMPONENT
+ */
 class Profile extends React.Component {
-  constructor() {
-    super()
-    this.state = {
-      name: '',
-      photo: '',
-      age: '',
-      height: '',
-      avatar: '',
-      isEdit: false
-    }
-    this.handleChange = this.handleChange.bind(this)
-    this.handleSubmit = this.handleSubmit.bind(this)
-    // this.toggleEdit = this.toggleEdit.bind(this);
+  toggleEdit() {
+    window.location.pathname = '/signup';
   }
-
-  handleChange(event) {
-    this.setState({
-      [event.target.name]: event.target.value
-    })
-  }
-
-  handleSubmit(event) {
-    event.preventDefault()
-    const profileInfo = {
-      // profileInfo to be passed into a thunk to update the store and database
-      name: this.state.name,
-      photo: this.state.photo,
-      age: this.state.age,
-      height: this.state.height,
-      avatar: this.state.avatar
-    }
-
-    if (this.state.isEdit === false) {
-      this.setState(prevState => ({
-        isEdit: !prevState.isEdit
-      }))
-    }
-    window.location.pathname = '/game'
-  }
-
-  // toggleEdit() {
-  //   window.location.pathname = '/game';
-  //   return this.state.isEdit === false
-  //     ? this.setState(prevState => ({
-  //         isEdit: !prevState.isEdit,
-  //       }))
-  //     : '';
-  // }
 
   render() {
-    //if this.state.isEdit is true (the user has signed up/logged in), render state
-    return this.state.isEdit ? (
+    console.log('PROFILE! ', this.props);
+    const {
+      email,
+      password,
+      firstName,
+      age,
+      height,
+      orientation,
+      gender
+    } = this.props;
+
+    return (
       <div className="login-form">
         <div className="container">
           <div className="img">
-            {/* <img src={require('../../public/troll128.png') } alt="cute troll 128" /> */}
+            <img src="/troll128.png" alt="cute troll 128" />
           </div>
 
           <div className="heading">
-            <h4>Profile</h4>
+            <h4>{firstName}'s Profile</h4>
           </div>
           <div className="form-fields">
             <div>
-              <p className="form-inputs">{this.state.name}</p>
+              <p className="form-inputs">{firstName}</p>
             </div>
             <div>
-              <p className="form-inputs">{this.state.age}</p>
+              <p className="form-inputs">{email}</p>
             </div>
             <div>
-              <p className="form-inputs">{this.state.height}</p>
+              <p className="form-inputs">***** {password}</p>
             </div>
             <div>
-              <img src={this.state.photo} />
+              <p className="form-inputs">{age}</p>
             </div>
             <div>
-              <img src={this.state.avatar} />
+              <p className="form-inputs">{height}</p>
             </div>
+            <div>
+              <p className="form-inputs">{orientation}</p>
+            </div>
+            <div>
+              <p className="form-inputs">{gender}</p>
+            </div>
+            <div>{/* <img src={this.props.photo} /> */}</div>
+            <div>{/* <img src={this.props.avatar} /> */}</div>
           </div>
           <div className="form-fields">
             <div className="submitButton-container">
-              <button type="edit">Edit</button>
-              {/* <button type="edit" onClick={this.toggleEdit}>
+              {/* <button type="edit">Edit</button> */}
+              <button type="edit" onClick={this.toggleEdit}>
                 Edit
-              </button> */}
+              </button>
             </div>
           </div>
         </div>
       </div>
-    ) : (
-      ////if this.state.isEdit is false (the user not signed up or clicks on 'Edit button'), render form with state
-      <div className="login-form">
-        <form onSubmit={this.handleSubmit}>
-          <div className="container">
-            <div className="img">
-              {/* <img src={troll} alt="cute troll 128" /> */}
-            </div>
-
-            <div className="heading">
-              <h4>Profile</h4>
-            </div>
-
-            <div className="form-fields">
-              <div className="input-box">
-                <input
-                  type="text"
-                  placeholder="First Name"
-                  className="form-control"
-                  name="name"
-                  value={this.state.name}
-                  onChange={this.handleChange}
-                />
-              </div>
-              <div className="input-box">
-                <input
-                  type="text"
-                  placeholder="Age"
-                  className="form-control"
-                  name="age"
-                  value={this.state.age}
-                  onChange={this.handleChange}
-                />
-              </div>
-              <div className="input-box">
-                <input
-                  type="text"
-                  placeholder="Height"
-                  className="form-control"
-                  name="height"
-                  value={this.state.height}
-                  onChange={this.handleChange}
-                />
-              </div>
-              <div className="button-container">
-                <button type="photo">
-                  {this.state.isEdit
-                    ? 'Edit Profile Photo'
-                    : 'Upload Profile Photo'}
-                </button>
-              </div>
-              <div className="button-container">
-                <button type="avatar">
-                  {this.state.isEdit
-                    ? 'Edit your Avatar'
-                    : 'Select your Avatar'}
-                </button>
-              </div>
-
-              <div className="submitButton-container">
-                {/* <button type="edit">Submit</button> */}
-                <button type="edit" onClick={this.toggleEdit}>
-                  Submit
-                </button>
-              </div>
-            </div>
-          </div>
-        </form>
-      </div>
-    )
+    );
   }
 }
 
-export default Profile
+/**
+ * CONTAINER
+ */
+const mapState = state => {
+  return {
+    email: state.user.email,
+    firstName: state.user.firstName,
+    password: state.user.password,
+    age: state.user.age,
+    height: state.user.height,
+    orientation: state.user.orientation,
+    gender: state.user.gender
+  };
+};
+
+export const ProfileInfo = connect(mapState)(Profile);
+
+// export default connect(mapState)(Profile)
+
+/**
+ * PROP TYPES
+ */
+Profile.propTypes = {
+  email: PropTypes.string,
+  firstName: PropTypes.string,
+  password: PropTypes.string,
+  age: PropTypes.number,
+  height: PropTypes.number,
+  orientation: PropTypes.string,
+  gender: PropTypes.string
+};
+
+//OLD CODE - PLEASE KEEP FOR NOW
+
+// class Profile extends React.Component {
+//   constructor() {
+//     super()
+//     this.state = {
+//       isEdit: true
+//     }
+//     this.handleChange = this.handleChange.bind(this)
+//     this.handleSubmit = this.handleSubmit.bind(this)
+//     // this.toggleEdit = this.toggleEdit.bind(this);
+//   }
+
+//   handleChange(event) {
+//     this.setState({
+//       [event.target.name]: event.target.value
+//     })
+//   }
+
+//   handleSubmit(event) {
+//     event.preventDefault()
+//     const profileInfo = {
+//       // profileInfo to be passed into a thunk to update the store and database
+//       name: this.state.name,
+//       photo: this.state.photo,
+//       age: this.state.age,
+//       height: this.state.height,
+//       avatar: this.state.avatar
+//     }
+
+//     if (this.state.isEdit === false) {
+//       this.setState(prevState => ({
+//         isEdit: !prevState.isEdit
+//       }))
+//     }
+//     window.location.pathname = '/game'
+//   }
+
+//   // toggleEdit() {
+//   //   window.location.pathname = '/game';
+//   //   return this.state.isEdit === false
+//   //     ? this.setState(prevState => ({
+//   //         isEdit: !prevState.isEdit,
+//   //       }))
+//   //     : '';
+//   // }
+
+//   render() {
+//     console.log('PROPS ', this.props.state)
+//     //if this.state.isEdit is true (the user has signed up/logged in), render state
+//     return this.state.isEdit ? (
+//       <div className="login-form">
+//         <div className="container">
+//           <div className="img">
+//             {/* <img src={require('../../public/troll128.png') } alt="cute troll 128" /> */}
+//           </div>
+
+//           <div className="heading">
+//             <h4>Profile</h4>
+//           </div>
+//           <div className="form-fields">
+//             <div>
+//               <p className="form-inputs">{this.props.name}</p>
+//             </div>
+//             <div>
+//               <p className="form-inputs">{this.props.age}</p>
+//             </div>
+//             <div>
+//               <p className="form-inputs">{this.props.height}</p>
+//             </div>
+//             <div>
+//               <img src={this.props.photo} />
+//             </div>
+//             <div>
+//               <img src={this.props.avatar} />
+//             </div>
+//           </div>
+//           <div className="form-fields">
+//             <div className="submitButton-container">
+//               <button type="edit">Edit</button>
+//               {/* <button type="edit" onClick={this.toggleEdit}>
+//                 Edit
+//               </button> */}
+//             </div>
+//           </div>
+//         </div>
+//       </div>
+//     ) : (
+//       ////if this.state.isEdit is false (the user not signed up or clicks on 'Edit button'), render form with state
+//       <SignupForm />
+//     )
+//   }
+// }
+
+// const mapStateToProps = state => ({
+//   user: {...state.user}
+// })
+
+// export const ProfileInfo = connect(mapStateToProps)(Profile)

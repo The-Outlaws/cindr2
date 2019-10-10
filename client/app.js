@@ -1,15 +1,35 @@
-import React from 'react'
+import React from 'react';
+import { Navbar } from './components';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import Routes from './routes';
+import store from './store';
 
-import {Navbar} from './components'
-import Routes from './routes'
-
-const App = () => {
+const App = ({ isLoggedIn }) => {
   return (
     <div>
-      <Navbar />
+      {isLoggedIn ? <Navbar /> : null}
+
       <Routes />
     </div>
-  )
-}
+  );
+};
 
-export default App
+/**
+ * CONTAINER
+ */
+const mapState = state => {
+  console.log(state.userReducer);
+  return {
+    isLoggedIn: !!state.user.id
+  };
+};
+
+export default connect(mapState)(App);
+
+/**
+ * PROP TYPES
+ */
+App.propTypes = {
+  isLoggedIn: PropTypes.bool.isRequired
+};

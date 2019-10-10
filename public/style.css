@@ -35,8 +35,8 @@ code {
   color: #09d3ac;
 }
 
-/* SPLASH */
-.splash-container {
+/* HOME */
+.home-container {
   display: flex;
   background-color: #282c34;
   min-height: 100vh;
@@ -46,6 +46,30 @@ code {
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
+}
+
+.home-container .button-container {
+  width: 15%;
+  display: flex;
+  border: 1px solid transparent;
+  align-items: center;
+  margin-left: 13px;
+  margin-right: 13px;
+  margin-bottom: 20px;
+}
+
+.home-container .button-container button {
+  color: #ffffff;
+  font-size: 16px;
+  padding: 10px;
+  background-color: #4b8eb2;
+  border: none;
+  border-radius: 10px;
+  width: 100%;
+}
+
+.login-form .container .form-fields .button-container button:hover {
+  background-color: #414855;
 }
 
 /* NAVBAR */
@@ -126,7 +150,7 @@ code {
 }
 
 .login-form .container .form-fields .form-control {
-  height: 40px;
+  height: 38px;
   width: 100%;
   padding: 0px 0px 0px 25px;
   border: 1px solid #cccccc;
@@ -196,4 +220,56 @@ code {
 
 .login-form .container .form-fields .submitButton-container button:hover {
   background-color: #414855;
+}
+
+.game {
+  margin-top: 0;
+  display: flex;
+  justify-content: center;
+}
+
+.image_picker {
+  display: grid;
+  grid-template-columns: 25% 25% 25%;
+  grid-row-gap: 5px;
+  justify-content: center;
+}
+.image_picker .responsive {
+  position: relative;
+  margin: 0 6px;
+  float: left;
+  opacity: 1;
+}
+.image_picker .responsive .thumbnail {
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 5px;
+  width: 150px;
+  opacity: 1;
+  margin: 0;
+}
+.image_picker .responsive .thumbnail:hover {
+  box-shadow: 0 0 2px 1px rgba(0, 140, 186, 0.7);
+}
+.image_picker .responsive .selected {
+  background-color: #008cba;
+}
+.image_picker .responsive:hover {
+  cursor: pointer;
+}
+.image_picker .responsive .checked {
+  display: none;
+}
+.image_picker .selected {
+  opacity: 0.7;
+}
+.image_picker .selected .checked {
+  display: inline-block;
+  transition: 0.5s ease;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+}
+.image_picker .clear {
+  clear: both;
 }
