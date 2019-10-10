@@ -11,9 +11,18 @@ export default class DestinationRoom extends Phaser.Scene {
 
   preload() {
     this.load.image('troll', '/troll128.png');
+    this.load.image('officeTrollHole', '/OfficeTrollHole.png');
   }
 
   create() {
+    this.bg = this.add.image(
+      this.game.config.width / 2,
+      this.game.config.height / 2,
+      'officeTrollHole'
+    );
+    this.bg.displayWidth = this.game.config.width;
+    this.bg.displayHeight = this.game.config.height;
+
     this.add.text(200, 200, 'Wherefore art thou Romeo?');
     this.add.text(550, 500, 'Right here');
     this.add.text(300, 600, 'Baby I was born this way');
