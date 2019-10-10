@@ -1,6 +1,8 @@
 import Phaser from 'phaser';
 import Avatar from '../sprites/Avatar';
+import store from '../../store';
 
+const avatarStr = 'avatar';
 export default class DestinationRoom extends Phaser.Scene {
   constructor() {
     super({ key: 'DestinationRoom' });
@@ -10,7 +12,8 @@ export default class DestinationRoom extends Phaser.Scene {
   }
 
   preload() {
-    this.load.image('troll', '/troll128.png');
+    const { user: { avatar } } = store.getState();
+    this.load.image(avatarStr, avatar);
   }
 
   create() {
@@ -22,7 +25,7 @@ export default class DestinationRoom extends Phaser.Scene {
       scene: this,
       x: 100,
       y: 700,
-      asset: 'troll'
+      asset: avatarStr
     });
     this.add.existing(this.avatar);
 

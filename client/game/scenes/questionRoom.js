@@ -1,5 +1,9 @@
 import Phaser, { GameObjects } from 'phaser';
-import Avatar from '../sprites/Avatar';
+// import Avatar from '../sprites/Avatar';
+import store from '../../store';
+
+const avatarStr = 'avatar';
+// const avatarPath = '/troll128.png'
 
 export default class QuestionRoom extends Phaser.Scene {
   constructor() {
@@ -10,8 +14,9 @@ export default class QuestionRoom extends Phaser.Scene {
   }
 
   preload() {
+    const { user: { avatar } } = store.getState();
     this.load.image('crystalBackground', '/CrystalScene.png');
-    this.load.image('troll', '/troll128.png');
+    this.load.image(avatarStr, avatar);
   }
 
   create() {
@@ -44,7 +49,7 @@ export default class QuestionRoom extends Phaser.Scene {
     // });
 
     //adds sprite to physics object, disables gravity so it doesn't fall
-    this.avatar = this.physics.add.sprite(100, 700, 'troll');
+    this.avatar = this.physics.add.sprite(100, 700, avatarStr);
     this.avatar.body.setAllowGravity(false);
 
     //creates a collision between sprite and answer, triggers room change
