@@ -3,9 +3,10 @@ import Phaser, { GameObjects } from 'phaser';
 import store from '../../store';
 
 const avatarStr = 'avatar';
-// const fontStyle = {
-//   fontFamily:
-// }
+const fontStyle = {
+  // fontFamily: 'Press Start 2P',
+  fontSize: '4em'
+};
 
 export default class QuestionRoom extends Phaser.Scene {
   constructor() {
@@ -34,14 +35,16 @@ export default class QuestionRoom extends Phaser.Scene {
     this.add.text(
       this.bg.displayWidth / 2,
       this.bg.displayHeight / 4,
-      'Question question?'
+      'Question question?',
+      fontStyle
     );
 
     // Game Objects Leading to Different Rooms
     this.answerA = this.add.text(
       this.bg.displayWidth / 4,
       this.bg.displayHeight / 3,
-      'Anser Anser'
+      'Anser Anser',
+      fontStyle
     );
 
     // Makes your life choices fall away !! aka adds answerA to physics
@@ -51,7 +54,8 @@ export default class QuestionRoom extends Phaser.Scene {
     this.answerB = this.add.text(
       3 * this.bg.displayWidth / 4,
       this.bg.displayHeight / 3,
-      'Anwer Anwer'
+      'Anwer Anwer',
+      fontStyle
     );
     this.physicsObjectB = this.physics.add.existing(this.answerB, 'static');
     // Avatar
