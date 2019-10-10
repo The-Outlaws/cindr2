@@ -23,6 +23,8 @@ Room.hasOne(Question);
 Answer.belongsTo(Question);
 Question.hasMany(Answer);
 
+Answer.belongsTo(Room, { as: 'roomRoute' });
+
 User.hasMany(Message);
 Message.belongsTo(User);
 

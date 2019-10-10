@@ -1,11 +1,11 @@
-'use strict'
+'use strict';
 
-const db = require('../server/db')
-const {User, Room, Question, Answer} = require('../server/db/models')
+const db = require('../server/db');
+const { User, Room, Question, Answer } = require('../server/db/models');
 
 async function seed() {
-  await db.sync({force: true})
-  console.log('db synced!')
+  await db.sync({ force: true });
+  console.log('db synced!');
 
   const users = await Promise.all([
     User.create({
@@ -153,65 +153,69 @@ async function seed() {
       age: 18,
       orientation: 'hub'
     })
-  ])
+  ]);
   const rooms = await Promise.all([
-    Room.create({name: 'Quaint Cottage', trollRoom: false}),
-    Room.create({name: 'Evil Castle', trollRoom: false}),
-    Room.create({name: 'Haunted Lair', trollRoom: false}),
-    Room.create({name: 'Whimsical Meadow', trollRoom: false}),
-    Room.create({name: 'Happy Kitchen', trollRoom: false}),
-    Room.create({name: 'Cozy Hut', trollRoom: false}),
-    Room.create({name: 'Cavernous Cave', trollRoom: false}),
-    Room.create({name: 'Limey Cave', trollRoom: false}),
-    Room.create({name: 'Frozen the Musical', trollRoom: true}),
-    Room.create({name: 'The Dungeon', trollRoom: false}),
-    Room.create({name: 'The Office', trollRoom: true}),
-    Room.create({name: 'Fluffy Cloud', trollRoom: false}),
-    Room.create({name: 'Green Grove', trollRoom: false}),
-    Room.create({name: 'Wise Tree', trollRoom: false}),
-    Room.create({name: 'Awkward Tree House', trollRoom: true})
-  ])
+    Room.create({ name: 'Quaint Cottage', trollRoom: false }),
+    Room.create({ name: 'Evil Castle', trollRoom: false }),
+    Room.create({ name: 'Haunted Lair', trollRoom: false }),
+    Room.create({ name: 'Whimsical Meadow', trollRoom: false }),
+    Room.create({ name: 'Happy Kitchen', trollRoom: false }),
+    Room.create({ name: 'Cozy Hut', trollRoom: false }),
+    Room.create({ name: 'Cavernous Cave', trollRoom: false }),
+    Room.create({ name: 'Limey Cave', trollRoom: false }),
+    Room.create({ name: 'Frozen the Musical', trollRoom: true }),
+    Room.create({ name: 'The Dungeon', trollRoom: false }),
+    Room.create({ name: 'The Office', trollRoom: true }),
+    Room.create({ name: 'Fluffy Cloud', trollRoom: false }),
+    Room.create({ name: 'Green Grove', trollRoom: false }),
+    Room.create({ name: 'Wise Tree', trollRoom: false }),
+    Room.create({ name: 'Awkward Tree House', trollRoom: true })
+  ]);
 
   const questions = await Promise.all([
-    Question.create({content: 'Who strikes your fancy?', roomId: 1}),
+    Question.create({ content: 'Who strikes your fancy?', roomId: 1 }),
     Question.create({
       content: 'This castle is filled with ghosts. What to do?',
       roomId: 2
     })
-  ])
+  ]);
 
   const answers = await Promise.all([
-    Answer.create({content: 'Friend', roomRoute: 2, questionId: 1}),
-    Answer.create({content: 'Date', roomRoute: 3, questionId: 1}),
+    Answer.create({ content: 'Friend', roomRouteId: 2, questionId: 1 }),
+    Answer.create({ content: 'Date', roomRouteId: 3, questionId: 1 }),
     Answer.create({
       content: 'Meet some friendly ghosts',
-      roomRoute: 3,
+      roomRouteId: 3,
       questionId: 2
     }),
-    Answer.create({content: 'Run the f*** away', roomRoute: 4, questionId: 2})
-  ])
+    Answer.create({
+      content: 'Run the f*** away',
+      roomRouteId: 4,
+      questionId: 2
+    })
+  ]);
   console.log(
     `seeded ${users.length} users, ${rooms.length} rooms, ${
       questions.length
     } questions, ${answers.length} answers`
-  )
-  console.log(`seeded successfully`)
+  );
+  console.log(`seeded successfully`);
 }
 
 // We've separated the `seed` function from the `runSeed` function.
 // This way we can isolate the error handling and exit trapping.
 // The `seed` function is concerned only with modifying the database.
 async function runSeed() {
-  console.log('seeding...')
+  console.log('seeding...');
   try {
-    await seed()
+    await seed();
   } catch (err) {
-    console.error(err)
-    process.exitCode = 1
+    console.error(err);
+    process.exitCode = 1;
   } finally {
-    console.log('closing db connection')
-    await db.close()
-    console.log('db connection closed')
+    console.log('closing db connection');
+    await db.close();
+    console.log('db connection closed');
   }
 }
 
@@ -219,8 +223,8 @@ async function runSeed() {
 // `Async` functions always return a promise, so we can use `catch` to handle
 // any errors that might occur inside of `seed`.
 if (module === require.main) {
-  runSeed()
+  runSeed();
 }
 
 // we export the seed function for testing purposes (see `./seed.spec.js`)
-module.exports = seed
+module.exports = seed;
