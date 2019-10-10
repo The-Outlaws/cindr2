@@ -102,11 +102,11 @@ code {
 
 /* PROFILE */
 .login-form {
-  height: 100vh;
   background-size: cover;
   display: flex;
   align-items: center;
   justify-content: center;
+  overflow: scroll;
 }
 
 .login-form .container {
@@ -118,17 +118,16 @@ code {
   padding: 40px;
 }
 
-.login-form .container .img img {
-  width: 80px;
-  display: block;
-  margin-left: 75px;
+.login-form .container .img {
+  display: flex;
+  justify-content: center;
 }
 
 .login-form .container .heading h4 {
   color: #4b8eb2;
   font-size: 35px;
   text-align: center;
-  margin-left: 50px;
+  margin-left: 15px;
   margin-right: 15px;
   margin-bottom: 15px;
   margin-top: 15px;
