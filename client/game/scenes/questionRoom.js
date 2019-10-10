@@ -16,8 +16,8 @@ export default class QuestionRoom extends Phaser.Scene {
   }
 
   preload() {
-    const { user: { avatar } } = store.getState();
-    this.load.image('crystalBackground', '/CrystalScene.png');
+    const { user: { avatar }, room: { image } } = store.getState();
+    this.load.image('crystalBackground', image);
     this.load.image(avatarStr, avatar);
   }
 

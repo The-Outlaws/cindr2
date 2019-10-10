@@ -20,3 +20,10 @@ export default class GameContainer extends React.Component {
     return <div className="game" />;
   }
 }
+
+// const mapStateToProps = function(state) {
+
+//   return {
+//     user:
+//   };
+// };

@@ -1,7 +1,13 @@
 'use strict';
 
 const db = require('../server/db');
-const { User, Room, Question, Answer } = require('../server/db/models');
+const {
+  User,
+  Room,
+  Question,
+  Answer,
+  UserRoom
+} = require('../server/db/models');
 
 async function seed() {
   await db.sync({ force: true });
@@ -172,6 +178,10 @@ async function seed() {
     Room.create({ name: 'Awkward Tree House', trollRoom: true })
   ]);
 
+  const userRooms = await Promise.all([
+    UserRoom.create({ isActive: true, userId: 2, roomId: 1 }),
+    UserRoom.create({ isActive: false, userId: 4, roomId: 2 })
+  ]);
   const questions = await Promise.all([
     Question.create({ content: 'Who strikes your fancy?', roomId: 1 }),
     Question.create({
