@@ -9,12 +9,13 @@ export default class Boot extends Phaser.Scene {
     this.load.image('troll512', '/troll512.png');
 
     this.add.text(300, 300, 'loading...', { fill: '#9CCC65', font: '64px' });
-    //this.add.image(this.game.config.width/2, this.game.config.height/2, 'troll512')
+    //this.add.image(this.game.config.width/2, this.game.config.height/2, troll)
 
     this.load.image('troll', '/troll128.png');
     this.load.image('crystalBackground', '/CrystalScene.png');
     this.load.image('officeTrollHole', '/OfficeTrollHole.png');
   }
+  create() {}
 
   update() {
     this.scene.start('Splash');
