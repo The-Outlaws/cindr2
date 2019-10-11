@@ -5,13 +5,11 @@ import store from '../../store';
 const avatarStr = 'avatar';
 const fontStyle = {
   // fontFamily: 'Press Start 2P',
-  fontSize: '4em',
-  color: '#FF0090'
+  fontSize: '4em'
 };
-
 export default class DestinationRoom extends Phaser.Scene {
   constructor() {
-    super({ key: 'DestinationRoom' });
+    super({ key: 'DestinationRoom2' });
   }
   init() {
     this.playerSpeed = 10;
@@ -21,21 +19,26 @@ export default class DestinationRoom extends Phaser.Scene {
     const { user: { avatar } } = store.getState();
     this.load.image(avatarStr, avatar);
     this.load.image('troll', '/troll128.png');
-    this.load.image('officeTrollHole', '/OfficeTrollHole.png');
+    this.load.image('bloomsbury', '/bloomsbury.png');
   }
 
   create() {
     this.bg = this.add.image(
       this.game.config.width / 2,
       this.game.config.height / 2,
-      'officeTrollHole'
+      'bloomsbury'
     );
     this.bg.displayWidth = this.game.config.width;
     this.bg.displayHeight = this.game.config.height;
 
-    this.add.text(200, 200, 'Wherefore art thou Romeo?', fontStyle);
-    this.add.text(550, 500, 'Right here', fontStyle);
-    this.add.text(300, 600, 'Baby I was born this way', fontStyle);
+    this.add.text(
+      200,
+      200,
+      'Would you rather eat eye of newt or toenail of cat?',
+      fontStyle
+    );
+    this.add.text(550, 500, 'eye eye eye', fontStyle);
+    this.add.text(300, 600, 'meowth', fontStyle);
 
     this.avatar = new Avatar({
       scene: this,

@@ -86,6 +86,15 @@ export default class QuestionRoom extends Phaser.Scene {
       this
     );
 
+    this.physics.add.collider(
+      this.avatar,
+      this.physicsObjectB,
+      () => {
+        this.scene.start('DestinationRoom2');
+      },
+      null,
+      this
+    );
     // Variable containing up/down/right/left keys
     this.cursors = this.input.keyboard.createCursorKeys();
   }
