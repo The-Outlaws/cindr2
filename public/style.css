@@ -102,11 +102,11 @@ code {
 
 /* PROFILE */
 .login-form {
-  height: 100vh;
   background-size: cover;
   display: flex;
   align-items: center;
   justify-content: center;
+  overflow: scroll;
 }
 
 .login-form .container {
@@ -118,17 +118,16 @@ code {
   padding: 40px;
 }
 
-.login-form .container .img img {
-  width: 80px;
-  display: block;
-  margin-left: 75px;
+.login-form .container .img {
+  display: flex;
+  justify-content: center;
 }
 
 .login-form .container .heading h4 {
   color: #4b8eb2;
   font-size: 35px;
   text-align: center;
-  margin-left: 50px;
+  margin-left: 15px;
   margin-right: 15px;
   margin-bottom: 15px;
   margin-top: 15px;
@@ -141,18 +140,19 @@ code {
   display: flex;
   flex-direction: column;
   width: 100%;
+  justify-content: center;
 }
 
 .login-form .container .form-fields .input-box {
-  position: relative;
-  margin-bottom: 20px;
+  /* position: relative; */
+  margin-bottom: 10px;
   width: 100%;
 }
 
 .login-form .container .form-fields .form-control {
   height: 38px;
   width: 100%;
-  padding: 0px 0px 0px 25px;
+  padding: 0px 0px 0px 0px;
   border: 1px solid #cccccc;
   font-size: 12px;
 }
@@ -161,10 +161,19 @@ code {
   height: 17px;
   width: 100%;
   text-align: left;
-  padding: 12px;
-
   border: 1px solid #cccccc;
-  font-size: 12px;
+}
+
+.login-form .container .form-fields .input-box input[type='text'] {
+  margin: 8px 0;
+  padding-left: 12px;
+  font-size: 15px;
+}
+
+.login-form .container .form-fields .input-box input[type='password'] {
+  margin: 8px 0;
+  padding-left: 12px;
+  font-size: 15px;
 }
 
 .login-form .container .form-fields .form-control ::placeholder {
@@ -176,8 +185,9 @@ code {
   display: flex;
   border: 1px solid transparent;
   align-items: center;
-  margin-left: 13px;
-  margin-right: 13px;
+  justify-content: center;
+  /* margin-left: 13px;
+  margin-right: 13px; */
   /* padding: 13px; */
   margin-bottom: 20px;
 }
@@ -202,8 +212,8 @@ code {
   border: 1px solid transparent;
   justify-content: center;
   margin-top: 15px;
-  margin-right: 13px;
-  margin-left: 13px;
+  /* margin-right: 13px;
+  margin-left: 13px; */
   /* padding: 15px; */
 }
 
@@ -222,10 +232,22 @@ code {
   background-color: #414855;
 }
 
+.fileAdd {
+  display: flex;
+  color: #4b8eb2;
+  font-size: 20px;
+  justify-content: center;
+  /* margin-left: 15px;
+  margin-right: 15px;
+  margin-bottom: 15px;
+  margin-top: 15px; */
+}
+
 .game {
   margin-top: 0;
   display: flex;
   justify-content: center;
+  font-family: 'Press Start 2P', cursive;
 }
 
 .image_picker {

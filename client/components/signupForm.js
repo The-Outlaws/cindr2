@@ -125,7 +125,7 @@ class SignupForm extends React.Component {
                   name="gender"
                 />
               </div>
-              <div className="button-container">
+              <div className="fileAdd">
                 <Dropzone
                   onDrop={this.onImageDrop}
                   accept="image/png, image/jpeg"
@@ -141,12 +141,10 @@ class SignupForm extends React.Component {
                     acceptedFiles
                   }) => {
                     return (
-                      <div className="heading" {...getRootProps()}>
+                      <div {...getRootProps()}>
                         <input {...getInputProps()} />
                         {!isDragActive && (
-                          <h4>
-                            Click here or drop a file to upload your photo!
-                          </h4>
+                          <p>Click here or drop a file to upload your photo!</p>
                         )}
                         {isDragActive &&
                           !isDragReject &&
