@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux';
 import user from './user';
-import message from './messages';
+import messages from './messages';
 import newMessage from './newMessage';
 
 export const GET_USER = 'GET_USER';
@@ -13,7 +13,7 @@ export const WRITE_MESSAGE = 'WRITE_MESSAGE';
 
 const rootReducer = combineReducers({
   user,
-  message,
+  messages,
   newMessage
 });
 

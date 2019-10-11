@@ -7,6 +7,7 @@ module.exports = router;
 router.get('/', async (req, res, next) => {
   try {
     const messages = await Message.findAll();
+    console.log(messages);
     res.json(messages);
   } catch (err) {
     next(err);
