@@ -12,7 +12,16 @@ const fontStyle = {
 export default class DestinationRoom extends Phaser.Scene {
   constructor() {
     super({ key: 'DestinationRoom' });
+    this.text = '';
+    this.initialTime = 30;
   }
+
+  //decrements seconds every one second and displays countdown
+  onEvent() {
+    this.initialTime -= 1;
+    this.text.setText(`Make a decision in: ${this.initialTime} seconds!`);
+  }
+
   init() {
     this.playerSpeed = 10;
   }
@@ -44,6 +53,27 @@ export default class DestinationRoom extends Phaser.Scene {
       asset: avatarStr
     });
     this.add.existing(this.avatar);
+
+    this.text = this.add.text(
+      250,
+      250,
+      `Make a decision in: ${this.initialTime} seconds!`,
+      fontStyle
+    );
+
+    this.time.addEvent({
+      delay: 1000,
+      callback: this.onEvent,
+      callbackScope: this,
+      loop: true
+    });
+    this.time.addEvent({
+      delay: 30000,
+      callback: () => {
+        this.scene.start('TrollHole');
+      },
+      callbackScope: this
+    });
 
     this.cursors = this.input.keyboard.createCursorKeys();
   }
