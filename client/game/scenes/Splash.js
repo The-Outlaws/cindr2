@@ -18,7 +18,7 @@ export default class Splash extends Phaser.Scene {
         'Start Adventure',
         {
           fill: '#9CCC65',
-          font: '64px'
+          font: '64px Walter Turncoat'
         }
       )
       .setInteractive()

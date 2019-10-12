@@ -12,8 +12,6 @@ const fontStyle = {
 export default class DestinationRoom extends Phaser.Scene {
   constructor() {
     super({ key: 'DestinationRoom' });
-    this.text = '';
-    this.initialTime = 30;
   }
 
   //decrements seconds every one second and displays countdown
@@ -61,6 +59,8 @@ export default class DestinationRoom extends Phaser.Scene {
       fontStyle
     );
 
+    this.initialTime = 15;
+
     this.time.addEvent({
       delay: 1000,
       callback: this.onEvent,
@@ -68,7 +68,7 @@ export default class DestinationRoom extends Phaser.Scene {
       loop: true
     });
     this.time.addEvent({
-      delay: 30000,
+      delay: 15000,
       callback: () => {
         this.scene.start('TrollHole');
       },

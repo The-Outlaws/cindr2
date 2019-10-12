@@ -19,14 +19,14 @@ export default class DestinationRoom extends Phaser.Scene {
     const { user: { avatar } } = store.getState();
     this.load.image(avatarStr, avatar);
     this.load.image('troll', '/troll128.png');
-    this.load.image('bloomsbury', '/bloomsbury.png');
+    this.load.image('evilCastle', '/magical-entrance-portal.png');
   }
 
   create() {
     this.bg = this.add.image(
       this.game.config.width / 2,
       this.game.config.height / 2,
-      'bloomsbury'
+      'evilCastle'
     );
     this.bg.displayWidth = this.game.config.width;
     this.bg.displayHeight = this.game.config.height;
