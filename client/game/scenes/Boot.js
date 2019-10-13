@@ -30,7 +30,9 @@ export default class Boot extends Phaser.Scene {
           'Pangolin',
           'Walter Turncoat',
           'Galindo',
-          'Piedra'
+          'Piedra',
+          'Lakki Reddy',
+          'Yeon Sung'
         ]
       },
       active: this.fontsLoaded

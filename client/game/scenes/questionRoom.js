@@ -68,7 +68,7 @@ export default class QuestionRoom extends Phaser.Scene {
     this.initialTime = 15;
 
     this.countDownText = this.add.text(
-      3.39 * this.bg.displayWidth / 4,
+      3.38 * this.bg.displayWidth / 4,
       this.bg.displayHeight / 13,
       `${this.initialTime}`,
       fontStyleQuestion

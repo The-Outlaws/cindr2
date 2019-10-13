@@ -11,7 +11,7 @@ const fontStyleQuestion = {
 };
 
 const fontStyleAnswer = {
-  font: '3.2em Fugaz One',
+  font: '3.4em Galindo',
   fill: '#e54567',
   align: 'center'
   // backgroundColor: 'white'
@@ -80,8 +80,8 @@ export default class TrollHole extends Phaser.Scene {
     this.physicsObjectD = this.physics.add.existing(this.answerD, 'static');
 
     this.avatar = this.physics.add.sprite(
-      this.bg.displayWidth / 2,
-      4 * this.bg.displayHeight / 5,
+      2.2 * this.bg.displayWidth / 4,
+      3 * this.bg.displayHeight / 4,
       avatarStr
     );
     this.avatar.body.setAllowGravity(false);
