@@ -217,6 +217,11 @@ code {
   /* padding: 15px; */
 }
 
+.inclusivity-note {
+  margin-top: 30px;
+  font-style: italic;
+}
+
 .login-form .container .form-fields .submitButton-container button {
   color: #ffffff;
   font-size: 16px;
@@ -241,6 +246,7 @@ code {
   border-radius: 10px;
   font-size: 20px;
   justify-content: center;
+  margin-bottom: 15px;
   /* margin-left: 15px;
   margin-right: 15px;
   margin-bottom: 15px;
