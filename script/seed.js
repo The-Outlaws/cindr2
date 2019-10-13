@@ -1,7 +1,15 @@
 'use strict';
 
 const db = require('../server/db');
-const { User, Room, Question, Answer } = require('../server/db/models');
+const {
+  User,
+  Room,
+  Question,
+  Answer,
+  Message,
+  Conversation,
+  UserMatches
+} = require('../server/db/models');
 
 async function seed() {
   await db.sync({ force: true });
@@ -194,10 +202,34 @@ async function seed() {
       questionId: 2
     })
   ]);
+
+  const conversations = await Promise.all([
+    Conversation.create({
+      userId: 1,
+      matchId: 2,
+      isAccepted: true,
+      isRejected: false
+    })
+  ]);
+  // const userMatches = await Promise.all([
+  //   UserMatches.create({userId: 1, matchId: 2, isAccepted: true, isRejected: false})
+  // ])
+  const messages = await Promise.all([
+    Message.create({ content: 'Hey, you!', userId: 1, conversationId: 1 }),
+    Message.create({ content: 'Hey, back!', userId: 2, conversationId: 1 }),
+    Message.create({
+      content: 'So, you like friendly ghosts?!',
+      userId: 1,
+      conversationId: 1
+    }),
+    Message.create({ content: 'Yeah! Caspar <3', userId: 2, conversationId: 1 })
+  ]);
   console.log(
     `seeded ${users.length} users, ${rooms.length} rooms, ${
       questions.length
-    } questions, ${answers.length} answers`
+    } questions, ${answers.length} answers, ${messages.length} messages, ${
+      conversations.length
+    } conversations`
   );
   console.log(`seeded successfully`);
 }

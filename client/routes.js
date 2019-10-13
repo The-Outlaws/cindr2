@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter, Route, Switch } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import { me } from './store';
+import { me, fetchMessages, getConversations } from './store';
 import Game from './components/game';
 import { MapHistory } from './components/mapHistory';
 import { Matches } from './components/matches';
@@ -11,6 +11,7 @@ import { HomePage } from './components/homePage';
 import { Signup } from './components/signupForm';
 import { Login } from './components/loginForm';
 import { Chat } from './components/newMessageEntry';
+import newMessage from './store/reducers/newMessage';
 
 /**
  * COMPONENT
@@ -37,7 +38,6 @@ class Routes extends Component {
             <Route path="/game" component={Game} />
             <Route path="/map" component={MapHistory} />
             <Route path="/matches" component={Matches} />
-            <Route path="/chat" component={Chat} />
           </Switch>
         )}
         {/* Displays our HomePage component as a fallback */}
@@ -62,6 +62,8 @@ const mapDispatch = dispatch => {
   return {
     loadInitialData() {
       dispatch(me());
+      dispatch(fetchMessages());
+      dispatch(getConversations());
     }
   };
 };

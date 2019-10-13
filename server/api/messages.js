@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { Message, User } = require('../db/models');
+const { Message, User, Conversation } = require('../db/models');
 
 module.exports = router;
 
@@ -7,6 +7,7 @@ module.exports = router;
 router.get('/', async (req, res, next) => {
   try {
     const messages = await Message.findAll();
+    console.log(messages);
     res.json(messages);
   } catch (err) {
     next(err);
