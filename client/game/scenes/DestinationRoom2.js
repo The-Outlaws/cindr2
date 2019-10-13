@@ -3,14 +3,32 @@ import Avatar from '../sprites/Avatar';
 import store from '../../store';
 
 const avatarStr = 'avatar';
-const fontStyle = {
-  // fontFamily: 'Press Start 2P',
-  fontSize: '4em'
+
+const fontStyleQuestion = {
+  font: '5.5em Piedra',
+  fill: '#ff2525',
+  align: 'center'
 };
+const fontStyleAnswer = {
+  font: '4.5em Piedra',
+  fill: '#b81b1b'
+};
+const fontStyleCountdown = {
+  font: '4.5em Piedra',
+  fill: '#b81b1b',
+  align: 'center'
+};
+
 export default class DestinationRoom extends Phaser.Scene {
   constructor() {
     super({ key: 'DestinationRoom2' });
   }
+
+  onEvent() {
+    this.initialTime -= 1;
+    this.countDownText.setText(`${this.initialTime}`);
+  }
+
   init() {
     this.playerSpeed = 10;
   }
@@ -19,34 +37,81 @@ export default class DestinationRoom extends Phaser.Scene {
     const { user: { avatar } } = store.getState();
     this.load.image(avatarStr, avatar);
     this.load.image('troll', '/troll128.png');
-    this.load.image('bloomsbury', '/bloomsbury.png');
+    this.load.image('evilCastle', '/CastleScene.png');
   }
 
   create() {
     this.bg = this.add.image(
       this.game.config.width / 2,
       this.game.config.height / 2,
-      'bloomsbury'
+      'evilCastle'
     );
     this.bg.displayWidth = this.game.config.width;
     this.bg.displayHeight = this.game.config.height;
 
     this.add.text(
-      200,
-      200,
-      'Would you rather eat eye of newt or toenail of cat?',
-      fontStyle
+      0.2 * this.bg.displayWidth / 4,
+      0.2 * this.bg.displayHeight / 4,
+      'Would you rather eat \neye of newt or toenail of cat?',
+      fontStyleQuestion
     );
-    this.add.text(550, 500, 'eye eye eye', fontStyle);
-    this.add.text(300, 600, 'meowth', fontStyle);
+    this.add.text(
+      2.9 * this.bg.displayWidth / 4,
+      1.5 * this.bg.displayHeight / 4,
+      'eye eye eye',
+      fontStyleAnswer
+    );
+    this.add.text(
+      this.bg.displayWidth / 4,
+      2.4 * this.bg.displayHeight / 4,
+      'meowth',
+      fontStyleAnswer
+    );
 
     this.avatar = new Avatar({
       scene: this,
-      x: 100,
-      y: 700,
+      x: this.bg.displayWidth / 2,
+      y: 4 * this.bg.displayHeight / 5,
       asset: avatarStr
     });
     this.add.existing(this.avatar);
+
+    this.add.text(
+      3.5 * this.bg.displayWidth / 4,
+      this.bg.displayHeight / 23.5,
+      'You have: ',
+      fontStyleCountdown
+    );
+
+    this.add.text(
+      3.33 * this.bg.displayWidth / 4,
+      this.bg.displayHeight / 8,
+      'seconds\nto answer this question!',
+      fontStyleCountdown
+    );
+
+    this.initialTime = 15;
+    this.countDownText = this.add.text(
+      3.6 * this.bg.displayWidth / 4,
+      this.bg.displayHeight / 12.8,
+      `${this.initialTime}`,
+      fontStyleQuestion
+    );
+
+    this.time.addEvent({
+      delay: 1000,
+      callback: this.onEvent,
+      callbackScope: this,
+      loop: true
+    });
+
+    this.time.addEvent({
+      delay: 15000,
+      callback: () => {
+        this.scene.start('TrollHole');
+      },
+      callbackScope: this
+    });
 
     this.cursors = this.input.keyboard.createCursorKeys();
   }
