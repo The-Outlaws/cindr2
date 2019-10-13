@@ -4,6 +4,7 @@ const Question = require('./question');
 const Answer = require('./answer');
 const Message = require('./message');
 const Conversation = require('./conversation');
+const UserMatches = require('./userMatch');
 /**
  * If we had any associations to make, this would be a great place to put them!
  * ex. if we had another model called BlogPost, we might say:
@@ -35,7 +36,7 @@ User.belongsToMany(Room, { through: 'UserRoom' });
 Answer.belongsToMany(User, { through: 'UserAnswer' });
 User.belongsToMany(Answer, { through: 'UserAnswer' });
 
-User.belongsToMany(User, { as: 'Match', through: 'UserMatch' });
+User.belongsToMany(User, { as: 'match', through: 'Conversation' });
 
 User.hasMany(Conversation);
 Conversation.belongsTo(User, { as: 'user' });
@@ -43,10 +44,15 @@ Conversation.belongsTo(User, { as: 'match' });
 Message.belongsTo(Conversation);
 Conversation.hasMany(Message);
 
+Message.belongsTo(User);
+User.hasMany(Message);
+
 module.exports = {
   User,
   Room,
   Question,
   Answer,
-  Message
+  Message,
+  // UserMatches,
+  Conversation
 };

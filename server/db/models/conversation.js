@@ -3,7 +3,16 @@ const db = require('../db');
 const Message = require('./message');
 const { Op } = Sequelize;
 
-const Conversation = db.define('conversation', {});
+const Conversation = db.define('conversation', {
+  isAccepted: {
+    type: Sequelize.BOOLEAN,
+    defaultValue: false
+  },
+  isRejected: {
+    type: Sequelize.BOOLEAN,
+    defaultValue: false
+  }
+});
 
 Conversation.findOrCreateConversation = async (userId, matchId) => {
   try {
@@ -16,7 +25,8 @@ Conversation.findOrCreateConversation = async (userId, matchId) => {
           [Op.or]: [userId, matchId]
         }
       },
-      include: [Message]
+      include: [Message],
+      order: [[Message, 'createdAt', 'DESC']]
     });
     return conversation;
   } catch (err) {

@@ -12,9 +12,7 @@ const Message = db.define(
     }
   },
   {
-    defaultScope: {
-      include: [{ model: User }]
-    }
+    include: [{ model: User }]
   }
 );
 Message.createMessage = async (content, sender, receiver) => {
