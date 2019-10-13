@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter, Route, Switch } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import { me, fetchMessages } from './store';
+import { me, fetchMessages, getConversations } from './store';
 import Game from './components/game';
 import { MapHistory } from './components/mapHistory';
 import { Matches } from './components/matches';
@@ -63,6 +63,7 @@ const mapDispatch = dispatch => {
     loadInitialData() {
       dispatch(me());
       dispatch(fetchMessages());
+      dispatch(getConversations());
     }
   };
 };

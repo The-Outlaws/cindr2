@@ -24,7 +24,7 @@ export class Matches extends Component {
           {/* <Switch>
             <Route path="/matches/:userId" component={MessagesList} />
             {/* <Redirect to="/matches/19" /> */}
-          {/* </Switch> */} */}
+          {/* </Switch> */}
         </main>
       </div>
     );

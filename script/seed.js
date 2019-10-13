@@ -204,7 +204,12 @@ async function seed() {
   ]);
 
   const conversations = await Promise.all([
-    Conversation.create({ userId: 1, matchId: 2 })
+    Conversation.create({
+      userId: 1,
+      matchId: 2,
+      isAccepted: true,
+      isRejected: false
+    })
   ]);
   // const userMatches = await Promise.all([
   //   UserMatches.create({userId: 1, matchId: 2, isAccepted: true, isRejected: false})

@@ -33,5 +33,9 @@ Conversation.findOrCreateConversation = async (userId, matchId) => {
     console.log(err);
   }
 };
-
+//user sends request to match
+//pending request: false, false (default)
+//accepted request: true, false
+//rejected request: false, true
+//accepted, then rejected: true, true (perhaps for deleting/blocking purposes)
 module.exports = Conversation;

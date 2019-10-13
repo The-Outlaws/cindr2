@@ -53,6 +53,5 @@ module.exports = {
   Question,
   Answer,
   Message,
-  // UserMatches,
   Conversation
 };
