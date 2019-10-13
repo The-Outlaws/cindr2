@@ -222,6 +222,10 @@ code {
   font-style: italic;
 }
 
+.error {
+  margin-top: 30px;
+}
+
 .login-form .container .form-fields .submitButton-container button {
   color: #ffffff;
   font-size: 16px;

@@ -192,13 +192,13 @@ class SignupForm extends React.Component {
                   <button type="submit">Home</button>
                 </div>
               </Link>
-              <div>
-                {this.props.error ? (
-                  <p className="error">
-                    Hmm! Your profile was not created - try checking the
-                    information you entered to make sure it's correct.
-                  </p>
-                ) : null}
+              <div className="error">
+                {!this.props.error
+                  ? null
+                  : this.props.error.message ===
+                    'Request failed with status code 401'
+                    ? 'Hmm - it looks like this user already exists!'
+                    : 'Hmm - your profile was not created. Try checking the information you entered to make sure it is correct.'}
               </div>
               <div className="inclusivity-note">
                 * Here at Cinder, inclusivity is important to us. Orientation
