@@ -104,7 +104,7 @@ class SignupForm extends React.Component {
               <div className="input-box">
                 <input
                   type="text"
-                  placeholder="Height"
+                  placeholder="Height (in feet - ex: 5'4)"
                   className="form-control"
                   name="height"
                 />
@@ -112,7 +112,7 @@ class SignupForm extends React.Component {
               <div className="input-box">
                 <input
                   type="text"
-                  placeholder="Orientation"
+                  placeholder="Orientation *"
                   className="form-control"
                   name="orientation"
                 />
@@ -120,7 +120,7 @@ class SignupForm extends React.Component {
               <div className="input-box">
                 <input
                   type="text"
-                  placeholder="Gender"
+                  placeholder="Gender *"
                   className="form-control"
                   name="gender"
                 />
@@ -192,6 +192,19 @@ class SignupForm extends React.Component {
                   <button type="submit">Home</button>
                 </div>
               </Link>
+              <div>
+                {this.props.error ? (
+                  <p className="error">
+                    Hmm! Your profile was not created - try checking the
+                    information you entered to make sure it's correct.
+                  </p>
+                ) : null}
+              </div>
+              <div className="inclusivity-note">
+                * Here at Cinder, inclusivity is important to us. Orientation
+                and gender are open fields for you to enter what you feel best
+                represents you.
+              </div>
             </div>
           </div>
         </form>

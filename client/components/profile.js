@@ -98,7 +98,7 @@ Profile.propTypes = {
   firstName: PropTypes.string,
   password: PropTypes.string,
   age: PropTypes.number,
-  height: PropTypes.number,
+  height: PropTypes.string,
   orientation: PropTypes.string,
   gender: PropTypes.string
 };
