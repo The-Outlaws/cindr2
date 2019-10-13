@@ -17,17 +17,22 @@ export default class QuestionRoom extends Phaser.Scene {
   }
 
   preload() {
-    const { user: { avatar }, room: { image } } = store.getState();
-    this.load.image('crystalBackground', image);
+    const { user: { avatar }, room } = store.getState();
+    if (!room.length) {
+      this.load.image('crystalBackground', '/CrystalScene.png');
+    } else {
+      this.load.image('background', image);
+    }
     this.load.image(avatarStr, avatar);
   }
 
   create() {
     // Background image
+    console.log(store.getState());
     this.bg = this.add.image(
       this.game.config.width / 2,
       this.game.config.height / 2,
-      'crystalBackground'
+      'background'
     );
     this.bg.displayWidth = this.game.config.width;
     this.bg.displayHeight = this.game.config.height;

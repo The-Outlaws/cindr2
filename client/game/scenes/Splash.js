@@ -1,4 +1,5 @@
 import Phaser from 'phaser';
+import store from '../../store';
 
 export default class Splash extends Phaser.Scene {
   constructor() {
@@ -11,6 +12,7 @@ export default class Splash extends Phaser.Scene {
   preload() {}
 
   create() {
+    console.log(store);
     this.startButton = this.add
       .text(
         this.game.config.width / 2,
@@ -31,9 +33,9 @@ export default class Splash extends Phaser.Scene {
     this.scene.start('QuestionRoom');
   }
   hoverState() {
-    this.clickButton.setStyle({ fill: '#FF5733' });
+    this.startButton.setStyle({ fill: '#FF5733' });
   }
   restState() {
-    this.clickButton.setStyle({ fill: '#FFC300' });
+    this.startButton.setStyle({ fill: '#FFC300' });
   }
 }

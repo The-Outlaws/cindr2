@@ -6,7 +6,8 @@ const Room = db.define('room', {
     type: Sequelize.STRING
   },
   image: {
-    type: Sequelize.STRING
+    type: Sequelize.STRING,
+    defaultValue: '/CrystalScene.png'
   },
   trollRoom: {
     type: Sequelize.BOOLEAN

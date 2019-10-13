@@ -6,6 +6,7 @@ const {
   Room,
   Question,
   Answer,
+  //UserRooms
   UserRoom
 } = require('../server/db/models');
 
@@ -179,9 +180,13 @@ async function seed() {
   ]);
 
   const userRooms = await Promise.all([
-    UserRoom.create({ isActive: true, userId: 2, roomId: 1 }),
-    UserRoom.create({ isActive: false, userId: 4, roomId: 2 })
+    UserRoom.create({ userId: 1, roomId: 1, isActive: true })
   ]);
+
+  // const userRooms = await Promise.all([s
+  //   UserRooms.create({ isActive: true, userId: 2, roomId: 1 }),
+  //   UserRooms.create({ isActive: false, userId: 4, roomId: 2 })
+  // ]);
   const questions = await Promise.all([
     Question.create({ content: 'Who strikes your fancy?', roomId: 1 }),
     Question.create({
