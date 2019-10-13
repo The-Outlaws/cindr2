@@ -39,7 +39,7 @@ const User = db.define('user', {
     defaultValue: '/troll128.png'
   },
   height: {
-    type: Sequelize.INTEGER,
+    type: Sequelize.STRING,
     allowNull: false
   },
   age: {
