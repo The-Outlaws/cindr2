@@ -85,6 +85,7 @@ export default class TrollHole extends Phaser.Scene {
       avatarStr
     );
     this.avatar.body.setAllowGravity(false);
+    this.avatar.setCollideWorldBounds(true);
 
     this.physics.add.collider(
       this.avatar,

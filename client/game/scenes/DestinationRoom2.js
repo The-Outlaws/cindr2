@@ -1,5 +1,5 @@
 import Phaser from 'phaser';
-import Avatar from '../sprites/Avatar';
+// import Avatar from '../sprites/Avatar';
 import store from '../../store';
 
 const avatarStr = 'avatar';
@@ -19,7 +19,7 @@ const fontStyleCountdown = {
   align: 'center'
 };
 
-export default class DestinationRoom extends Phaser.Scene {
+export default class DestinationRoom2 extends Phaser.Scene {
   constructor() {
     super({ key: 'DestinationRoom2' });
   }
@@ -68,13 +68,21 @@ export default class DestinationRoom extends Phaser.Scene {
       fontStyleAnswer
     );
 
-    this.avatar = new Avatar({
-      scene: this,
-      x: this.bg.displayWidth / 2,
-      y: 4 * this.bg.displayHeight / 5,
-      asset: avatarStr
-    });
-    this.add.existing(this.avatar);
+    // this.avatar = new Avatar({
+    //   scene: this,
+    //   x: this.bg.displayWidth / 2,
+    //   y: 4 * this.bg.displayHeight / 5,
+    //   asset: avatarStr
+    // });
+    // this.add.existing(this.avatar);
+
+    this.avatar = this.physics.add.sprite(
+      this.bg.displayWidth / 2,
+      4 * this.bg.displayHeight / 5,
+      avatarStr
+    );
+    this.avatar.body.setAllowGravity(false);
+    this.avatar.setCollideWorldBounds(true);
 
     this.add.text(
       3.5 * this.bg.displayWidth / 4,

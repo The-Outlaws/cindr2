@@ -1,5 +1,5 @@
 import Phaser from 'phaser';
-import Avatar from '../sprites/Avatar';
+// import Avatar from '../sprites/Avatar';
 import store from '../../store';
 
 const avatarStr = 'avatar';
@@ -68,13 +68,21 @@ export default class DestinationRoom extends Phaser.Scene {
       fontStyleAnswer
     );
 
-    this.avatar = new Avatar({
-      scene: this,
-      x: 100,
-      y: 700,
-      asset: avatarStr
-    });
-    this.add.existing(this.avatar);
+    // this.avatar = new Avatar({
+    //   scene: this,
+    //   x: 100,
+    //   y: 700,
+    //   asset: avatarStr
+    // });
+    // this.add.existing(this.avatar);
+
+    this.avatar = this.physics.add.sprite(
+      0.15 * this.bg.displayWidth / 4,
+      2 * this.bg.displayHeight / 4,
+      avatarStr
+    );
+    this.avatar.body.setAllowGravity(false);
+    this.avatar.setCollideWorldBounds(true);
 
     this.add.text(
       3.26 * this.bg.displayWidth / 4,

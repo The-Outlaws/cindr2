@@ -52,6 +52,7 @@ export default class Splash extends Phaser.Scene {
       avatarStr
     );
     this.avatar.body.setAllowGravity(false);
+    this.avatar.setCollideWorldBounds(true);
 
     this.physics.add.collider(
       this.avatar,
