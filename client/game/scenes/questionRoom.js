@@ -130,6 +130,7 @@ export default class QuestionRoom extends Phaser.Scene {
       avatarStr
     );
     this.avatar.body.setAllowGravity(false);
+    this.avatar.setCollideWorldBounds(true);
 
     //creates a collision between sprite and answer, triggers room change
     this.physics.add.collider(
