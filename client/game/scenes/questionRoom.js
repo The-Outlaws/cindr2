@@ -3,15 +3,34 @@ import Phaser, { GameObjects } from 'phaser';
 import store from '../../store';
 
 const avatarStr = 'avatar';
-const fontStyle = {
-  // fontFamily: 'Press Start 2P',
-  fontSize: '4em'
+const fontStyleQuestion = {
+  font: '6em Indie Flower',
+  fill: '#bdd8fa',
+  align: 'center'
+};
+
+const fontStyleAnswer = {
+  font: '6em Indie Flower',
+  fill: '#b5f7bf'
+};
+
+const fontStyleCountdown = {
+  font: '4em Indie Flower',
+  fill: '#9bc2f1',
+  align: 'center'
 };
 
 export default class QuestionRoom extends Phaser.Scene {
   constructor() {
     super({ key: 'QuestionRoom' });
   }
+
+  //decrements seconds every one second and displays countdown
+  onEvent() {
+    this.initialTime -= 1;
+    this.countDownText.setText(`${this.initialTime}`);
+  }
+
   init() {
     this.playerSpeed = 10;
   }
@@ -33,18 +52,56 @@ export default class QuestionRoom extends Phaser.Scene {
     this.bg.displayHeight = this.game.config.height;
 
     this.add.text(
+      3.3 * this.bg.displayWidth / 4,
+      this.bg.displayHeight / 23,
+      'You have: ',
+      fontStyleCountdown
+    );
+
+    this.add.text(
+      3.1 * this.bg.displayWidth / 4,
+      this.bg.displayHeight / 8,
+      'seconds\nto answer this question!',
+      fontStyleCountdown
+    );
+
+    this.initialTime = 15;
+
+    this.countDownText = this.add.text(
+      3.38 * this.bg.displayWidth / 4,
+      this.bg.displayHeight / 13,
+      `${this.initialTime}`,
+      fontStyleQuestion
+    );
+
+    this.time.addEvent({
+      delay: 1000,
+      callback: this.onEvent,
+      callbackScope: this,
+      loop: true
+    });
+
+    this.time.addEvent({
+      delay: 15000,
+      callback: () => {
+        this.scene.start('TrollHole');
+      },
+      callbackScope: this
+    });
+
+    this.add.text(
       this.bg.displayWidth / 2,
       this.bg.displayHeight / 4,
-      'Question question?',
-      fontStyle
+      'Who strikes\nyour fancy?',
+      fontStyleQuestion
     );
 
     // Game Objects Leading to Different Rooms
     this.answerA = this.add.text(
-      this.bg.displayWidth / 4,
-      this.bg.displayHeight / 3,
-      'Anser Anser',
-      fontStyle
+      0.7 * this.bg.displayWidth / 4,
+      1.6 * this.bg.displayHeight / 3,
+      'Friend',
+      fontStyleAnswer
     );
 
     // Makes your life choices fall away !! aka adds answerA to physics
@@ -52,10 +109,10 @@ export default class QuestionRoom extends Phaser.Scene {
     // this.physicsObjectA.onCollide = true;
 
     this.answerB = this.add.text(
-      3 * this.bg.displayWidth / 4,
-      this.bg.displayHeight / 3,
-      'Anwer Anwer',
-      fontStyle
+      2.1 * this.bg.displayWidth / 3,
+      this.bg.displayHeight / 2.2,
+      'Date',
+      fontStyleAnswer
     );
     this.physicsObjectB = this.physics.add.existing(this.answerB, 'static');
     // Avatar
@@ -80,7 +137,7 @@ export default class QuestionRoom extends Phaser.Scene {
       this.physicsObjectA,
       () => {
         // console.log('hello');
-        this.scene.start('DestinationRoom');
+        this.scene.start('DestinationRoom2');
       },
       null,
       this
@@ -90,7 +147,7 @@ export default class QuestionRoom extends Phaser.Scene {
       this.avatar,
       this.physicsObjectB,
       () => {
-        this.scene.start('DestinationRoom2');
+        this.scene.start('DestinationRoom');
       },
       null,
       this
