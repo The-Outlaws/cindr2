@@ -2,16 +2,14 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter, Route, Switch } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import { me, fetchMessages, getConversations } from './store';
+import { me } from './store';
 import Game from './components/game';
 import { MapHistory } from './components/mapHistory';
-import { Matches } from './components/matches';
+import Matches from './components/matches';
 import { ProfileInfo } from './components/profile';
 import { HomePage } from './components/homePage';
 import { Signup } from './components/signupForm';
 import { Login } from './components/loginForm';
-import { Chat } from './components/newMessageEntry';
-import newMessage from './store/reducers/newMessage';
 
 /**
  * COMPONENT
@@ -58,14 +56,9 @@ const mapState = state => {
   };
 };
 
-const mapDispatch = dispatch => {
-  return {
-    loadInitialData() {
-      dispatch(me());
-      dispatch(getConversations());
-    }
-  };
-};
+const mapDispatch = dispatch => ({
+  loadInitialData: () => dispatch(me())
+});
 
 // The `withRouter` wrapper makes sure that updates are not blocked
 // when the url changes

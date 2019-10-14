@@ -2,10 +2,10 @@ import React, { Component } from 'react';
 import Message from './Message';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-import { Chat } from './newMessageEntry';
+import Chat from './newMessageEntry';
 import { fetchMessages } from '../store';
 
-export class MessagesList extends Component {
+class disconnectedMessagesList extends Component {
   // componentDidMount(){
   //   this.props.loadMessages()
   // }
@@ -48,4 +48,8 @@ const mapStateToProps = state => ({
 // const mapDispatchToProps = dispatch => ({
 //   loadMessages: () => dispatch(fetchMessages())
 // })
-export default withRouter(connect(mapStateToProps, null)(MessagesList));
+
+const MessagesList = withRouter(
+  connect(mapStateToProps, null)(disconnectedMessagesList)
+);
+export default MessagesList;

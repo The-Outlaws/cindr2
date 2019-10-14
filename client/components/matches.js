@@ -1,10 +1,14 @@
 import React, { Component } from 'react';
-import { Route, Switch, Redirect, withRouter } from 'react-router-dom';
+import { Route, Switch, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import Sidebar from './sidebar';
 import MessagesList from './messagesList';
+import { getConversations } from '../store';
 
-export class Matches extends Component {
+class disconnectedMatches extends Component {
+  componentDidMount() {
+    this.props.fetchConvos();
+  }
   render() {
     return (
       <div className="chat">
@@ -20,5 +24,10 @@ export class Matches extends Component {
 const mapStateToProps = state => ({
   conversations: state.conversations
 });
-
-export default connect(mapStateToProps)(Matches);
+const mapDispatchToProps = dispatch => ({
+  fetchConvos: () => dispatch(getConversations())
+});
+const Matches = connect(mapStateToProps, mapDispatchToProps)(
+  disconnectedMatches
+);
+export default Matches;
