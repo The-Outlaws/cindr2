@@ -7,9 +7,9 @@ module.exports = io => {
       `A socket connection to the server has been made: ${socket.id}`
     );
 
-    // socket.on('new-message', message => {
-    //   socket.broadcast.emit('new-message', message);
-    // });
+    socket.on('new-message', message => {
+      socket.broadcast.emit('new-message', message);
+    });
     socket.on('message', ({ text, sender, receiver }) => {
       Message.createMessage(text, sender, receiver).then(message => {
         socket.emit('incomingMessage', message);

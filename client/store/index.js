@@ -14,7 +14,7 @@ const store = createStore(rootReducer, middleware);
 socket.on('priorMessages', messages => {
   store.dispatch(getMessages(messages));
 });
-socket.on('incomingMessage', message => {
+socket.on('new-message', message => {
   store.dispatch(getMessage(message));
 });
 export const openChat = users => {

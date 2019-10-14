@@ -9,7 +9,6 @@ export class Matches extends Component {
     return (
       <div className="chat">
         <Sidebar />
-
         <Switch>
           <Route path="/matches/:matchId" component={MessagesList} />
           {/* <Redirect to="/matches/2" /> */}

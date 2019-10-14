@@ -7,8 +7,7 @@ const {
   Question,
   Answer,
   Message,
-  Conversation,
-  UserMatches
+  Conversation
 } = require('../server/db/models');
 
 async function seed() {
@@ -23,6 +22,7 @@ async function seed() {
       gender: 'Female',
       password: '123password',
       age: 29,
+      avatar: '/hydra.png',
       orientation: 'likes men',
       isAdmin: true
     }),
@@ -238,50 +238,42 @@ async function seed() {
   // ])
   const messages = await Promise.all([
     Message.create({
-      id: 1,
       content: 'Hey, you!',
       userId: 1,
       conversationId: 1
     }),
     Message.create({
-      id: 2,
       content: 'Hey, back!',
       userId: 2,
       conversationId: 1
     }),
     Message.create({
-      id: 3,
       content: 'So, you like friendly ghosts?!',
       userId: 1,
       conversationId: 1
     }),
     Message.create({
-      id: 4,
       content: 'Yeah! Caspar <3',
       userId: 2,
       conversationId: 1
     }),
 
     Message.create({
-      id: 5,
       content: 'Hi, my name is Guenna!',
       userId: 2,
       conversationId: 2
     }),
     Message.create({
-      id: 6,
       content: 'Hey, Guenna!',
       userId: 3,
       conversationId: 2
     }),
     Message.create({
-      id: 7,
       content: 'Hi, boo!',
       userId: 1,
       conversationId: 4
     }),
     Message.create({
-      id: 8,
       content: 'errr',
       userId: 4,
       conversationId: 4

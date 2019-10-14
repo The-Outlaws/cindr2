@@ -14,16 +14,16 @@ export function getMessages(payload) {
 }
 
 // THUNK CREATORS
-// export const fetchMessages = () => {
-//   return async dispatch => {
-//     try {
-//       const { data } = await axios.get('/api/messages');
-//       dispatch(getMessages(data));
-//     } catch (err) {
-//       console.error(err);
-//     }
-//   };
-// };
+export const fetchMessages = () => {
+  return async dispatch => {
+    try {
+      const { data } = await axios.get('/api/messages');
+      dispatch(getMessages(data));
+    } catch (err) {
+      console.error(err);
+    }
+  };
+};
 
 export const postMessage = messageCont => {
   return async dispatch => {

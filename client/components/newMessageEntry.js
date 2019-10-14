@@ -40,7 +40,8 @@ function NewMessageEntry(props) {
 const mapStateToProps = function(state) {
   return {
     user: state.user,
-    newMessage: state.newMessage
+    newMessage: state.newMessage,
+    messages: state.messages
   };
 };
 

@@ -13,9 +13,9 @@ socket.on('connect', () => {
   socket.on('incomingMessage', message => {
     store.dispatch(getMessage(message));
   });
-  // socket.on('new-message', message => {
-  //   store.dispatch(getMessage(message));
-  // });
+  socket.on('new-message', message => {
+    store.dispatch(getMessage(message));
+  });
 });
 
 export default socket;
