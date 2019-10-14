@@ -6,7 +6,13 @@ module.exports = router;
 // GET /api/messages
 router.get('/', async (req, res, next) => {
   try {
-    const messages = await Message.findAll();
+    const messages = await Message.findAll({
+      include: [
+        {
+          model: User
+        }
+      ]
+    });
     console.log(messages);
     res.json(messages);
   } catch (err) {
@@ -17,11 +23,14 @@ router.get('/', async (req, res, next) => {
 // POST /api/messages
 router.post('/', async (req, res, next) => {
   try {
+    // const newMessage = await Message.createMessage(req.body.content, req.user.id, req.match.id)
     const newMessage = await Message.create({
-      content: req.body.content
+      content: req.body.content,
+      userId: req.body.userId
     });
-    newMessage.setUser(req.body.userId);
-    res.status(201).send('Message successfully created.');
+    newMessage.setConversation(req.body.conversationId);
+    res.status(201);
+    res.json(newMessage);
   } catch (error) {
     next(error);
   }

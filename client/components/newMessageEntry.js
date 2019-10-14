@@ -7,14 +7,14 @@ function NewMessageEntry(props) {
   const { newMessage, user, handleChange, handleSubmit } = props;
   const sendToBack = {
     content: newMessage,
-    userId: user.id
+    userId: user.id,
+    conversationId: props.conversationId
   };
-  console.log('PROPS ', props);
   return (
     <form
       id="new-message-form"
       onSubmit={evt => {
-        console.log('message in handlesubmit', newMessage);
+        // console.log('message in handlesubmit', newMessage);
         handleSubmit(sendToBack, evt);
       }}
     >
@@ -38,10 +38,11 @@ function NewMessageEntry(props) {
 }
 
 const mapStateToProps = function(state) {
-  console.log('STATE ', state);
   return {
     user: state.user,
-    newMessage: state.newMessage
+    newMessage: state.newMessage,
+    messages: state.messages
+
   };
 };
 
