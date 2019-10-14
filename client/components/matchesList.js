@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import MatchChannel from './matchChannel';
+// import { fetchMessages } from '../store';
 
 export class MatchesList extends Component {
   render() {
@@ -19,6 +20,7 @@ export class MatchesList extends Component {
             return (
               <MatchChannel
                 key={convo.id}
+                convoId={convo.id}
                 matchUser={
                   convo.match.id === this.props.user.id
                     ? convo.user
@@ -43,6 +45,9 @@ export class MatchesList extends Component {
 const mapState = state => ({
   conversations: state.conversations,
   user: state.user
+  // messages: state.messages
 });
-
+// const mapDispatch = dispatch => ({
+//   loadMessages: () => dispatch(fetchMessages())
+// })
 export default withRouter(connect(mapState)(MatchesList));

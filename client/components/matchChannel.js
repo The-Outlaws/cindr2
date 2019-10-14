@@ -1,5 +1,6 @@
 import React from 'react';
 import { withRouter, NavLink } from 'react-router-dom';
+import { connect } from 'react-redux';
 
 export const MatchChannel = props => {
   const matchId = props.matchUser.id;
@@ -8,10 +9,17 @@ export const MatchChannel = props => {
     <li>
       <NavLink to={`/matches/${matchId}`} activeClassName="active">
         <span>{name}</span>
-        <span className="badge">{props.messages}</span>
+        <span className="badge">
+          {props.messages +
+            props.newMessages.filter(
+              message => message.conversationId === props.convoId
+            ).length}
+        </span>
       </NavLink>
     </li>
   );
 };
-
-export default withRouter(MatchChannel);
+const mapState = state => ({
+  newMessages: state.messages
+});
+export default withRouter(connect(mapState)(MatchChannel));
