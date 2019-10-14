@@ -317,6 +317,7 @@ code {
 /* chat */
 .chat {
   display: flex;
+  overflow: scroll;
 }
 /* sidebar */
 
@@ -395,13 +396,14 @@ code {
   flex: 1 1 auto;
   display: flex;
   flex-direction: column;
+  overflow: scroll;
 }
 .chat .media {
   display: flex;
   flex-direction: column;
 }
 .chat .media-list {
-  overflow-y: scroll;
+  overflow: scroll;
   flex: 1 1 auto;
 }
 
@@ -422,6 +424,7 @@ code {
   display: flex;
   flex-direction: column;
   flex: 1 1 auto;
+  overflow: scroll;
 }
 
 /* message form */

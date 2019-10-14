@@ -8,7 +8,9 @@ export class MatchesList extends Component {
     const activeConvos = this.props.conversations.filter(
       convo => convo.isAccepted === true
     );
-
+    const pendingConvos = this.props.conversations.filter(
+      convo => convo.isAccepted === false && convo.isRejected === false
+    );
     return (
       <div id="chat-sidebar">
         <h4>Match List</h4>
@@ -17,10 +19,20 @@ export class MatchesList extends Component {
             return (
               <MatchChannel
                 key={convo.id}
-                matchUser={convo.match}
+                matchUser={
+                  convo.match.id === this.props.user.id
+                    ? convo.user
+                    : convo.match
+                }
                 messages={convo.messages.length}
               />
             );
+          })}
+        </ul>
+        <h4>Pending Matches</h4>
+        <ul>
+          {pendingConvos.map(convo => {
+            return <MatchChannel key={convo.id} matchUser={convo.match} />;
           })}
         </ul>
       </div>
@@ -29,7 +41,8 @@ export class MatchesList extends Component {
 }
 
 const mapState = state => ({
-  conversations: state.conversations
+  conversations: state.conversations,
+  user: state.user
 });
 
 export default withRouter(connect(mapState)(MatchesList));

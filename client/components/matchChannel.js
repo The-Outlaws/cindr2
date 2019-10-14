@@ -1,5 +1,4 @@
 import React from 'react';
-import { connect } from 'react-redux';
 import { withRouter, NavLink } from 'react-router-dom';
 
 export const MatchChannel = props => {
@@ -15,9 +14,4 @@ export const MatchChannel = props => {
   );
 };
 
-const mapStateToProps = state => ({
-  user: state.user,
-  conversations: state.conversations
-});
-
-export default withRouter(connect(mapStateToProps)(MatchChannel));
+export default withRouter(MatchChannel);
