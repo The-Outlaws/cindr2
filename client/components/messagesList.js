@@ -13,12 +13,12 @@ export class MessagesList extends Component {
     );
     return (
       <div>
+        <Chat conversationId={filteredConvo[0].id} />
         <ul className="media-list">
           {filteredConvo[0].messages.map(message => (
             <Message key={message.id} message={message} />
           ))}
         </ul>
-        <Chat conversationId={filteredConvo[0].id} />
       </div>
     );
   }

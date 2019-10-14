@@ -7,7 +7,7 @@ import MessagesList from './messagesList';
 export class Matches extends Component {
   render() {
     return (
-      <div>
+      <div className="chat">
         <Sidebar />
         <main>
           <Switch>
