@@ -8,18 +8,20 @@ export function getMessage(newMessage) {
   return action;
 }
 
-export function getMessages(messages) {
-  const action = { type: GET_MESSAGES, messages };
+export function getMessages(payload) {
+  const action = { type: GET_MESSAGES, payload };
   return action;
 }
 
 // THUNK CREATORS
 export const fetchMessages = () => {
   return async dispatch => {
-    const response = await axios.get('/api/messages');
-    const messages = response.data;
-    const action = getMessages(messages);
-    dispatch(action);
+    try {
+      const { data } = await axios.get('/api/messages');
+      dispatch(getMessages(data));
+    } catch (err) {
+      console.error(err);
+    }
   };
 };
 
@@ -36,10 +38,10 @@ export const postMessage = messageCont => {
 };
 
 // REDUCER
-export default function message(state = [], action) {
+export default function messages(state = [], action) {
   switch (action.type) {
     case GET_MESSAGES:
-      return action.messages;
+      return action.payload;
     case GET_MESSAGE:
       return [state.newMessage, action.newMessage];
     default:
