@@ -9,12 +9,11 @@ export class Matches extends Component {
     return (
       <div className="chat">
         <Sidebar />
-        <main>
-          <Switch>
-            <Route path="/matches/:matchId" component={MessagesList} />
-            {/* <Redirect to="/matches/2" /> */}
-          </Switch>
-        </main>
+
+        <Switch>
+          <Route path="/matches/:matchId" component={MessagesList} />
+          {/* <Redirect to="/matches/2" /> */}
+        </Switch>
       </div>
     );
   }

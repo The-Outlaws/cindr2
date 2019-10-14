@@ -324,6 +324,7 @@ code {
   background-color: #2b303b;
   color: #afb1b6;
   z-index: 2;
+  height: 100vh;
 }
 
 .sidebar-header {
@@ -389,28 +390,35 @@ code {
 }
 /* main */
 
-main {
+.chat main {
   margin: 78px 25px 25px 25px;
   flex: 1 1 auto;
   display: flex;
   flex-direction: column;
 }
-
-main .media-list {
+.chat .media {
+  display: flex;
+  flex-direction: column;
+}
+.chat .media-list {
   overflow-y: scroll;
   flex: 1 1 auto;
 }
 
-main .media img {
-  height: 64px;
-  width: 64px;
+.chat .media img {
+  height: 32px;
+  width: 32px;
 }
 
-main .media-object {
+.chat .media-object {
   border-radius: 5px;
+  display: flex;
+}
+.chat .media-body {
+  display: flex;
 }
 
-main > div {
+.chat > div {
   display: flex;
   flex-direction: column;
   flex: 1 1 auto;

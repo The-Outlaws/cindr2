@@ -12,14 +12,14 @@ export class MessagesList extends Component {
       convo => convo.matchId === matchId
     );
     return (
-      <div>
+      <main>
         <Chat conversationId={filteredConvo[0].id} />
         <ul className="media-list">
           {filteredConvo[0].messages.map(message => (
             <Message key={message.id} message={message} />
           ))}
         </ul>
-      </div>
+      </main>
     );
   }
 }

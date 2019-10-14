@@ -7,14 +7,12 @@ export function Message(props) {
 
   return (
     <li className="media">
-      <div className="media-left">
+      <div className="media-body">
         <a href="#">
           <img className="media-object" src={author.avatar} alt="image" />
         </a>
-      </div>
-      <div className="media-body">
         <h4 className="media-heading">{author.firstName}</h4>
-        {message.content}
+        <span>{message.content}</span>
       </div>
     </li>
   );
