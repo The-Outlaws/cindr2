@@ -1,5 +1,6 @@
 const User = require('./user');
 const Room = require('./room');
+const UserRoom = require('./userRoom');
 const Question = require('./question');
 const Answer = require('./answer');
 const Message = require('./message');
@@ -50,6 +51,7 @@ User.hasMany(Message);
 module.exports = {
   User,
   Room,
+  UserRoom,
   Question,
   Answer,
   Message,

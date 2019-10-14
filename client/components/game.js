@@ -1,7 +1,11 @@
 import React from 'react';
-import Game from '../game/main.js';
+import { connect } from 'react-redux';
 
-export default class GameContainer extends React.Component {
+import Game from '../game/main.js';
+//import getRoomThunk, {addRoomThunk} from '../store/reducers/room'
+import { gotActiveRoom } from '../store/reducers/room';
+
+class DisconnectedGameContainer extends React.Component {
   constructor() {
     super();
     this.state = {
@@ -9,6 +13,10 @@ export default class GameContainer extends React.Component {
     };
   }
   componentDidMount() {
+    // This should return the last active room or create assocation
+    // between the current user and the first room
+    this.props.gotActiveRoom(this.props.userId);
+
     this.setState({ game: new Game() });
   }
 
@@ -20,3 +28,19 @@ export default class GameContainer extends React.Component {
     return <div className="game" />;
   }
 }
+
+const mapStateToProps = state => {
+  return {
+    userId: state.user.id,
+    rooms: state.room
+  };
+};
+
+const mapDispatchToProps = dispatch => ({
+  gotActiveRoom: userId => dispatch(gotActiveRoom(userId))
+});
+
+const GameContainer = connect(mapStateToProps, mapDispatchToProps)(
+  DisconnectedGameContainer
+);
+export default GameContainer;

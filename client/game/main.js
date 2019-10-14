@@ -20,7 +20,8 @@ const gameConfig = Object.assign(config, {
 });
 
 export default class Game extends Phaser.Game {
-  constructor() {
-    super(gameConfig);
+  constructor(background) {
+    super(gameConfig, background);
+    this.background = background;
   }
 }

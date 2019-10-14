@@ -163,6 +163,11 @@ async function seed() {
     })
   ]);
   const rooms = await Promise.all([
+    Room.create({
+      name: 'Troll Hole',
+      trollRoom: false,
+      image: '/OfficeTrollHole.png'
+    }),
     Room.create({ name: 'Quaint Cottage', trollRoom: false }),
     Room.create({ name: 'Evil Castle', trollRoom: false }),
     Room.create({ name: 'Haunted Lair', trollRoom: false }),
@@ -180,6 +185,14 @@ async function seed() {
     Room.create({ name: 'Awkward Tree House', trollRoom: true })
   ]);
 
+  // const userRooms = await Promise.all([
+  //   UserRoom.create({ userId: 1, roomId: 1, isActive: true })
+  // ]);
+
+  // const userRooms = await Promise.all([s
+  //   UserRooms.create({ isActive: true, userId: 2, roomId: 1 }),
+  //   UserRooms.create({ isActive: false, userId: 4, roomId: 2 })
+  // ]);
   const questions = await Promise.all([
     Question.create({ content: 'Who strikes your fancy?', roomId: 1 }),
     Question.create({
