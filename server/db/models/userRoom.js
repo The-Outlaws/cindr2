@@ -3,7 +3,8 @@ const db = require('../db');
 
 const UserRoom = db.define('UserRoom', {
   isActive: {
-    type: Sequelize.BOOLEAN
+    type: Sequelize.BOOLEAN,
+    defaultValue: true
   }
 });
 

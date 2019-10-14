@@ -163,6 +163,11 @@ async function seed() {
     })
   ]);
   const rooms = await Promise.all([
+    Room.create({
+      name: 'Troll Hole',
+      trollRoom: false,
+      image: '/OfficeTrollHole.png'
+    }),
     Room.create({ name: 'Quaint Cottage', trollRoom: false }),
     Room.create({ name: 'Evil Castle', trollRoom: false }),
     Room.create({ name: 'Haunted Lair', trollRoom: false }),

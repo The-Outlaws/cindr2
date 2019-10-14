@@ -20,7 +20,7 @@ export const GET_CONVERSATIONS = 'GET_CONVERSATIONS';
 
 const rootReducer = combineReducers({
   user,
-  room,
+  //room,
   messages,
   newMessage,
   conversations
