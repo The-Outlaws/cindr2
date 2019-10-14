@@ -2,39 +2,24 @@ import React, { Component } from 'react';
 import { Route, Switch, Redirect, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import Sidebar from './sidebar';
-import Chat from './newMessageEntry';
 import MessagesList from './messagesList';
-import { fetchMessages } from '../store/reducers/messages';
 
 export class Matches extends Component {
-  constructor(props) {
-    super(props);
-  }
-
-  // componentDidMount () {
-  // this.props.loadMessages()
-  // }
-
   render() {
     return (
-      <div>
+      <div className="chat">
         <Sidebar />
-        <main>
-          <MessagesList />
-          {/* <Switch>
-            <Route path="/matches/:userId" component={MessagesList} />
-            {/* <Redirect to="/matches/19" /> */}
-          {/* </Switch> */}
-        </main>
+
+        <Switch>
+          <Route path="/matches/:matchId" component={MessagesList} />
+          {/* <Redirect to="/matches/2" /> */}
+        </Switch>
       </div>
     );
   }
 }
 const mapStateToProps = state => ({
-  messages: state.messages
+  conversations: state.conversations
 });
-// const mapDispatchToProps = dispatch => ({
-//   loadMessages: () => dispatch(fetchMessages())
-// })
 
 export default connect(mapStateToProps)(Matches);

@@ -9,9 +9,13 @@ router.get('/', async (req, res, next) => {
     const conversations = await Conversation.findAll({
       where: {
         userId: req.user.id
-      }
+      },
+      include: [
+        { model: Message, include: [User] },
+        { model: User, as: 'match' }
+      ],
+      order: [[Message, 'updatedAt', 'DESC']]
     });
-    console.log(conversations);
     res.json(conversations);
   } catch (err) {
     next(err);
