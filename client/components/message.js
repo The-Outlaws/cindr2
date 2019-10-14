@@ -1,6 +1,6 @@
 import React from 'react';
 
-export function Message(props) {
+function Message(props) {
   const message = props.message;
   const author = props.message.user;
   console.log('message', message);

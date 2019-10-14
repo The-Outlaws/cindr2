@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import MatchChannel from './matchChannel';
 // import { fetchMessages } from '../store';
 
-export class MatchesList extends Component {
+class disconnectedMatchesList extends Component {
   render() {
     const activeConvos = this.props.conversations.filter(
       convo => convo.isAccepted === true
@@ -50,4 +50,6 @@ const mapState = state => ({
 // const mapDispatch = dispatch => ({
 //   loadMessages: () => dispatch(fetchMessages())
 // })
-export default withRouter(connect(mapState)(MatchesList));
+
+const MatchesList = withRouter(connect(mapState)(disconnectedMatchesList));
+export default MatchesList;

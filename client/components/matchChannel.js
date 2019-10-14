@@ -2,7 +2,7 @@ import React from 'react';
 import { withRouter, NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
 
-export const MatchChannel = props => {
+const disconnectedMatchChannel = props => {
   const matchId = props.matchUser.id;
   const name = props.matchUser.firstName;
   return (
@@ -22,4 +22,6 @@ export const MatchChannel = props => {
 const mapState = state => ({
   newMessages: state.messages
 });
-export default withRouter(connect(mapState)(MatchChannel));
+
+const MatchChannel = withRouter(connect(mapState)(disconnectedMatchChannel));
+export default MatchChannel;
