@@ -4,37 +4,26 @@ import { connect } from 'react-redux';
 import Sidebar from './sidebar';
 import Chat from './newMessageEntry';
 import MessagesList from './messagesList';
-import { fetchMessages } from '../store/reducers/messages';
 
 export class Matches extends Component {
-  constructor(props) {
-    super(props);
-  }
-
-  // componentDidMount () {
-  // this.props.loadMessages()
-  // }
-
   render() {
+    // console.log('in Matches', this.props.conversations)
     return (
       <div>
         <Sidebar />
         <main>
-          <MessagesList />
-          {/* <Switch>
-            <Route path="/matches/:userId" component={MessagesList} />
-            {/* <Redirect to="/matches/19" /> */}
-          {/* </Switch> */}
+          {/* <MessagesList conversations={this.props.conversations}/> */}
+          <Switch>
+            <Route path="/matches/:matchId" component={MessagesList} />
+            <Redirect to="/matches/2" />
+          </Switch>
         </main>
       </div>
     );
   }
 }
 const mapStateToProps = state => ({
-  messages: state.messages
+  conversations: state.conversations
 });
-// const mapDispatchToProps = dispatch => ({
-//   loadMessages: () => dispatch(fetchMessages())
-// })
 
 export default connect(mapStateToProps)(Matches);

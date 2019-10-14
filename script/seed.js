@@ -205,8 +205,30 @@ async function seed() {
 
   const conversations = await Promise.all([
     Conversation.create({
+      id: 1,
       userId: 1,
       matchId: 2,
+      isAccepted: true,
+      isRejected: false
+    }),
+    Conversation.create({
+      id: 2,
+      userId: 2,
+      matchId: 3,
+      isAccepted: true,
+      isRejected: false
+    }),
+    Conversation.create({
+      id: 3,
+      userId: 1,
+      matchId: 3,
+      isAccepted: false,
+      isRejected: false
+    }),
+    Conversation.create({
+      id: 4,
+      userId: 1,
+      matchId: 4,
       isAccepted: true,
       isRejected: false
     })
@@ -215,14 +237,55 @@ async function seed() {
   //   UserMatches.create({userId: 1, matchId: 2, isAccepted: true, isRejected: false})
   // ])
   const messages = await Promise.all([
-    Message.create({ content: 'Hey, you!', userId: 1, conversationId: 1 }),
-    Message.create({ content: 'Hey, back!', userId: 2, conversationId: 1 }),
     Message.create({
+      id: 1,
+      content: 'Hey, you!',
+      userId: 1,
+      conversationId: 1
+    }),
+    Message.create({
+      id: 2,
+      content: 'Hey, back!',
+      userId: 2,
+      conversationId: 1
+    }),
+    Message.create({
+      id: 3,
       content: 'So, you like friendly ghosts?!',
       userId: 1,
       conversationId: 1
     }),
-    Message.create({ content: 'Yeah! Caspar <3', userId: 2, conversationId: 1 })
+    Message.create({
+      id: 4,
+      content: 'Yeah! Caspar <3',
+      userId: 2,
+      conversationId: 1
+    }),
+
+    Message.create({
+      id: 5,
+      content: 'Hi, my name is Guenna!',
+      userId: 2,
+      conversationId: 2
+    }),
+    Message.create({
+      id: 6,
+      content: 'Hey, Guenna!',
+      userId: 3,
+      conversationId: 2
+    }),
+    Message.create({
+      id: 7,
+      content: 'Hi, boo!',
+      userId: 1,
+      conversationId: 4
+    }),
+    Message.create({
+      id: 8,
+      content: 'errr',
+      userId: 4,
+      conversationId: 4
+    })
   ]);
   console.log(
     `seeded ${users.length} users, ${rooms.length} rooms, ${
