@@ -15,7 +15,9 @@ export class MessagesList extends Component {
     const filteredConvo = allConversations.filter(
       convo => convo.matchId === matchId || convo.userId === matchId
     );
-    const currMessages = this.props.messages;
+    const currMessages = this.props.messages.filter(message => {
+      return message.conversationId === filteredConvo[0].id;
+    });
     return (
       <main>
         <Chat conversationId={filteredConvo[0].id} />
