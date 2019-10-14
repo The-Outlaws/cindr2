@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Message from './Message';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
+import { Chat } from './newMessageEntry';
 
 export class MessagesList extends Component {
   render() {
@@ -10,10 +11,6 @@ export class MessagesList extends Component {
     const filteredConvo = allConversations.filter(
       convo => convo.matchId === matchId
     );
-    // const filteredMessages = messages.filter(
-    //   message => message.userId === props.user.id
-    // );
-    console.log(filteredConvo);
     return (
       <div>
         <ul className="media-list">
@@ -21,6 +18,7 @@ export class MessagesList extends Component {
             <Message key={message.id} message={message} />
           ))}
         </ul>
+        <Chat />
       </div>
     );
   }

@@ -1,12 +1,10 @@
-import React, { Component } from 'react';
-// import Message from './Message';
+import React from 'react';
 import { connect } from 'react-redux';
 import { withRouter, NavLink } from 'react-router-dom';
 
 export const MatchChannel = props => {
   const matchId = props.matchUser.id;
   const name = props.matchUser.firstName;
-  console.log('match channel', props);
   return (
     <li>
       <NavLink to={`/matches/${matchId}`} activeClassName="active">
