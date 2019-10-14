@@ -3,7 +3,6 @@ import React from 'react';
 function Message(props) {
   const message = props.message;
   const author = props.message.user;
-  console.log('message', message);
   return (
     <li className="media">
       <div className="media-body">

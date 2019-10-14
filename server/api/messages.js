@@ -26,11 +26,14 @@ router.post('/', async (req, res, next) => {
     // const newMessage = await Message.createMessage(req.body.content, req.user.id, req.match.id)
     const newMessage = await Message.create({
       content: req.body.content,
-      userId: req.body.userId
+      userId: req.body.userId,
+      conversationId: req.body.conversationId
     });
-    newMessage.setConversation(req.body.conversationId);
+    const message = await Message.findByPk(newMessage.id, {
+      include: [User]
+    });
     res.status(201);
-    res.json(newMessage);
+    res.json(message);
   } catch (error) {
     next(error);
   }

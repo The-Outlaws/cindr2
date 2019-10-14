@@ -29,6 +29,7 @@ export const postMessage = messageCont => {
   return async dispatch => {
     const response = await axios.post('/api/messages', messageCont);
     const messageData = response.data;
+    console.log(messageData);
     dispatch(getMessage(messageData));
     socket.emit('new-message', messageData);
   };

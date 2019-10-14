@@ -15,7 +15,8 @@ class disconnectedMatches extends Component {
         <Sidebar />
         <Switch>
           <Route path="/matches/:matchId" component={MessagesList} />
-          {/* <Redirect to="/matches/2" /> */}
+          <img src="/troll512.png" />
+          {/* <Redirect to="/matches/chat" /> */}
         </Switch>
       </div>
     );
