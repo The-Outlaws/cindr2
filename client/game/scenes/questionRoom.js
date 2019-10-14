@@ -38,7 +38,7 @@ export default class QuestionRoom extends Phaser.Scene {
   preload() {
     const { user: { avatar, rooms } } = store.getState();
 
-    this.load.image('test', rooms[0].image);
+    this.load.image('roomImg', rooms[rooms.length - 1].image);
     this.load.image(avatarStr, avatar);
   }
 
@@ -49,7 +49,7 @@ export default class QuestionRoom extends Phaser.Scene {
     this.bg = this.add.image(
       this.game.config.width / 2,
       this.game.config.height / 2,
-      'test'
+      'roomImg'
     );
     this.bg.displayWidth = this.game.config.width;
     this.bg.displayHeight = this.game.config.height;

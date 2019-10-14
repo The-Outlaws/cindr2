@@ -50,8 +50,12 @@ router.post('/signup', async (req, res, next) => {
       avatar: avatar
     });
     const room = await user.addRoom(1);
+    const userToSend = await User.findOne({
+      where: { email: email },
+      include: [{ model: Room }]
+    });
 
-    req.login(user, err => (err ? next(err) : res.json(user)));
+    req.login(userToSend, err => (err ? next(err) : res.json(userToSend)));
   } catch (err) {
     if (err.name === 'SequelizeUniqueConstraintError') {
       res.status(401).send('User already exists');
