@@ -18,7 +18,7 @@ export class MessagesList extends Component {
             <Message key={message.id} message={message} />
           ))}
         </ul>
-        <Chat />
+        <Chat conversationId={filteredConvo[0].id} />
       </div>
     );
   }

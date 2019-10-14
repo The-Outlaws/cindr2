@@ -11,9 +11,10 @@ router.get('/', async (req, res, next) => {
         userId: req.user.id
       },
       include: [
-        { model: Message, include: [User], order: '"updatedAt" DESC' },
+        { model: Message, include: [User] },
         { model: User, as: 'match' }
-      ]
+      ],
+      order: [[Message, 'updatedAt', 'DESC']]
     });
     res.json(conversations);
   } catch (err) {
