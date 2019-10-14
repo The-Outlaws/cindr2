@@ -6,6 +6,7 @@ import conversations from './conversations';
 
 export const GET_USER = 'GET_USER';
 export const REMOVE_USER = 'REMOVE_USER';
+export const UPDATE_USER = 'UPDATE_USER';
 
 export const GET_ACTIVE_ROOM = 'GET_ACTIVE_ROOM';
 //export const GET_ALL_ROOMS = 'GET_ALL_ROOMS';

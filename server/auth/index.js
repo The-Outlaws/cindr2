@@ -1,6 +1,9 @@
 const router = require('express').Router();
 const User = require('../db/models/user');
-const Room = require('../db/models/Room');
+const Room = require('../db/models/room');
+const Question = require('../db/models/question');
+const Answer = require('../db/models/answer');
+
 module.exports = router;
 
 router.post('/login', async (req, res, next) => {
@@ -9,7 +12,12 @@ router.post('/login', async (req, res, next) => {
     console.log(req.body);
     const user = await User.findOne({
       where: { email: email },
-      include: [{ model: Room }]
+      include: [
+        {
+          model: Room,
+          include: [{ model: Question, include: [{ model: Answer }] }]
+        }
+      ]
     });
     if (!user) {
       console.log('No such user found:', email);
@@ -52,7 +60,12 @@ router.post('/signup', async (req, res, next) => {
     const room = await user.addRoom(1);
     const userToSend = await User.findOne({
       where: { email: email },
-      include: [{ model: Room }]
+      include: [
+        {
+          model: Room,
+          include: [{ model: Question, include: [{ model: Answer }] }]
+        }
+      ]
     });
 
     req.login(userToSend, err => (err ? next(err) : res.json(userToSend)));

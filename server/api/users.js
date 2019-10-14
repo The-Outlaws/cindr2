@@ -17,6 +17,24 @@ router.get('/', async (req, res, next) => {
   }
 });
 
+router.put('/user/updateRoom', async (req, res, next) => {
+  try {
+    const user = await User.findOne({
+      where: {
+        id: req.params.userId
+      }
+    });
+    user.addRoom(req.params.roomId);
+    const userToSend = await User.findOne({
+      where: { id: req.params.userId },
+      include: [{ model: Room }]
+    });
+    res.json(userToSend);
+  } catch (err) {
+    next(err);
+  }
+});
+
 router.get('/active/:userId', async (req, res, next) => {
   try {
     const roomData = await User.findOne({

@@ -1,6 +1,7 @@
 import Phaser, { GameObjects } from 'phaser';
 // import Avatar from '../sprites/Avatar';
 import store from '../../store';
+// import { updateUser } from '../../store'
 
 const avatarStr = 'avatar';
 const fontStyleQuestion = {
@@ -140,7 +141,7 @@ export default class QuestionRoom extends Phaser.Scene {
       this.avatar,
       this.physicsObjectA,
       () => {
-        // console.log('hello');
+        // store.dispatch(updateUser())
         this.scene.start('DestinationRoom2');
       },
       null,
