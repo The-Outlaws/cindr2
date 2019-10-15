@@ -68,13 +68,16 @@ class disconnectedMessagesList extends Component {
                   <img src={filteredConvo[0].user.avatar} /> is awaiting your
                   approval!
                 </h4>
+
                 <div className="match-request">
+
                   <h4>Deets about {filteredConvo[0].user.firstName}:</h4>
                   <img src={filteredConvo[0].user.photo} alt="No photo" />
                   <p>Age: {filteredConvo[0].user.age}</p>
                   <p>Gender: {filteredConvo[0].user.gender}</p>
                   <p>Orientation: {filteredConvo[0].user.orientation}</p>
                   <p>Height: {filteredConvo[0].user.height}</p>
+
 
                   <button
                     id="accept"
@@ -91,6 +94,7 @@ class disconnectedMessagesList extends Component {
                     Decline match request
                   </button>
                 </div>
+
               </React.Fragment>
             ) : (
               <h4>
@@ -99,6 +103,7 @@ class disconnectedMessagesList extends Component {
               </h4>
             )
           ) : null}
+
           <div className="message-archive">
             {filteredConvo.length ? (
               filteredConvo[0].isAccepted ? (
@@ -116,6 +121,7 @@ class disconnectedMessagesList extends Component {
               <h4>Your message history is loading</h4>
             )}
           </div>
+
         </ul>
       </main>
     );
