@@ -14,13 +14,9 @@ function Message(props) {
             <img className="media-object" src={props.user.avatar} alt="image" />
           )}
         </a>
-        {author ? (
-          <h4 className="media-heading">{author.firstName}</h4>
-        ) : (
-          <h4 className="media-heading">{props.user.firstName}</h4>
-        )}
-        <span>{message.content}</span>
-        <span>{moment(message.createdAt).calendar()}</span>
+        {author ? <h4>{author.firstName}</h4> : <h4>{props.user.firstName}</h4>}
+        <span className="content">{message.content}</span>
+        <p className="date">{moment(message.createdAt).calendar()}</p>
       </div>
     </li>
   );
