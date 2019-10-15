@@ -13,7 +13,6 @@ router.get('/', async (req, res, next) => {
         }
       ]
     });
-    console.log(messages);
     res.json(messages);
   } catch (err) {
     next(err);
