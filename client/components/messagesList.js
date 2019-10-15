@@ -3,14 +3,18 @@ import Message from './Message';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import Chat from './newMessageEntry';
-import { getConversations, acceptConversation } from '../store';
+import {
+  getConversations,
+  acceptConversation,
+  rejectConversation
+} from '../store';
 import moment from 'moment';
 
 class disconnectedMessagesList extends Component {
   constructor(props) {
     super(props);
     this.handleAccept = this.handleAccept.bind(this);
-    // this.handleReject = this.handleReject.bind(this)
+    this.handleReject = this.handleReject.bind(this);
   }
   componentDidMount() {
     this.props.fetchConvos();
@@ -23,7 +27,14 @@ class disconnectedMessagesList extends Component {
       conversationId: convoId
     });
   }
-  handleReject() {}
+  handleReject(evt, convoId) {
+    evt.preventDefault();
+    this.props.rejectRequest({
+      isAccepted: false,
+      isRejected: true,
+      conversationId: convoId
+    });
+  }
   render() {
     const allConversations = this.props.conversations;
     const matchId = Number(this.props.match.params.matchId); // because it's a string "1", not a number!
@@ -71,7 +82,12 @@ class disconnectedMessagesList extends Component {
                 >
                   Accept match request
                 </button>
-                <button type="submit">Decline match request</button>
+                <button
+                  type="submit"
+                  onClick={evt => this.handleReject(evt, filteredConvo[0].id)}
+                >
+                  Decline match request
+                </button>
               </React.Fragment>
             ) : (
               <h4>
@@ -107,7 +123,8 @@ const mapStateToProps = state => ({
 });
 const mapDispatchToProps = dispatch => ({
   fetchConvos: () => dispatch(getConversations()),
-  acceptRequest: convoId => dispatch(acceptConversation(convoId))
+  acceptRequest: convoId => dispatch(acceptConversation(convoId)),
+  rejectRequest: convoId => dispatch(rejectConversation(convoId))
 });
 
 const MessagesList = withRouter(
