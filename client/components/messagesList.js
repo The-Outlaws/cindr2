@@ -3,13 +3,27 @@ import Message from './Message';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import Chat from './newMessageEntry';
-import { getConversations } from '../store';
+import { getConversations, acceptConversation } from '../store';
 import moment from 'moment';
 
 class disconnectedMessagesList extends Component {
+  constructor(props) {
+    super(props);
+    this.handleAccept = this.handleAccept.bind(this);
+    // this.handleReject = this.handleReject.bind(this)
+  }
   componentDidMount() {
     this.props.fetchConvos();
   }
+  handleAccept(evt, convoId) {
+    evt.preventDefault();
+    this.props.acceptRequest({
+      isAccepted: true,
+      isRejected: false,
+      conversationId: convoId
+    });
+  }
+  handleReject() {}
   render() {
     const allConversations = this.props.conversations;
     const matchId = Number(this.props.match.params.matchId); // because it's a string "1", not a number!
@@ -51,7 +65,12 @@ class disconnectedMessagesList extends Component {
                   <p>Orientation: {filteredConvo[0].user.orientation}</p>
                   <p>Height: {filteredConvo[0].user.height}</p>
                 </div>
-                <button type="submit">Accept match request</button>
+                <button
+                  type="submit"
+                  onClick={evt => this.handleAccept(evt, filteredConvo[0].id)}
+                >
+                  Accept match request
+                </button>
                 <button type="submit">Decline match request</button>
               </React.Fragment>
             ) : (
@@ -87,7 +106,8 @@ const mapStateToProps = state => ({
   user: state.user
 });
 const mapDispatchToProps = dispatch => ({
-  fetchConvos: () => dispatch(getConversations())
+  fetchConvos: () => dispatch(getConversations()),
+  acceptRequest: convoId => dispatch(acceptConversation(convoId))
 });
 
 const MessagesList = withRouter(
