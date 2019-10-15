@@ -8,40 +8,40 @@ export function getMessage(newMessage) {
   return action;
 }
 
-export function getMessages(payload) {
-  const action = { type: GET_MESSAGES, payload };
+export function getMessages(messages) {
+  const action = { type: GET_MESSAGES, messages };
   return action;
 }
 
 // THUNK CREATORS
 export const fetchMessages = () => {
   return async dispatch => {
-    try {
-      const { data } = await axios.get('/api/messages');
-      dispatch(getMessages(data));
-    } catch (err) {
-      console.error(err);
-    }
+    const response = await axios.get('/api/messages');
+    const messages = response.data;
+    const action = getMessages(messages);
+    dispatch(action);
   };
 };
 
 export const postMessage = messageCont => {
   return async dispatch => {
+    console.log('MESSAGE CONT ', messageCont);
     const response = await axios.post('/api/messages', messageCont);
+    console.log('RESPONSE ', response);
     const messageData = response.data;
-    console.log(messageData);
+    console.log('NEWMESSAGE ', response.data);
     dispatch(getMessage(messageData));
     socket.emit('new-message', messageData);
   };
 };
 
 // REDUCER
-export default function messages(state = [], action) {
+export default function message(state = [], action) {
   switch (action.type) {
     case GET_MESSAGES:
-      return action.payload;
+      return action.messages;
     case GET_MESSAGE:
-      return [...state, action.newMessage];
+      return [state.newMessage, action.newMessage];
     default:
       return state;
   }

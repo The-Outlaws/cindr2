@@ -1,5 +1,5 @@
-import React from 'react';
-import ImagePicker from 'react-image-picker';
+import React from 'react'
+import ImagePicker from 'react-image-picker'
 
 const imageList = [
   '/centaur.png',
@@ -11,7 +11,7 @@ const imageList = [
   '/mermaid.png',
   '/narwhal.png',
   '/troll128.png'
-];
+]
 const AvatarForm = props => {
   return (
     <ImagePicker
@@ -21,6 +21,6 @@ const AvatarForm = props => {
       }))}
       onPick={image => props.handleAvatar(image)}
     />
-  );
-};
-export default AvatarForm;
+  )
+}
+export default AvatarForm
