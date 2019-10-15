@@ -1,8 +1,10 @@
 import Phaser, { GameObjects } from 'phaser';
 // import Avatar from '../sprites/Avatar';
 import store from '../../store';
+import { updateUserRooms } from '../../store';
 
 const avatarStr = 'avatar';
+
 const fontStyleQuestion = {
   font: '6em Indie Flower',
   fill: '#bdd8fa',
@@ -37,15 +39,17 @@ export default class QuestionRoom extends Phaser.Scene {
 
   preload() {
     const { user: { avatar, rooms } } = store.getState();
-
     this.load.image('roomImg', rooms[rooms.length - 1].image);
     this.load.image(avatarStr, avatar);
   }
 
   create() {
     // Background image
+    const userData = store.getState();
+    const room = userData.user.rooms[userData.user.rooms.length - 1];
+    const answerA = room.question.answers[0];
+    const answerB = room.question.answers[1];
 
-    console.log(store.getState());
     this.bg = this.add.image(
       this.game.config.width / 2,
       this.game.config.height / 2,
@@ -95,7 +99,7 @@ export default class QuestionRoom extends Phaser.Scene {
     this.add.text(
       this.bg.displayWidth / 2,
       this.bg.displayHeight / 4,
-      'Who strikes\nyour fancy?',
+      room.question.content,
       fontStyleQuestion
     );
 
@@ -103,7 +107,7 @@ export default class QuestionRoom extends Phaser.Scene {
     this.answerA = this.add.text(
       0.7 * this.bg.displayWidth / 4,
       1.6 * this.bg.displayHeight / 3,
-      'Friend',
+      answerA.content,
       fontStyleAnswer
     );
 
@@ -114,7 +118,7 @@ export default class QuestionRoom extends Phaser.Scene {
     this.answerB = this.add.text(
       2.1 * this.bg.displayWidth / 3,
       this.bg.displayHeight / 2.2,
-      'Date',
+      answerB.content,
       fontStyleAnswer
     );
     this.physicsObjectB = this.physics.add.existing(this.answerB, 'static');
@@ -140,8 +144,8 @@ export default class QuestionRoom extends Phaser.Scene {
       this.avatar,
       this.physicsObjectA,
       () => {
-        // console.log('hello');
-        this.scene.start('DestinationRoom2');
+        store.dispatch(updateUserRooms(userData.user.id, answerA.roomRouteId));
+        this.scene.start('questionRoom');
       },
       null,
       this
@@ -151,7 +155,8 @@ export default class QuestionRoom extends Phaser.Scene {
       this.avatar,
       this.physicsObjectB,
       () => {
-        this.scene.start('DestinationRoom');
+        store.dispatch(updateUserRooms(userData.user.id, answerB.roomRouteId));
+        this.scene.start('questionRoom');
       },
       null,
       this
