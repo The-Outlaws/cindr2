@@ -1,9 +1,9 @@
 import React from 'react';
+import moment from 'moment';
 
 function Message(props) {
   const message = props.message;
   const author = props.message.user;
-  console.log('message', message);
   return (
     <li className="media">
       <div className="media-body">
@@ -20,6 +20,7 @@ function Message(props) {
           <h4 className="media-heading">{props.user.firstName}</h4>
         )}
         <span>{message.content}</span>
+        <span>{moment(message.createdAt).calendar()}</span>
       </div>
     </li>
   );

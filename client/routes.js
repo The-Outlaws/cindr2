@@ -4,7 +4,7 @@ import { withRouter, Route, Switch } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { me } from './store';
 import Game from './components/game';
-import { MapHistory } from './components/mapHistory';
+import MapHistory from './components/mapHistory';
 import Matches from './components/matches';
 import { ProfileInfo } from './components/profile';
 import { HomePage } from './components/homePage';

@@ -10,10 +10,15 @@ const disconnectedMatchChannel = props => {
       <NavLink to={`/matches/${matchId}`} activeClassName="active">
         <span>{name}</span>
         <span className="badge">
-          {props.messages +
-            props.newMessages.filter(
-              message => message.conversationId === props.convoId
-            ).length}
+          {props.newMessages
+            ? [...new Set(props.newMessages)].filter(
+                message => message.conversationId === props.convoId
+              ).length > 0
+              ? [...new Set(props.newMessages)].filter(
+                  message => message.conversationId === props.convoId
+                ).length
+              : null
+            : null}
         </span>
       </NavLink>
     </li>
