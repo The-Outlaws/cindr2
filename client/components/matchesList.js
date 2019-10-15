@@ -10,7 +10,16 @@ class disconnectedMatchesList extends Component {
       convo => convo.isAccepted === true
     );
     const pendingConvos = this.props.conversations.filter(
-      convo => convo.isAccepted === false && convo.isRejected === false
+      convo =>
+        convo.isAccepted === false &&
+        convo.isRejected === false &&
+        convo.userId === this.props.user.id
+    );
+    const requestConvos = this.props.conversations.filter(
+      convo =>
+        convo.isAccepted === false &&
+        convo.isRejected === false &&
+        convo.matchId === this.props.user.id
     );
     return (
       <div id="chat-sidebar">
@@ -26,9 +35,14 @@ class disconnectedMatchesList extends Component {
                     ? convo.user
                     : convo.match
                 }
-                messages={convo.messages.length}
               />
             );
+          })}
+        </ul>
+        <h4>New Match Requests!</h4>
+        <ul>
+          {requestConvos.map(convo => {
+            return <MatchChannel key={convo.id} matchUser={convo.match} />;
           })}
         </ul>
         <h4>Pending Matches</h4>
@@ -45,11 +59,7 @@ class disconnectedMatchesList extends Component {
 const mapState = state => ({
   conversations: state.conversations,
   user: state.user
-  // messages: state.messages
 });
-// const mapDispatch = dispatch => ({
-//   loadMessages: () => dispatch(fetchMessages())
-// })
 
 const MatchesList = withRouter(connect(mapState)(disconnectedMatchesList));
 export default MatchesList;

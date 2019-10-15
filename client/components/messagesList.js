@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import Chat from './newMessageEntry';
 import { getConversations } from '../store';
+import moment from 'moment';
 
 class disconnectedMessagesList extends Component {
   componentDidMount() {
@@ -19,11 +20,12 @@ class disconnectedMessagesList extends Component {
     const currMessages = uniqueMessages.filter(message => {
       return message.conversationId === filteredConvo[0].id;
     });
+    const today = moment();
     console.log('currMessages', currMessages);
     return (
       <main>
         <ul className="media-list">
-          <h4>Now Messages</h4>
+          <h4>Recent Messages</h4>
           {currMessages.map(message => (
             <Message
               key={message.id}
@@ -36,11 +38,13 @@ class disconnectedMessagesList extends Component {
           ) : (
             <h4>Your message history is loading</h4>
           )}
-          <h4>Old Messages</h4>
+          <h4>Messages of Yesterday and Beyond</h4>
           {filteredConvo.length ? (
-            filteredConvo[0].messages.map(message => (
-              <Message key={message.id} message={message} />
-            ))
+            filteredConvo[0].messages
+              .filter(message => {
+                return moment(message.createdAt).isBefore(today, 'day');
+              })
+              .map(message => <Message key={message.id} message={message} />)
           ) : (
             <h4>Your message history is loading</h4>
           )}
