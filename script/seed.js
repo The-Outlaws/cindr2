@@ -244,6 +244,13 @@ async function seed() {
       matchId: 4,
       isAccepted: true,
       isRejected: false
+    }),
+    Conversation.create({
+      id: 5,
+      userId: 5,
+      matchId: 1,
+      isAccepted: false,
+      isRejected: false
     })
   ]);
   // const userMatches = await Promise.all([
