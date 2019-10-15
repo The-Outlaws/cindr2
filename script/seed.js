@@ -7,6 +7,7 @@ const {
   Question,
   Answer,
   Message,
+  UserRoom,
   Conversation
 } = require('../server/db/models');
 
@@ -245,9 +246,9 @@ async function seed() {
     })
   ]);
 
-  // const userRooms = await Promise.all([
-  //   UserRoom.create({ userId: 1, roomId: 1, isActive: true })
-  // ]);
+  const userRooms = await Promise.all([
+    UserRoom.create({ userId: 1, roomId: 1, isActive: true })
+  ]);
 
   // const userRooms = await Promise.all([s
   //   UserRooms.create({ isActive: true, userId: 2, roomId: 1 }),
@@ -286,6 +287,18 @@ async function seed() {
     Question.create({
       content: 'You encounter a table, set with an immaculate feast. You: ',
       roomId: 7
+    }),
+    Question.create({
+      content: 'ROOM 8 QUESTION',
+      roomId: 8
+    }),
+    Question.create({
+      content: 'ROOM 9 QUESTION, TROLL HOLE????',
+      roomId: 9
+    }),
+    Question.create({
+      content: 'ROOM 10 QUESTION',
+      roomId: 10
     })
   ]);
 
@@ -363,6 +376,26 @@ async function seed() {
         'This is obviously a trap set with poison - besides, you had a sensible breakfast, and aren’t really all that hungry. Move along.',
       questionId: 8,
       roomRouteId: 16
+    }),
+    Answer.create({
+      content: 'ANSWER 1 ROOM 9 TO ROOM 5',
+      questionId: 9,
+      roomRouteId: 5
+    }),
+    Answer.create({
+      content: 'ANSWER 2 ROOM 9 TO ROOM 6',
+      questionId: 9,
+      roomRouteId: 6
+    }),
+    Answer.create({
+      content: 'ANSWER 1 ROOM 10 TO ROOM 7',
+      questionId: 10,
+      roomRouteId: 7
+    }),
+    Answer.create({
+      content: 'ANSWER 2 ROOM 9 TO ROOM 8',
+      questionId: 10,
+      roomRouteId: 8
     })
   ]);
 

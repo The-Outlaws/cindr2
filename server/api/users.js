@@ -30,6 +30,7 @@ router.post('/updateRoom', async (req, res, next) => {
       include: [
         {
           model: Room,
+          order: [[Room, 'updatedAt', 'ASC']],
           include: [{ model: Question, include: [{ model: Answer }] }]
         }
       ]

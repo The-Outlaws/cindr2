@@ -21,6 +21,7 @@ export default class Splash extends Phaser.Scene {
   }
 
   create() {
+    store.getState();
     this.backgroundColor = 'black';
 
     this.add.text(
