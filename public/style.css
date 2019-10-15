@@ -40,6 +40,10 @@ code {
   color: #09d3ac;
 }
 
+.test {
+  display: flex;
+}
+
 /* HOME */
 .home-container {
   display: flex;
