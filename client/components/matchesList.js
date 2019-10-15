@@ -25,44 +25,56 @@ class disconnectedMatchesList extends Component {
       <div id="chat-sidebar">
         <h4>Match List</h4>
         <ul>
-          {activeConvos.map(convo => {
-            return (
-              <MatchChannel
-                key={convo.id}
-                convoId={convo.id}
-                convo={convo}
-                matchUser={
-                  convo.match.id === this.props.user.id
-                    ? convo.user
-                    : convo.match
-                }
-              />
-            );
-          })}
+          {activeConvos.length > 0 ? (
+            activeConvos.map(convo => {
+              return (
+                <MatchChannel
+                  key={convo.id}
+                  convoId={convo.id}
+                  convo={convo}
+                  matchUser={
+                    convo.match.id === this.props.user.id
+                      ? convo.user
+                      : convo.match
+                  }
+                />
+              );
+            })
+          ) : (
+            <li>🙄No matches yet!</li>
+          )}
         </ul>
-        <h4>New Match Requests!</h4>
+        <h4>New Match Requests</h4>
         <ul>
-          {requestConvos.map(convo => {
-            return (
-              <MatchChannel
-                key={convo.id}
-                matchUser={convo.user}
-                convo={convo}
-              />
-            );
-          })}
+          {requestConvos.length > 0 ? (
+            requestConvos.map(convo => {
+              return (
+                <MatchChannel
+                  key={convo.id}
+                  matchUser={convo.user}
+                  convo={convo}
+                />
+              );
+            })
+          ) : (
+            <li>🤷No new requests</li>
+          )}
         </ul>
         <h4>Pending Matches</h4>
         <ul>
-          {pendingConvos.map(convo => {
-            return (
-              <MatchChannel
-                key={convo.id}
-                matchUser={convo.match}
-                convo={convo}
-              />
-            );
-          })}
+          {pendingConvos.length > 0 ? (
+            pendingConvos.map(convo => {
+              return (
+                <MatchChannel
+                  key={convo.id}
+                  matchUser={convo.match}
+                  convo={convo}
+                />
+              );
+            })
+          ) : (
+            <li>🤦No matches pending</li>
+          )}
         </ul>
       </div>
     );

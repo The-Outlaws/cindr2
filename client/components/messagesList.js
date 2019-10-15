@@ -96,20 +96,23 @@ class disconnectedMessagesList extends Component {
               </h4>
             )
           ) : null}
-          {filteredConvo.length ? (
-            filteredConvo[0].isAccepted ? (
-              <h4>Messages of Yesterday and Beyond</h4>
-            ) : null
-          ) : null}
-          {filteredConvo.length ? (
-            filteredConvo[0].messages
-              .filter(message => {
-                return moment(message.createdAt).isBefore(today, 'hour');
-              })
-              .map(message => <Message key={message.id} message={message} />)
-          ) : (
-            <h4>Your message history is loading</h4>
-          )}
+          <div className="message-archive">
+            {filteredConvo.length ? (
+              filteredConvo[0].isAccepted ? (
+                <h4 id="archive-header">Messages of Yesterday and Beyond</h4>
+              ) : null
+            ) : null}
+
+            {filteredConvo.length ? (
+              filteredConvo[0].messages
+                .filter(message => {
+                  return moment(message.createdAt).isBefore(today, 'hour');
+                })
+                .map(message => <Message key={message.id} message={message} />)
+            ) : (
+              <h4>Your message history is loading</h4>
+            )}
+          </div>
         </ul>
       </main>
     );

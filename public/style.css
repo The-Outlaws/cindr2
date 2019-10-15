@@ -5,6 +5,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  position: relative;
 }
 
 code {
@@ -480,17 +481,33 @@ code {
   /* flex: 1 1 auto; */
   overflow: scroll;
 }
+.message-archive {
+  position: fixed;
+  bottom: 0;
+  height: 20vh;
+  overflow: scroll;
+  border-top: 1px solid gainsboro;
+}
 
 /* message form */
 
 #new-message-form {
   position: relative;
+  margin: 1vh;
 }
 
 #new-message-form .form-control {
   border-width: 3px 1.5px 3px 3px;
+  height: 4vh;
+  width: 20vw;
+  font-size: 0.8em;
 }
 
-#new-message-form.btn {
-  border-width: 3px;
+#new-message-form .btn {
+  border-width: 2px;
+  height: 4vh;
+  width: 5vw;
+  font-size: 1em;
+  color: #4b8eb2;
+  margin: 1vh;
 }
