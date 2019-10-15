@@ -6,8 +6,13 @@ module.exports = router;
 // GET /api/messages
 router.get('/', async (req, res, next) => {
   try {
-    const messages = await Message.findAll();
-    // console.log(messages);
+    const messages = await Message.findAll({
+      include: [
+        {
+          model: User
+        }
+      ]
+    });
     res.json(messages);
   } catch (err) {
     next(err);
@@ -17,11 +22,17 @@ router.get('/', async (req, res, next) => {
 // POST /api/messages
 router.post('/', async (req, res, next) => {
   try {
+    // const newMessage = await Message.createMessage(req.body.content, req.user.id, req.match.id)
     const newMessage = await Message.create({
-      content: req.body.content
+      content: req.body.content,
+      userId: req.body.userId,
+      conversationId: req.body.conversationId
     });
-    newMessage.setUser(req.body.userId);
-    res.status(201).send('Message successfully created.');
+    const message = await Message.findByPk(newMessage.id, {
+      include: [User]
+    });
+    res.status(201);
+    res.json(message);
   } catch (error) {
     next(error);
   }

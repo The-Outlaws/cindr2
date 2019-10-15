@@ -2,29 +2,68 @@ import React, { Component } from 'react';
 import Message from './Message';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
+import Chat from './newMessageEntry';
+import { getConversations } from '../store';
+import moment from 'moment';
 
-export const MessagesList = props => {
-  // const userId = Number(props.user.id)
-  const messages = props.messages;
-  const filteredMessages = messages.filter(
-    message => message.userId === props.user.id
-  );
-
-  return (
-    <div>
-      <ul className="media-list">
-        {filteredMessages.map(message => (
-          <Message message={message} key={message.id} />
-        ))}
-      </ul>
-      {/* <Chat matchId={ matchId }/> */}
-    </div>
-  );
-};
+class disconnectedMessagesList extends Component {
+  componentDidMount() {
+    this.props.fetchConvos();
+  }
+  render() {
+    const allConversations = this.props.conversations;
+    const matchId = Number(this.props.match.params.matchId); // because it's a string "1", not a number!
+    const filteredConvo = allConversations.filter(
+      convo => convo.matchId === matchId || convo.userId === matchId
+    );
+    const uniqueMessages = [...new Set(this.props.messages)];
+    const currMessages = uniqueMessages.filter(message => {
+      return message.conversationId === filteredConvo[0].id;
+    });
+    const today = moment();
+    console.log('currMessages', currMessages);
+    return (
+      <main>
+        <ul className="media-list">
+          <h4>Recent Messages</h4>
+          {currMessages.map(message => (
+            <Message
+              key={message.id}
+              message={message}
+              user={this.props.user}
+            />
+          ))}
+          {filteredConvo.length ? (
+            <Chat conversationId={filteredConvo[0].id} />
+          ) : (
+            <h4>Your message history is loading</h4>
+          )}
+          <h4>Messages of Yesterday and Beyond</h4>
+          {filteredConvo.length ? (
+            filteredConvo[0].messages
+              .filter(message => {
+                return moment(message.createdAt).isBefore(today, 'day');
+              })
+              .map(message => <Message key={message.id} message={message} />)
+          ) : (
+            <h4>Your message history is loading</h4>
+          )}
+        </ul>
+      </main>
+    );
+  }
+}
 
 const mapStateToProps = state => ({
+  conversations: state.conversations,
   messages: state.messages,
   user: state.user
 });
+const mapDispatchToProps = dispatch => ({
+  fetchConvos: () => dispatch(getConversations())
+});
 
-export default withRouter(connect(mapStateToProps)(MessagesList));
+const MessagesList = withRouter(
+  connect(mapStateToProps, mapDispatchToProps)(disconnectedMessagesList)
+);
+export default MessagesList;

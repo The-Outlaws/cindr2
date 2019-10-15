@@ -1,40 +1,34 @@
 import React, { Component } from 'react';
-import { Route, Switch, Redirect, withRouter } from 'react-router-dom';
+import { Route, Switch, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import Sidebar from './sidebar';
-import Chat from './newMessageEntry';
 import MessagesList from './messagesList';
-import { fetchMessages } from '../store/reducers/messages';
+import { getConversations } from '../store';
 
-export class Matches extends Component {
-  constructor(props) {
-    super(props);
+class disconnectedMatches extends Component {
+  componentDidMount() {
+    this.props.fetchConvos();
   }
-
-  // componentDidMount () {
-  // this.props.loadMessages()
-  // }
-
   render() {
     return (
-      <div>
+      <div className="chat">
         <Sidebar />
-        <main>
-          <MessagesList />
-          {/* <Switch>
-            <Route path="/matches/:userId" component={MessagesList} />
-            {/* <Redirect to="/matches/19" /> */}
-          {/* </Switch> */}
-        </main>
+        <Switch>
+          <Route path="/matches/:matchId" component={MessagesList} />
+          <img src="/troll512.png" />
+          {/* <Redirect to="/matches/chat" /> */}
+        </Switch>
       </div>
     );
   }
 }
 const mapStateToProps = state => ({
-  messages: state.messages
+  conversations: state.conversations
 });
-// const mapDispatchToProps = dispatch => ({
-//   loadMessages: () => dispatch(fetchMessages())
-// })
-
-export default connect(mapStateToProps)(Matches);
+const mapDispatchToProps = dispatch => ({
+  fetchConvos: () => dispatch(getConversations())
+});
+const Matches = connect(mapStateToProps, mapDispatchToProps)(
+  disconnectedMatches
+);
+export default Matches;

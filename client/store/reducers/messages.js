@@ -27,11 +27,9 @@ export const fetchMessages = () => {
 
 export const postMessage = messageCont => {
   return async dispatch => {
-    console.log('MESSAGE CONT ', messageCont);
     const response = await axios.post('/api/messages', messageCont);
-    console.log('RESPONSE ', response);
     const messageData = response.data;
-    console.log('NEWMESSAGE ', response.data);
+    console.log(messageData);
     dispatch(getMessage(messageData));
     socket.emit('new-message', messageData);
   };
@@ -43,7 +41,7 @@ export default function messages(state = [], action) {
     case GET_MESSAGES:
       return action.payload;
     case GET_MESSAGE:
-      return [state.newMessage, action.newMessage];
+      return [...state, action.newMessage];
     default:
       return state;
   }

@@ -1,57 +1,65 @@
 import React, { Component } from 'react';
-import { NavLink, withRouter } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
+import MatchChannel from './matchChannel';
+// import { fetchMessages } from '../store';
 
-// These values are all hardcoded...for now!
-// Soon, we'll fetch them from the server!
-const RANDOM_CHANNEL = '/channels/1';
-const GENERAL_CHANNEL = '/channels/2';
-const DOGS_CHANNEL = '/channels/3';
-const LUNCH_CHANNEL = '/channels/4';
-
-export class MatchesList extends Component {
+class disconnectedMatchesList extends Component {
   render() {
-    // const filterMessageChannel = id =>
-    //     this.props.messages.filter(m => m.channelId === id)
-    // const randomMessages = filterMessageChannel(1)
-    // const generalMessages = filterMessageChannel(2)
-    // const dogsMessages = filterMessageChannel(3)
-    // const lunchMessages = filterMessageChannel(4)
-
+    const activeConvos = this.props.conversations.filter(
+      convo => convo.isAccepted === true
+    );
+    const pendingConvos = this.props.conversations.filter(
+      convo =>
+        convo.isAccepted === false &&
+        convo.isRejected === false &&
+        convo.userId === this.props.user.id
+    );
+    const requestConvos = this.props.conversations.filter(
+      convo =>
+        convo.isAccepted === false &&
+        convo.isRejected === false &&
+        convo.matchId === this.props.user.id
+    );
     return (
-      <div>Match List</div>
-      //     <ul>
-      //         <li>
-      //             <NavLink to={RANDOM_CHANNEL} activeClassName="active">
-      //                 <span># really_random</span>
-      //                 <span className="badge">{ randomMessages.length }</span>
-      //             </NavLink>
-      //         </li>
-      //         <li>
-      //             <NavLink to={GENERAL_CHANNEL} activeClassName="active">
-      //                 <span># generally_speaking</span>
-      //                 <span className="badge">{ generalMessages.length }</span>
-      //             </NavLink>
-      //         </li>
-      //         <li>
-      //             <NavLink to={DOGS_CHANNEL} activeClassName="active">
-      //                 <span># dogs_of_fullstack</span>
-      //                 <span className="badge">{ dogsMessages.length }</span>
-      //             </NavLink>
-      //         </li>
-      //         <li>
-      //             <NavLink to={LUNCH_CHANNEL} activeClassName="active">
-      //                 <span># lunch_planning</span>
-      //                 <span className="badge">{ lunchMessages.length }</span>
-      //             </NavLink>
-      //         </li>
-      //     </ul>
+      <div id="chat-sidebar">
+        <h4>Match List</h4>
+        <ul>
+          {activeConvos.map(convo => {
+            return (
+              <MatchChannel
+                key={convo.id}
+                convoId={convo.id}
+                matchUser={
+                  convo.match.id === this.props.user.id
+                    ? convo.user
+                    : convo.match
+                }
+              />
+            );
+          })}
+        </ul>
+        <h4>New Match Requests!</h4>
+        <ul>
+          {requestConvos.map(convo => {
+            return <MatchChannel key={convo.id} matchUser={convo.match} />;
+          })}
+        </ul>
+        <h4>Pending Matches</h4>
+        <ul>
+          {pendingConvos.map(convo => {
+            return <MatchChannel key={convo.id} matchUser={convo.match} />;
+          })}
+        </ul>
+      </div>
     );
   }
 }
 
 const mapState = state => ({
-  messages: state.messages
+  conversations: state.conversations,
+  user: state.user
 });
 
-export default withRouter(connect(mapState)(MatchesList));
+const MatchesList = withRouter(connect(mapState)(disconnectedMatchesList));
+export default MatchesList;
