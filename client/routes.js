@@ -4,13 +4,12 @@ import { withRouter, Route, Switch } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { me } from './store';
 import Game from './components/game';
-import { MapHistory } from './components/mapHistory';
-import { Matches } from './components/matches';
+import MapHistory from './components/mapHistory';
+import Matches from './components/matches';
 import { ProfileInfo } from './components/profile';
 import { HomePage } from './components/homePage';
 import { Signup } from './components/signupForm';
 import { Login } from './components/loginForm';
-import { Chat } from './components/newMessageEntry';
 
 /**
  * COMPONENT
@@ -37,7 +36,6 @@ class Routes extends Component {
             <Route path="/game" component={Game} />
             <Route path="/map" component={MapHistory} />
             <Route path="/matches" component={Matches} />
-            <Route path="/chat" component={Chat} />
           </Switch>
         )}
         {/* Displays our HomePage component as a fallback */}
@@ -58,13 +56,9 @@ const mapState = state => {
   };
 };
 
-const mapDispatch = dispatch => {
-  return {
-    loadInitialData() {
-      dispatch(me());
-    }
-  };
-};
+const mapDispatch = dispatch => ({
+  loadInitialData: () => dispatch(me())
+});
 
 // The `withRouter` wrapper makes sure that updates are not blocked
 // when the url changes
