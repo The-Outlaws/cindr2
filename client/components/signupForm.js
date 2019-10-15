@@ -20,7 +20,6 @@ class SignupForm extends React.Component {
       uploadedFileCloudinaryUrl: '',
       image: null
     };
-    this.age = Array.from(new Array());
     this.onImageDrop = this.onImageDrop.bind(this);
     this.chooseAvatar = this.chooseAvatar.bind(this);
   }
@@ -55,38 +54,8 @@ class SignupForm extends React.Component {
       avatar: image.src
     });
   }
-
-  getAges() {}
-  // eslint-disable-next-line complexity
   render() {
     const { name, handleSubmit } = this.props;
-
-    //age dropdown
-    const ages = [];
-    for (let i = 18; i <= 100; i++) {
-      ages.push(i);
-    }
-    const ageSelection = ages.map(age => {
-      return <option key={age}>{age}</option>;
-    });
-
-    //feet dropdown
-    const feet = [];
-    const inches = [];
-    for (let i = 3; i <= 9; i++) {
-      feet.push(`${i}'`);
-    }
-    for (let i = 0; i <= 12; i++) {
-      inches.push(`${i}"`);
-    }
-
-    const heightFeetSelection = feet.map(foot => {
-      return <option key={foot}>{foot}</option>;
-    });
-    const heightInchesSelection = inches.map(inch => {
-      return <option key={inch}>{inch}</option>;
-    });
-
     return (
       <div className="login-form">
         <form onSubmit={handleSubmit.bind(this)} name={name}>
@@ -101,68 +70,62 @@ class SignupForm extends React.Component {
 
             <div className="form-fields">
               <div className="input-box">
-                <p className="field-titles">First Name</p>
                 <input
                   type="text"
-                  // placeholder="Nye"
+                  placeholder="First Name"
                   className="form-control"
                   name="firstName"
                 />
               </div>
               <div className="input-box">
-                <p className="field-titles">Email</p>
                 <input
                   type="text"
-                  // placeholder="Nye@email.com"
+                  placeholder="Email"
                   className="form-control"
                   name="email"
                 />
               </div>
               <div className="input-box">
-                <p className="field-titles">Password</p>
                 <input
                   type="password"
-                  // placeholder="NxeFr2"
+                  placeholder="Password"
                   className="form-control"
                   name="password"
                 />
               </div>
               <div className="input-box">
-                <p className="field-titles">Select your age</p>
-                <select className="select-box-age" name="age">
-                  {ageSelection}
-                </select>
-              </div>
-              <div className="input-box">
-                <p className="field-titles">
-                  Select your height in feet and inches
-                </p>
-                <select className="select-box" name="feet">
-                  {heightFeetSelection}
-                </select>
-                <select className="select-box" name="inches">
-                  {heightInchesSelection}
-                </select>
-              </div>
-              <div className="input-box">
-                <p className="field-titles">Orientation **</p>
                 <input
                   type="text"
-                  // placeholder="Orientation *"
+                  placeholder="Age"
+                  className="form-control"
+                  name="age"
+                />
+              </div>
+              <div className="input-box">
+                <input
+                  type="text"
+                  placeholder="Height"
+                  className="form-control"
+                  name="height"
+                />
+              </div>
+              <div className="input-box">
+                <input
+                  type="text"
+                  placeholder="Orientation"
                   className="form-control"
                   name="orientation"
                 />
               </div>
               <div className="input-box">
-                <p className="field-titles">Gender **</p>
                 <input
                   type="text"
-                  // placeholder="Gender *"
+                  placeholder="Gender"
                   className="form-control"
                   name="gender"
                 />
               </div>
-              <div className="fileAdd">
+              <div className="button-container">
                 <Dropzone
                   onDrop={this.onImageDrop}
                   accept="image/png, image/jpeg"
@@ -178,10 +141,12 @@ class SignupForm extends React.Component {
                     acceptedFiles
                   }) => {
                     return (
-                      <div {...getRootProps()}>
+                      <div className="heading" {...getRootProps()}>
                         <input {...getInputProps()} />
                         {!isDragActive && (
-                          <p>Click here or drop a file to upload your photo!</p>
+                          <h4>
+                            Click here or drop a file to upload your photo!
+                          </h4>
                         )}
                         {isDragActive &&
                           !isDragReject &&
@@ -214,7 +179,7 @@ class SignupForm extends React.Component {
                     : 'Select your Avatar'}
                 </button>
               </div>
-              <div className="imgage_picker">
+              <div>
                 {this.state.selectAvatar ? (
                   <AvatarForm handleAvatar={this.handleAvatar.bind(this)} />
                 ) : null}
@@ -229,19 +194,6 @@ class SignupForm extends React.Component {
                   <button type="submit">Home</button>
                 </div>
               </Link>
-              <div className="error">
-                {!this.props.error
-                  ? null
-                  : this.props.error.message ===
-                    'Request failed with status code 401'
-                    ? 'Hmm - it looks like this user already exists!'
-                    : 'Hmm - your profile was not created. Try checking the information you entered to make sure it is correct.'}
-              </div>
-              <div className="inclusivity-note">
-                ** Here at Cinder, inclusivity is important to us. Orientation
-                and gender are open fields for you to enter what you feel best
-                represents you.
-              </div>
             </div>
           </div>
         </form>
@@ -263,7 +215,7 @@ const mapDispatch = dispatch => {
       const password = evt.target.password.value;
       const firstName = evt.target.firstName.value;
       const age = evt.target.age.value;
-      const height = `${evt.target.feet.value} ${evt.target.inches.value}`;
+      const height = evt.target.height.value;
       const orientation = evt.target.orientation.value;
       const gender = evt.target.gender.value;
       dispatch(

@@ -1,5 +1,5 @@
 const isDev = process.env.NODE_ENV === 'development';
-// const MinifyPlugin = require('babel-minify-webpack-plugin');
+
 module.exports = {
   mode: isDev ? 'development' : 'production',
   entry: [
@@ -17,9 +17,6 @@ module.exports = {
   watchOptions: {
     ignored: /node_modules/
   },
-  // plugins: [
-  //   new MinifyPlugin()
-  // ],
   module: {
     rules: [
       {

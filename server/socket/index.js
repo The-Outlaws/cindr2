@@ -1,5 +1,4 @@
-const { Message, Conversation } = require('../db/models');
-const mobileSockets = {};
+const Message = require('../db/models/message');
 
 module.exports = io => {
   io.on('connection', socket => {
@@ -10,21 +9,7 @@ module.exports = io => {
     socket.on('new-message', message => {
       socket.broadcast.emit('new-message', message);
     });
-    socket.on('message', ({ text, sender, receiver }) => {
-      Message.createMessage(text, sender, receiver).then(message => {
-        socket.emit('incomingMessage', message);
-        const receiverSocketId = mobileSockets[receiver.id];
-        socket.to(receiverSocketId).emit('incomingMessage', message);
-      });
-    });
-    socket.on('chat', users => {
-      Conversation.findOrCreateConversation(
-        users.user.id,
-        users.receiver.id
-      ).then(conversation =>
-        socket.emit('priorMessages', conversation.messages)
-      );
-    });
+
     socket.on('disconnect', () => {
       console.log(`Connection ${socket.id} has left the building`);
     });
