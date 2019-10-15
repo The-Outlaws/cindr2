@@ -1,5 +1,6 @@
 import Phaser from 'phaser';
 import store from '../../store';
+// import {getUser} from '../../store'
 
 const avatarStr = 'avatar';
 
@@ -21,7 +22,7 @@ export default class Splash extends Phaser.Scene {
   }
 
   create() {
-    store.getState();
+    // const userData = store.getState();
     this.backgroundColor = 'black';
 
     this.add.text(

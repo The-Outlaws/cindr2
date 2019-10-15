@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+// import {getUser} from '../store'
 
 import Game from '../game/main.js';
 //import getRoomThunk, {addRoomThunk} from '../store/reducers/room'
@@ -15,8 +16,8 @@ class DisconnectedGameContainer extends React.Component {
   componentDidMount() {
     // This should return the last active room or create assocation
     // between the current user and the first room
-    this.props.gotActiveRoom(this.props.userId);
-
+    // this.props.gotActiveRoom(this.props.userId);
+    // this.props.gotUser(this.props.userId)
     this.setState({ game: new Game() });
   }
 
@@ -32,12 +33,14 @@ class DisconnectedGameContainer extends React.Component {
 const mapStateToProps = state => {
   return {
     userId: state.user.id,
-    rooms: state.room
+    rooms: state.room,
+    user: state.user
   };
 };
 
 const mapDispatchToProps = dispatch => ({
   gotActiveRoom: userId => dispatch(gotActiveRoom(userId))
+  // gotUser: (userId) => dispatch(getUser(userId))
 });
 
 const GameContainer = connect(mapStateToProps, mapDispatchToProps)(
