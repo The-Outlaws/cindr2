@@ -18,6 +18,8 @@ export const GET_MESSAGES = 'GET_MESSAGES';
 export const WRITE_MESSAGE = 'WRITE_MESSAGE';
 
 export const GET_CONVERSATIONS = 'GET_CONVERSATIONS';
+export const ACCEPT_REQUEST = 'ACCEPT_REQUEST';
+export const REJECT_REQUEST = 'REJECT_REQUEST';
 
 const rootReducer = combineReducers({
   user,

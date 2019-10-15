@@ -3,12 +3,37 @@ import Message from './Message';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import Chat from './newMessageEntry';
-import { getConversations } from '../store';
+import {
+  getConversations,
+  acceptConversation,
+  rejectConversation
+} from '../store';
 import moment from 'moment';
 
 class disconnectedMessagesList extends Component {
+  constructor(props) {
+    super(props);
+    this.handleAccept = this.handleAccept.bind(this);
+    this.handleReject = this.handleReject.bind(this);
+  }
   componentDidMount() {
     this.props.fetchConvos();
+  }
+  handleAccept(evt, convoId) {
+    evt.preventDefault();
+    this.props.acceptRequest({
+      isAccepted: true,
+      isRejected: false,
+      conversationId: convoId
+    });
+  }
+  handleReject(evt, convoId) {
+    evt.preventDefault();
+    this.props.rejectRequest({
+      isAccepted: false,
+      isRejected: true,
+      conversationId: convoId
+    });
   }
   render() {
     const allConversations = this.props.conversations;
@@ -43,16 +68,33 @@ class disconnectedMessagesList extends Component {
                   <img src={filteredConvo[0].user.avatar} /> is awaiting your
                   approval!
                 </h4>
-                <div>
+
+                <div className="match-request">
+
                   <h4>Deets about {filteredConvo[0].user.firstName}:</h4>
                   <img src={filteredConvo[0].user.photo} alt="No photo" />
                   <p>Age: {filteredConvo[0].user.age}</p>
                   <p>Gender: {filteredConvo[0].user.gender}</p>
                   <p>Orientation: {filteredConvo[0].user.orientation}</p>
                   <p>Height: {filteredConvo[0].user.height}</p>
+
+
+                  <button
+                    id="accept"
+                    type="submit"
+                    onClick={evt => this.handleAccept(evt, filteredConvo[0].id)}
+                  >
+                    Accept match request
+                  </button>
+                  <button
+                    id="reject"
+                    type="submit"
+                    onClick={evt => this.handleReject(evt, filteredConvo[0].id)}
+                  >
+                    Decline match request
+                  </button>
                 </div>
-                <button type="submit">Accept match request</button>
-                <button type="submit">Decline match request</button>
+
               </React.Fragment>
             ) : (
               <h4>
@@ -61,20 +103,25 @@ class disconnectedMessagesList extends Component {
               </h4>
             )
           ) : null}
-          {filteredConvo.length ? (
-            filteredConvo[0].isAccepted ? (
-              <h4>Messages of Yesterday and Beyond</h4>
-            ) : null
-          ) : null}
-          {filteredConvo.length ? (
-            filteredConvo[0].messages
-              .filter(message => {
-                return moment(message.createdAt).isBefore(today, 'hour');
-              })
-              .map(message => <Message key={message.id} message={message} />)
-          ) : (
-            <h4>Your message history is loading</h4>
-          )}
+
+          <div className="message-archive">
+            {filteredConvo.length ? (
+              filteredConvo[0].isAccepted ? (
+                <h4 id="archive-header">Messages of Yesterday and Beyond</h4>
+              ) : null
+            ) : null}
+
+            {filteredConvo.length ? (
+              filteredConvo[0].messages
+                .filter(message => {
+                  return moment(message.createdAt).isBefore(today, 'hour');
+                })
+                .map(message => <Message key={message.id} message={message} />)
+            ) : (
+              <h4>Your message history is loading</h4>
+            )}
+          </div>
+
         </ul>
       </main>
     );
@@ -87,7 +134,9 @@ const mapStateToProps = state => ({
   user: state.user
 });
 const mapDispatchToProps = dispatch => ({
-  fetchConvos: () => dispatch(getConversations())
+  fetchConvos: () => dispatch(getConversations()),
+  acceptRequest: convoId => dispatch(acceptConversation(convoId)),
+  rejectRequest: convoId => dispatch(rejectConversation(convoId))
 });
 
 const MessagesList = withRouter(

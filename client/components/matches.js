@@ -13,9 +13,13 @@ class disconnectedMatches extends Component {
     return (
       <div className="chat">
         <Sidebar />
+
         <Switch>
           <Route path="/matches/:matchId" component={MessagesList} />
-          <img src="/troll512.png" />
+          <React.Fragment>
+            <h2> Talk to your new friends here!</h2>
+            <img id="main" src="/troll512.png" />
+          </React.Fragment>
           {/* <Redirect to="/matches/chat" /> */}
         </Switch>
       </div>
