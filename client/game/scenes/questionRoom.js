@@ -1,12 +1,9 @@
 import Phaser, { GameObjects } from 'phaser';
 // import Avatar from '../sprites/Avatar';
 import store from '../../store';
-import { updateUserRooms, me } from '../../store';
+import { updateUserRooms } from '../../store';
 
 const avatarStr = 'avatar';
-const answerAStr = 'answerA';
-const answerBStr = 'answerB';
-const questionStr = 'question';
 
 const fontStyleQuestion = {
   font: '6em Indie Flower',
@@ -44,9 +41,6 @@ export default class QuestionRoom extends Phaser.Scene {
     const { user: { avatar, rooms } } = store.getState();
     this.load.image('roomImg', rooms[rooms.length - 1].image);
     this.load.image(avatarStr, avatar);
-    this.load.text(answerAStr, rooms[rooms.length - 1].question.answers[0]);
-    this.load.text(answerBStr, rooms[rooms.length - 1].question.answers[1]);
-    this.load.text(questionStr, rooms[rooms.length - 1].question);
   }
 
   create() {

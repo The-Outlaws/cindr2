@@ -17,7 +17,7 @@ router.get('/', async (req, res, next) => {
   }
 });
 
-router.put('/updateRoom', async (req, res, next) => {
+router.post('/updateRoom', async (req, res, next) => {
   try {
     const user = await User.findOne({
       where: {

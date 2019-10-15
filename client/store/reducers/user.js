@@ -69,7 +69,7 @@ export const logout = () => async dispatch => {
 
 export const updateUserRooms = (userId, roomId) => async dispatch => {
   try {
-    const { data } = await axios.put(`/api/users/updateRoom`, {
+    const { data } = await axios.post(`/api/users/updateRoom`, {
       userId: userId,
       roomId: roomId
     });
