@@ -1,7 +1,7 @@
-import React from 'react'
+import React from 'react';
 
-export class MapHistory extends React.Component {
+export default class MapHistory extends React.Component {
   render() {
-    return <div>This is where your map history lives!</div>
+    return <div>This is where your map history lives!</div>;
   }
 }
