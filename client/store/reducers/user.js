@@ -7,7 +7,7 @@ import { GET_USER, REMOVE_USER, UPDATE_USER } from './index';
  */
 export const getUser = user => ({ type: GET_USER, user });
 export const removeUser = () => ({ type: REMOVE_USER });
-// export const updateUser = user => ({ type: UPDATE_USER}, user);
+export const updateUser = user => ({ type: UPDATE_USER, user });
 /**
  * THUNK CREATORS
  */
@@ -67,14 +67,17 @@ export const logout = () => async dispatch => {
   }
 };
 
-// export const updateUserRooms = (userId, roomId) => async dispatch => {
-//   try {
-//     const {data} = await axios.update(`/user/updateRoom`)
-//     dispatch(updateUser(data))
-//   } catch (err) {
-//     console.error(err)
-//   }
-// }
+export const updateUserRooms = (userId, roomId) => async dispatch => {
+  try {
+    const { data } = await axios.put(`/api/users/updateRoom`, {
+      userId: userId,
+      roomId: roomId
+    });
+    dispatch(updateUser(data));
+  } catch (err) {
+    console.error(err);
+  }
+};
 
 /**
  * REDUCER
@@ -83,8 +86,8 @@ export default function user(state = {}, action) {
   switch (action.type) {
     case GET_USER:
       return action.user;
-    // case UPDATE_USER:
-    //   return action.user;
+    case UPDATE_USER:
+      return action.user;
     case REMOVE_USER:
       return {};
     default:

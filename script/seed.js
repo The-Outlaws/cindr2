@@ -168,21 +168,81 @@ async function seed() {
       trollRoom: false,
       image: '/OfficeTrollHole.png'
     }),
-    Room.create({ name: 'Quaint Cottage', trollRoom: false }),
-    Room.create({ name: 'Evil Castle', trollRoom: false }),
-    Room.create({ name: 'Haunted Lair', trollRoom: false }),
-    Room.create({ name: 'Whimsical Meadow', trollRoom: false }),
-    Room.create({ name: 'Happy Kitchen', trollRoom: false }),
-    Room.create({ name: 'Cozy Hut', trollRoom: false }),
-    Room.create({ name: 'Cavernous Cave', trollRoom: false }),
-    Room.create({ name: 'Limey Cave', trollRoom: false }),
-    Room.create({ name: 'Frozen the Musical', trollRoom: true }),
-    Room.create({ name: 'The Dungeon', trollRoom: false }),
-    Room.create({ name: 'The Office', trollRoom: true }),
-    Room.create({ name: 'Fluffy Cloud', trollRoom: false }),
-    Room.create({ name: 'Green Grove', trollRoom: false }),
-    Room.create({ name: 'Wise Tree', trollRoom: false }),
-    Room.create({ name: 'Awkward Tree House', trollRoom: true })
+    Room.create({
+      name: 'Quaint Cottage',
+      trollRoom: false,
+      image: '/MushroomScene.png'
+    }),
+    Room.create({
+      name: 'Evil Castle',
+      trollRoom: false,
+      image: '/CastleScene.png'
+    }),
+    Room.create({
+      name: 'Haunted Lair',
+      trollRoom: false,
+      image: '/CrystalScene.png'
+    }),
+    Room.create({
+      name: 'Whimsical Meadow',
+      trollRoom: false,
+      image: '/MushroomScene.png'
+    }),
+    Room.create({
+      name: 'Happy Kitchen',
+      trollRoom: false,
+      image: '/OfficeTrollHoll.png'
+    }),
+    Room.create({
+      name: 'Cozy Hut',
+      trollRoom: false,
+      image: '/MushroomScene.png'
+    }),
+    Room.create({
+      name: 'Cavernous Cave',
+      trollRoom: false,
+      image: '/CrystalScene.png'
+    }),
+    Room.create({
+      name: 'Limey Cave',
+      trollRoom: false,
+      image: '/MushroomScene.png'
+    }),
+    Room.create({
+      name: 'Frozen the Musical',
+      trollRoom: true,
+      image: '/CastleScene.png'
+    }),
+    Room.create({
+      name: 'The Dungeon',
+      trollRoom: false,
+      image: '/MushroomScene.png'
+    }),
+    Room.create({
+      name: 'The Office',
+      trollRoom: true,
+      image: '/CrystalScene.png'
+    }),
+    Room.create({
+      name: 'Fluffy Cloud',
+      trollRoom: false,
+      image: '/CastleScene.png'
+    }),
+    Room.create({
+      name: 'Green Grove',
+      trollRoom: false,
+      image: '/MushroomScene.png'
+    }),
+    Room.create({
+      name: 'Wise Tree',
+      trollRoom: false,
+      image: '/CrystalScene.png'
+    }),
+    Room.create({
+      name: 'Awkward Tree House',
+      trollRoom: true,
+      image: '/CastleScene.png'
+    })
   ]);
 
   // const userRooms = await Promise.all([
@@ -198,12 +258,40 @@ async function seed() {
     Question.create({
       content: 'This castle is filled with ghosts. What to do?',
       roomId: 2
+    }),
+    Question.create({
+      content:
+        'The friendly ghosts can’t imbibe, but as gracious hosts, they invite you to - you choose:',
+      roomId: 3
+    }),
+    Question.create({
+      content:
+        'The ghosts would love for you to stay, but they have some haunting to do. Busy busy, they can’t wait for retirement. They lead you toward two paths, you choose:',
+      roomId: 5
+    }),
+    Question.create({
+      content:
+        'The ghosts kick you out - they were hoping for something a little more exciting. You:',
+      roomId: 6
+    }),
+    Question.create({
+      content:
+        'There’s a tabby cat blocking your path - when you approach, she gives you a set of instructions for a task she needs help with. You:',
+      roomId: 4
+    }),
+    Question.create({
+      content: 'The cat’s kitten has climbed a tree and can’t get down! You:',
+      roomId: 11
+    }),
+    Question.create({
+      content: 'You encounter a table, set with an immaculate feast. You: ',
+      roomId: 7
     })
   ]);
 
   const answers = await Promise.all([
     Answer.create({ content: 'Friend', roomRouteId: 2, questionId: 1 }),
-    Answer.create({ content: 'Date', roomRouteId: 3, questionId: 1 }),
+    Answer.create({ content: 'Date', roomRouteId: 2, questionId: 1 }),
     Answer.create({
       content: 'Meet some friendly ghosts',
       roomRouteId: 3,
@@ -213,6 +301,68 @@ async function seed() {
       content: 'Run the f*** away',
       roomRouteId: 4,
       questionId: 2
+    }),
+    Answer.create({
+      content: 'Beer, duh',
+      roomRouteId: 5,
+      questionId: 3
+    }),
+    Answer.create({
+      content: 'Tea, please',
+      roomRouteId: 6,
+      questionId: 3
+    }),
+    Answer.create({
+      content: 'The garden path, filled with roses',
+      roomRouteId: 7,
+      questionId: 4
+    }),
+    Answer.create({
+      content: 'The spooky forest. Go gently unto that good night',
+      roomRouteId: 8,
+      questionId: 4
+    }),
+    Answer.create({
+      content: 'Take the garden path, you want to smell the roses',
+      roomRouteId: 9,
+      questionId: 5
+    }),
+    Answer.create({
+      content: 'Try your luck on the spooky forest path',
+      roomRouteId: 10,
+      questionId: 5
+    }),
+    Answer.create({
+      content: 'Do everything the cat tells you to do!',
+      questionId: 6,
+      roomRouteId: 11
+    }),
+    Answer.create({
+      content: 'Think Huh, a talking cat, and continue along your way',
+      questionId: 6,
+      roomRouteId: 12
+    }),
+    Answer.create({
+      content: 'Climb the tree and help him down, braving a few scratches',
+      questionId: 7,
+      roomRouteId: 13
+    }),
+    Answer.create({
+      content: 'Get someone else to do it - you’re terrified of heights',
+      questionId: 7,
+      roomRouteId: 14
+    }),
+    Answer.create({
+      content:
+        'Start with a slice of pizza, then move on to the mac and cheese',
+      questionId: 8,
+      roomRouteId: 15
+    }),
+    Answer.create({
+      content:
+        'This is obviously a trap set with poison - besides, you had a sensible breakfast, and aren’t really all that hungry. Move along.',
+      questionId: 8,
+      roomRouteId: 16
     })
   ]);
 

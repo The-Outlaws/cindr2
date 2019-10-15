@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { User, Room } = require('../db/models');
+const { User, Room, Question, Answer } = require('../db/models');
 
 module.exports = router;
 
@@ -17,17 +17,22 @@ router.get('/', async (req, res, next) => {
   }
 });
 
-router.put('/user/updateRoom', async (req, res, next) => {
+router.put('/updateRoom', async (req, res, next) => {
   try {
     const user = await User.findOne({
       where: {
-        id: req.params.userId
+        id: req.body.userId
       }
     });
-    user.addRoom(req.params.roomId);
+    await user.addRoom(req.body.roomId);
     const userToSend = await User.findOne({
-      where: { id: req.params.userId },
-      include: [{ model: Room }]
+      where: { id: req.body.userId },
+      include: [
+        {
+          model: Room,
+          include: [{ model: Question, include: [{ model: Answer }] }]
+        }
+      ]
     });
     res.json(userToSend);
   } catch (err) {
