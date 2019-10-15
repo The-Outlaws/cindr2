@@ -3,27 +3,27 @@ import Phaser from 'phaser';
 import store from '../../store';
 
 const avatarStr = 'avatar';
+
 const fontStyleQuestion = {
-  font: '6em Yeon Sung',
+  font: '5.5em Piedra',
   fill: '#ff2525',
   align: 'center'
 };
 const fontStyleAnswer = {
-  font: '4.5em Lakki Reddy',
-  fill: '#005bd3'
+  font: '4.5em Piedra',
+  fill: '#b81b1b'
 };
 const fontStyleCountdown = {
-  font: '4.5em Yeon Sung',
-  fill: '#32a852',
+  font: '4.5em Piedra',
+  fill: '#b81b1b',
   align: 'center'
 };
 
-export default class DestinationRoom extends Phaser.Scene {
+export default class DestinationRoom2 extends Phaser.Scene {
   constructor() {
-    super({ key: 'DestinationRoom' });
+    super({ key: 'DestinationRoom2' });
   }
 
-  //decrements seconds every one second and displays countdown
   onEvent() {
     this.initialTime -= 1;
     this.countDownText.setText(`${this.initialTime}`);
@@ -37,62 +37,62 @@ export default class DestinationRoom extends Phaser.Scene {
     const { user: { avatar } } = store.getState();
     this.load.image(avatarStr, avatar);
     this.load.image('troll', '/troll128.png');
-    this.load.image('mushroom', '/MushroomScene.png');
+    this.load.image('evilCastle', '/CastleScene.png');
   }
 
   create() {
     this.bg = this.add.image(
       this.game.config.width / 2,
       this.game.config.height / 2,
-      'mushroom'
+      'evilCastle'
     );
     this.bg.displayWidth = this.game.config.width;
     this.bg.displayHeight = this.game.config.height;
 
     this.add.text(
-      0.5 * this.bg.displayWidth / 4,
-      0.3 * this.bg.displayHeight / 4,
-      'Wherefore art thou Romeo?',
+      0.2 * this.bg.displayWidth / 4,
+      0.2 * this.bg.displayHeight / 4,
+      'Would you rather eat \neye of newt or toenail of cat?',
       fontStyleQuestion
     );
     this.add.text(
-      3.62 * this.bg.displayWidth / 4,
-      2.8 * this.bg.displayHeight / 4,
-      'Right here',
+      2.9 * this.bg.displayWidth / 4,
+      1.5 * this.bg.displayHeight / 4,
+      'eye eye eye',
       fontStyleAnswer
     );
     this.add.text(
-      1.65 * this.bg.displayWidth / 4,
-      1.2 * this.bg.displayHeight / 4,
-      'Baby I was born this way',
+      this.bg.displayWidth / 4,
+      2.4 * this.bg.displayHeight / 4,
+      'meowth',
       fontStyleAnswer
     );
 
     // this.avatar = new Avatar({
     //   scene: this,
-    //   x: 100,
-    //   y: 700,
+    //   x: this.bg.displayWidth / 2,
+    //   y: 4 * this.bg.displayHeight / 5,
     //   asset: avatarStr
     // });
     // this.add.existing(this.avatar);
 
     this.avatar = this.physics.add.sprite(
-      0.15 * this.bg.displayWidth / 4,
-      2 * this.bg.displayHeight / 4,
+      this.bg.displayWidth / 2,
+      4 * this.bg.displayHeight / 5,
       avatarStr
     );
     this.avatar.body.setAllowGravity(false);
     this.avatar.setCollideWorldBounds(true);
 
     this.add.text(
-      3.26 * this.bg.displayWidth / 4,
-      this.bg.displayHeight / 23,
+      3.5 * this.bg.displayWidth / 4,
+      this.bg.displayHeight / 23.5,
       'You have: ',
       fontStyleCountdown
     );
 
     this.add.text(
-      3.1 * this.bg.displayWidth / 4,
+      3.33 * this.bg.displayWidth / 4,
       this.bg.displayHeight / 8,
       'seconds\nto answer this question!',
       fontStyleCountdown
@@ -100,8 +100,8 @@ export default class DestinationRoom extends Phaser.Scene {
 
     this.initialTime = 15;
     this.countDownText = this.add.text(
-      3.36 * this.bg.displayWidth / 4,
-      this.bg.displayHeight / 13,
+      3.6 * this.bg.displayWidth / 4,
+      this.bg.displayHeight / 12.8,
       `${this.initialTime}`,
       fontStyleQuestion
     );
