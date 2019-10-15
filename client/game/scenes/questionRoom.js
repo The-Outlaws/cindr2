@@ -38,8 +38,11 @@ export default class QuestionRoom extends Phaser.Scene {
   }
 
   preload() {
-    const { user: { avatar, rooms } } = store.getState();
-    this.load.image('roomImg', rooms[rooms.length - 1].image);
+    const { user: { avatar } } = store.getState();
+    this.load.image('/MushroomScene.png', '/MushroomScene.png');
+    this.load.image('/CastleScene.png', '/CastleScene.png');
+    this.load.image('/OfficeTrollHole.png', '/OfficeTrollHole.png');
+    this.load.image('/CrystalScene.png', '/CrystalScene.png');
     this.load.image(avatarStr, avatar);
   }
 
@@ -47,13 +50,14 @@ export default class QuestionRoom extends Phaser.Scene {
     // Background image
     const userData = store.getState();
     const room = userData.user.rooms[userData.user.rooms.length - 1];
+    const roomImg = room.image;
     const answerA = room.question.answers[0];
     const answerB = room.question.answers[1];
 
     this.bg = this.add.image(
       this.game.config.width / 2,
       this.game.config.height / 2,
-      'roomImg'
+      roomImg
     );
     this.bg.displayWidth = this.game.config.width;
     this.bg.displayHeight = this.game.config.height;
@@ -145,7 +149,7 @@ export default class QuestionRoom extends Phaser.Scene {
       this.physicsObjectA,
       () => {
         store.dispatch(updateUserRooms(userData.user.id, answerA.roomRouteId));
-        this.scene.start('questionRoom');
+        this.scene.restart('QuestionRoom');
       },
       null,
       this
@@ -156,7 +160,7 @@ export default class QuestionRoom extends Phaser.Scene {
       this.physicsObjectB,
       () => {
         store.dispatch(updateUserRooms(userData.user.id, answerB.roomRouteId));
-        this.scene.start('questionRoom');
+        this.scene.restart('QuestionRoom');
       },
       null,
       this
@@ -190,6 +194,5 @@ export default class QuestionRoom extends Phaser.Scene {
 
       this.avatar.y += this.playerSpeed;
     }
-    this.input.on('pointerdown', () => this.scene.start('DestinationRoom'));
   }
 }
