@@ -489,6 +489,37 @@ code {
   border-top: 1px solid gainsboro;
 }
 
+/* match requests */
+.match-request {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+}
+.match-request button#accept {
+  align-self: center;
+  color: #ffffff;
+  font-size: 1em;
+  padding: 5px;
+  background-color: #4b8eb2;
+  border: none;
+  border-radius: 10px;
+  width: 200px;
+  height: 60px;
+  margin: 2px;
+}
+.match-request button#reject {
+  align-self: center;
+  color: #ffffff;
+  font-size: 1em;
+  padding: 5px;
+  background-color: tomato;
+  border: none;
+  border-radius: 10px;
+  width: 200px;
+  height: 60px;
+  margin: 2px;
+}
 /* message form */
 
 #new-message-form {
