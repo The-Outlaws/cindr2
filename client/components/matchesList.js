@@ -30,6 +30,7 @@ class disconnectedMatchesList extends Component {
               <MatchChannel
                 key={convo.id}
                 convoId={convo.id}
+                convo={convo}
                 matchUser={
                   convo.match.id === this.props.user.id
                     ? convo.user
@@ -42,13 +43,25 @@ class disconnectedMatchesList extends Component {
         <h4>New Match Requests!</h4>
         <ul>
           {requestConvos.map(convo => {
-            return <MatchChannel key={convo.id} matchUser={convo.match} />;
+            return (
+              <MatchChannel
+                key={convo.id}
+                matchUser={convo.user}
+                convo={convo}
+              />
+            );
           })}
         </ul>
         <h4>Pending Matches</h4>
         <ul>
           {pendingConvos.map(convo => {
-            return <MatchChannel key={convo.id} matchUser={convo.match} />;
+            return (
+              <MatchChannel
+                key={convo.id}
+                matchUser={convo.match}
+                convo={convo}
+              />
+            );
           })}
         </ul>
       </div>

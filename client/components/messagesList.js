@@ -34,15 +34,42 @@ class disconnectedMessagesList extends Component {
             />
           ))}
           {filteredConvo.length ? (
-            <Chat conversationId={filteredConvo[0].id} />
-          ) : (
-            <h4>Your message history is loading</h4>
-          )}
-          <h4>Messages of Yesterday and Beyond</h4>
+            filteredConvo[0].isAccepted ? (
+              <Chat conversationId={filteredConvo[0].id} />
+            ) : filteredConvo[0].matchId === this.props.user.id ? (
+              <React.Fragment>
+                <h4>
+                  Your request to chat from {filteredConvo[0].user.firstName}
+                  <img src={filteredConvo[0].user.avatar} /> is awaiting your
+                  approval!
+                </h4>
+                <div>
+                  <h4>Deets about {filteredConvo[0].user.firstName}:</h4>
+                  <img src={filteredConvo[0].user.photo} alt="No photo" />
+                  <p>Age: {filteredConvo[0].user.age}</p>
+                  <p>Gender: {filteredConvo[0].user.gender}</p>
+                  <p>Orientation: {filteredConvo[0].user.orientation}</p>
+                  <p>Height: {filteredConvo[0].user.height}</p>
+                </div>
+                <button type="submit">Accept match request</button>
+                <button type="submit">Decline match request</button>
+              </React.Fragment>
+            ) : (
+              <h4>
+                Your request to chat with {filteredConvo[0].match.firstName}
+                <img src={filteredConvo[0].match.avatar} /> is still pending!
+              </h4>
+            )
+          ) : null}
+          {filteredConvo.length ? (
+            filteredConvo[0].isAccepted ? (
+              <h4>Messages of Yesterday and Beyond</h4>
+            ) : null
+          ) : null}
           {filteredConvo.length ? (
             filteredConvo[0].messages
               .filter(message => {
-                return moment(message.createdAt).isBefore(today, 'day');
+                return moment(message.createdAt).isBefore(today, 'hour');
               })
               .map(message => <Message key={message.id} message={message} />)
           ) : (
