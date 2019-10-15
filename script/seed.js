@@ -192,7 +192,7 @@ async function seed() {
     Room.create({
       name: 'Happy Kitchen',
       trollRoom: false,
-      image: '/OfficeTrollHoll.png'
+      image: '/ColorfulBoringKitchen.png'
     }),
     Room.create({
       name: 'Cozy Hut',
@@ -212,17 +212,17 @@ async function seed() {
     Room.create({
       name: 'Frozen the Musical',
       trollRoom: true,
-      image: '/CastleScene.png'
+      image: '/SpaceScene.png'
     }),
     Room.create({
       name: 'The Dungeon',
       trollRoom: false,
-      image: '/MushroomScene.png'
+      image: '/SpiderScene.png'
     }),
     Room.create({
       name: 'The Office',
       trollRoom: true,
-      image: '/CrystalScene.png'
+      image: '/MistyLake.png'
     }),
     Room.create({
       name: 'Fluffy Cloud',
