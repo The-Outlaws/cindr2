@@ -51,7 +51,7 @@ export default class QuestionFive extends Phaser.Scene {
     this.bg.displayHeight = this.game.config.height;
 
     this.add.text(
-      3 * this.bg.displayWidth / 4,
+      3.1 * this.bg.displayWidth / 4,
       this.bg.displayHeight / 23,
       'You have: ',
       fontStyleCountdown
@@ -67,7 +67,7 @@ export default class QuestionFive extends Phaser.Scene {
     this.initialTime = 30;
 
     this.countDownText = this.add.text(
-      3.08 * this.bg.displayWidth / 4,
+      3.15 * this.bg.displayWidth / 4,
       this.bg.displayHeight / 13,
       `${this.initialTime}`,
       fontStyleQuestion
@@ -80,13 +80,13 @@ export default class QuestionFive extends Phaser.Scene {
       loop: true
     });
 
-    // this.time.addEvent({
-    //   delay: 30000,
-    //   callback: () => {
-    //     this.scene.start('TrollHole');
-    //   },
-    //   callbackScope: this
-    // });
+    this.time.addEvent({
+      delay: 30000,
+      callback: () => {
+        this.scene.start('TrollHole');
+      },
+      callbackScope: this
+    });
 
     this.add.text(
       0.1 * this.bg.displayWidth / 4,
@@ -96,13 +96,13 @@ export default class QuestionFive extends Phaser.Scene {
     );
     this.answerA = this.add.text(
       2.5 * this.bg.displayWidth / 4,
-      2.5 * this.bg.displayHeight / 4,
+      2.6 * this.bg.displayHeight / 4,
       'Get in the boat and drift away',
       fontStyleAnswer
     );
     this.answerB = this.add.text(
       1.65 * this.bg.displayWidth / 4,
-      2 * this.bg.displayHeight / 4,
+      2.1 * this.bg.displayHeight / 4,
       'Go skinny dipping',
       fontStyleAnswer
     );
@@ -111,8 +111,8 @@ export default class QuestionFive extends Phaser.Scene {
     this.physicsObjectB = this.physics.add.existing(this.answerB, 'static');
 
     this.avatar = this.physics.add.sprite(
-      0.3 * this.bg.displayWidth / 4,
-      3 * this.bg.displayHeight / 4,
+      1.25 * this.bg.displayWidth / 4,
+      2.6 * this.bg.displayHeight / 4,
       avatarStr
     );
     this.avatar.body.setAllowGravity(false);

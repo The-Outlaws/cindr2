@@ -18,6 +18,10 @@ import QuestionTwelve from './scenes/QuestionTwelve.js';
 import QuestionThirteen from './scenes/QuestionThirteen.js';
 import QuestionFourteen from './scenes/QuestionFourteen.js';
 import QuestionFifteen from './scenes/QuestionFifteen.js';
+import QuestionSixteen from './scenes/QuestionSixteen.js';
+import QuestionSeventeen from './scenes/QuestionSeventeen.js';
+import QuestionEighteen from './scenes/QuestionEighteen.js';
+import QuestionNineteen from './scenes/QuestionNineteen.js';
 import DestinationRoom from './scenes/DestinationRoom.js';
 import TrollHole from './scenes/TrollHole.js';
 
@@ -40,6 +44,10 @@ const gameConfig = Object.assign(config, {
     QuestionThirteen,
     QuestionFourteen,
     QuestionFifteen,
+    QuestionSixteen,
+    QuestionSeventeen,
+    QuestionEighteen,
+    QuestionNineteen,
     DestinationRoom,
     TrollHole
   ]

@@ -4,16 +4,16 @@ import store from '../../store';
 
 const avatarStr = 'avatar';
 const fontStyleQuestion = {
-  font: '6em Yeon Sung',
+  font: '4em Yeon Sung',
   fill: '#ff2525',
   align: 'center'
 };
 const fontStyleAnswer = {
-  font: '4.5em Lakki Reddy',
-  fill: '#005bd3'
+  font: '3em Lakki Reddy',
+  fill: ' #004ad3'
 };
 const fontStyleCountdown = {
-  font: '4.5em Yeon Sung',
+  font: '3em Yeon Sung',
   fill: '#32a852',
   align: 'center'
 };
@@ -90,18 +90,18 @@ export default class QuestionNine extends Phaser.Scene {
 
     this.add.text(
       0.5 * this.bg.displayWidth / 4,
-      0.3 * this.bg.displayHeight / 4,
-      `The ghosts would love for you to stay, but they have some haunting to do. Busy busy, they can't wait for retirement. They lead you toward two paths, you choose:`,
+      0.1 * this.bg.displayHeight / 4,
+      `The ghosts would love for you to stay, \nbut they have some haunting to do. \nBusy busy, they can't wait for retirement. \nThey lead you toward two paths, you choose:`,
       fontStyleQuestion
     );
     this.answerA = this.add.text(
-      3.62 * this.bg.displayWidth / 4,
-      2.8 * this.bg.displayHeight / 4,
-      'The garden path, full of roses',
+      3.5 * this.bg.displayWidth / 4,
+      2.7 * this.bg.displayHeight / 4,
+      'The garden path,\nfull of roses',
       fontStyleAnswer
     );
     this.answerB = this.add.text(
-      1.65 * this.bg.displayWidth / 4,
+      this.bg.displayWidth / 4,
       1.2 * this.bg.displayHeight / 4,
       'The spooky forest. Go gently unto that good night',
       fontStyleAnswer
