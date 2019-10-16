@@ -35,6 +35,7 @@ async function seed() {
       password: '3ZvOycTCrZ',
       age: 21,
       avatar: '/fairy.png',
+      photo: '/phoebe.jpg',
       orientation: '6th generation'
     }),
     User.create({
@@ -45,6 +46,7 @@ async function seed() {
       password: '8ytHCL6LXWvf',
       age: 30,
       avatar: '/goblin.png',
+      photo: '/joey.png',
       orientation: 'projection'
     }),
     User.create({
@@ -55,6 +57,7 @@ async function seed() {
       password: '7sAuUY2',
       age: 91,
       avatar: '/dragon.png',
+      photo: '/rachel.jpg',
       orientation: 'leverage'
     }),
     User.create({
@@ -63,6 +66,7 @@ async function seed() {
       email: 'plakenton3@goo.gl',
       gender: 'Female',
       password: 'Hh4A5o3n70',
+      photo: '/monica.jpg',
       age: 59,
       orientation: 'Visionary'
     }),
@@ -81,6 +85,7 @@ async function seed() {
       email: 'abernholt5@va.gov',
       gender: 'Male',
       password: 'zdw2LXASO',
+      photo: 'chandler.jpg',
       age: 47,
       orientation: 'contingency'
     }),
@@ -89,6 +94,7 @@ async function seed() {
       height: "5'4",
       email: 'jjolliss6@google.fr',
       gender: 'Male',
+      photo: 'ross.jpg',
       password: '5j41tXPkY',
       age: 21,
       orientation: 'Expanded'
