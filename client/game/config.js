@@ -18,9 +18,10 @@ export default {
     }
   },
   scale: {
-    mode: Phaser.Scale.FIT,
-    width: width,
-    height: height
+    mode: Phaser.Scale.window
+    // mode: Phaser.Scale.FIT,
+    // width: width,
+    // height: height
   },
 
   localStorageName: 'cindr'

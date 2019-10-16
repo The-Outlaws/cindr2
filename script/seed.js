@@ -165,8 +165,9 @@ async function seed() {
   ]);
   const rooms = await Promise.all([
     Room.create({
+      id: 33,
       name: 'Troll Hole',
-      trollRoom: false,
+      trollRoom: true,
       image: '/OfficeTrollHole.png'
     }),
     Room.create({
@@ -206,6 +207,7 @@ async function seed() {
       image: '/catgarden.jpg'
     }),
     Room.create({
+      id: 12,
       name: 'Cavernous Cave',
       trollRoom: false,
       image: '/CrystalScene.png'
@@ -214,31 +216,41 @@ async function seed() {
       id: 11,
       name: 'Spooky Forest',
       trollRoom: false,
-      image: '/spookyfeast.gif'
+      image: '/spookyforest.jpg'
     }),
     Room.create({
+      id: 13,
       name: 'Frozen the Musical',
-      trollRoom: true,
+      trollRoom: false,
       image: '/SpaceScene.png'
     }),
     Room.create({
-      name: 'The Dungeon',
+      id: 14,
+      name: 'Bananacat',
+      trollRoom: false,
+      image: '/bananacat.jpg'
+    }),
+    Room.create({
+      id: 10,
+      name: 'Garden',
       trollRoom: false,
       image: '/SpiderScene.png'
     }),
     Room.create({
-      name: 'The Office',
-      trollRoom: true,
-      image: '/MistyLake.png'
+      id: 15,
+      name: `S'mores`,
+      trollRoom: false,
+      image: '/smores.jpg'
     }),
     Room.create({
+      id: 16,
       name: 'Fluffy Cloud',
       trollRoom: false,
-      image: '/CastleScene.png'
+      image: '/cloud.jpg'
     }),
     Room.create({
       id: 9,
-      name: 'Green Grove',
+      name: 'Wise Tree',
       trollRoom: false,
       image: '/wisetree.jpg'
     }),
@@ -249,9 +261,10 @@ async function seed() {
       image: '/garden.jpg'
     }),
     Room.create({
+      id: 7,
       name: 'Awkward Tree House',
-      trollRoom: true,
-      image: '/CastleScene.png'
+      trollRoom: false,
+      image: '/treehouse.jpg'
     })
   ]);
 
@@ -294,35 +307,36 @@ async function seed() {
         'There’s a tabby cat blocking your path - when you approach, she gives you a set of instructions for a task she needs help with. You:',
       roomId: 6
     }),
-    // Question.create({id: 7,
-    //   content: 'The cat’s kitten has climbed a tree and can’t get down! You:',
-    //   roomId: 11
-    // }),
+    Question.create({
+      id: 7,
+      content: 'The cat’s kitten has climbed a tree and can’t get down! You:',
+      roomId: 7
+    }),
     Question.create({
       id: 8,
       content: 'You encounter a table, set with an immaculate feast. You: ',
       roomId: 11
     }),
     Question.create({
-      id: 7,
-      content: 'ROOM 8 QUESTION',
-      roomId: 6
+      id: 9,
+      content: `Somehow, you've stumbled into a cavernous cave. What next?`,
+      roomId: 12
     }),
     Question.create({
       id: 10,
       content: 'ROOM 9 QUESTION, TROLL HOLE????',
-      roomId: 9
+      roomId: 13
     }),
     Question.create({
       id: 11,
       content: 'ROOM 10 QUESTION',
-      roomId: 10
+      roomId: 14
     })
   ]);
 
   const answers = await Promise.all([
     Answer.create({ content: 'Friend', roomRouteId: 2, questionId: 1 }),
-    Answer.create({ content: 'Date', roomRouteId: 9, questionId: 1 }),
+    Answer.create({ content: 'Date', roomRouteId: 14, questionId: 1 }),
     Answer.create({
       content: 'Meet some friendly ghosts',
       roomRouteId: 3,
@@ -366,7 +380,7 @@ async function seed() {
     Answer.create({
       content: 'Do everything the cat tells you to do!',
       questionId: 6,
-      roomRouteId: 11
+      roomRouteId: 7
     }),
     Answer.create({
       content: 'Think Huh, a talking cat, and continue along your way',
@@ -383,38 +397,38 @@ async function seed() {
       questionId: 7,
       roomRouteId: 14
     }),
+    // Answer.create({
+    //   content:
+    //     'Start with a slice of pizza, then move on to the mac and cheese',
+    //   questionId: 8,
+    //   roomRouteId: 15
+    // }),
+    // Answer.create({
+    //   content:
+    //     'This is obviously a trap set with poison - besides, you had a sensible breakfast, and aren’t really all that hungry. Move along.',
+    //   questionId: 8,
+    //   roomRouteId: 16
+    // }),
     Answer.create({
-      content:
-        'Start with a slice of pizza, then move on to the mac and cheese',
-      questionId: 8,
+      content: 'Make some mores!',
+      questionId: 9,
       roomRouteId: 15
     }),
     Answer.create({
-      content:
-        'This is obviously a trap set with poison - besides, you had a sensible breakfast, and aren’t really all that hungry. Move along.',
-      questionId: 8,
+      content: 'Go deeper',
+      questionId: 9,
       roomRouteId: 16
-    }),
-    Answer.create({
-      content: 'ANSWER 1 ROOM 9 TO ROOM 5',
-      questionId: 9,
-      roomRouteId: 5
-    }),
-    Answer.create({
-      content: 'ANSWER 2 ROOM 9 TO ROOM 6',
-      questionId: 9,
-      roomRouteId: 6
-    }),
-    Answer.create({
-      content: 'ANSWER 1 ROOM 10 TO ROOM 7',
-      questionId: 10,
-      roomRouteId: 7
-    }),
-    Answer.create({
-      content: 'ANSWER 2 ROOM 9 TO ROOM 8',
-      questionId: 10,
-      roomRouteId: 8
     })
+    // Answer.create({
+    //   content: 'ANSWER 1 ROOM 10 TO ROOM 7',
+    //   questionId: 10,
+    //   roomRouteId: 7
+    // }),
+    // Answer.create({
+    //   content: 'ANSWER 2 ROOM 9 TO ROOM 8',
+    //   questionId: 10,
+    //   roomRouteId: 8
+    // })
   ]);
 
   const conversations = await Promise.all([

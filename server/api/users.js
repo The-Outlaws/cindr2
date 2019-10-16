@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { User, Room, Question, Answer } = require('../db/models');
+const { User, Room, Question, Answer, UserRoom } = require('../db/models');
 
 module.exports = router;
 
@@ -30,7 +30,7 @@ router.post('/updateRoom', async (req, res, next) => {
       include: [
         {
           model: Room,
-          order: [[Room, 'updatedAt', 'ASC']],
+          order: [[UserRoom, 'createdAt', 'ASC']],
           include: [{ model: Question, include: [{ model: Answer }] }]
         }
       ]
