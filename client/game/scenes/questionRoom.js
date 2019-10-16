@@ -62,11 +62,15 @@ export default class QuestionRoom extends Phaser.Scene {
     const room = userData.user.rooms[userData.user.rooms.length - 1];
     const roomImg = room.image;
     const roomQuestion = room.question ? room.question : { content: ' ' };
-    const answerA = room.question.answers.length
+    const answerA = room.question
       ? room.question.answers[0]
+        ? room.question.answers[0]
+        : { content: ' ', roomRouteId: 16 }
       : { content: ' ', roomRouteId: 16 };
-    const answerB = room.question.answers.length
+    const answerB = room.question
       ? room.question.answers[1]
+        ? room.question.answers[1]
+        : { content: ' ', roomRouteId: 16 }
       : { content: ' ', roomRouteId: 16 };
 
     this.bg = this.add.image(
