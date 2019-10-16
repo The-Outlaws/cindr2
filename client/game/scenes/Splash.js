@@ -81,8 +81,8 @@ export default class Splash extends Phaser.Scene {
       this
     );
     this.add.image(
-      this.game.config.width / 2,
-      this.game.config.height / 2,
+      this.game.config.width / 2 + 100,
+      this.game.config.height / 2 + 40,
       'arrows'
     );
     this.cursors = this.input.keyboard.createCursorKeys();

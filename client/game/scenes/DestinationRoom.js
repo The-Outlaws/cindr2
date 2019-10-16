@@ -2,6 +2,12 @@ import Phaser from 'phaser';
 // import Avatar from '../sprites/Avatar';
 import store from '../../store';
 // import { getActiveUsers } from '../../store/reducers/room';
+
+const fontStyleQuestion = {
+  font: '6em Indie Flower',
+  fill: 'tomato',
+  align: 'center'
+};
 const avatarStr = 'avatar';
 export default class DestinationRoom extends Phaser.Scene {
   constructor() {
@@ -42,6 +48,13 @@ export default class DestinationRoom extends Phaser.Scene {
     );
     this.bg.displayWidth = this.game.config.width;
     this.bg.displayHeight = this.game.config.height;
+
+    this.add.text(
+      this.bg.displayWidth / 3,
+      0.1 * this.bg.displayHeight / 4,
+      'Meet some new friends!',
+      fontStyleQuestion
+    );
 
     room.map((rm, idx) => {
       console.log(rm);
