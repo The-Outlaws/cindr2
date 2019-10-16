@@ -30,9 +30,9 @@ async function seed() {
     User.create({
       firstName: 'Guenna',
       height: "5'4",
-      email: 'gcaizley0@mail.ru',
+      email: 'guenna@email.com',
       gender: 'Female',
-      password: '3ZvOycTCrZ',
+      password: '123',
       age: 21,
       avatar: '/fairy.png',
       photo: '/phoebe.jpg',
@@ -41,9 +41,9 @@ async function seed() {
     User.create({
       firstName: 'Nicki',
       height: "5'4",
-      email: 'nwanka1@ftc.gov',
+      email: 'nikki@email.com',
       gender: 'Female',
-      password: '8ytHCL6LXWvf',
+      password: '123',
       age: 30,
       avatar: '/goblin.png',
       photo: '/joey.png',
@@ -52,9 +52,9 @@ async function seed() {
     User.create({
       firstName: 'Lissa',
       height: "5'4",
-      email: 'lfitzsimons2@barnesandnoble.com',
+      email: 'lissa@email.com',
       gender: 'Female',
-      password: '7sAuUY2',
+      password: '123',
       age: 91,
       avatar: '/dragon.png',
       photo: '/rachel.jpg',
@@ -63,9 +63,9 @@ async function seed() {
     User.create({
       firstName: 'Piper',
       height: "5'4",
-      email: 'plakenton3@goo.gl',
+      email: 'piper@email.com',
       gender: 'Female',
-      password: 'Hh4A5o3n70',
+      password: '123',
       photo: '/monica.jpg',
       age: 59,
       orientation: 'Visionary'
@@ -73,18 +73,18 @@ async function seed() {
     User.create({
       firstName: 'Lyndell',
       height: "5'4",
-      email: 'lcasassa4@guardian.co.uk',
+      email: 'lyndell@email.com',
       gender: 'Female',
-      password: 'TUe0UJ',
+      password: '123',
       age: 38,
       orientation: 'Innovative'
     }),
     User.create({
       firstName: 'Abram',
       height: "5'4",
-      email: 'abernholt5@va.gov',
+      email: 'abram@email.com',
       gender: 'Male',
-      password: 'zdw2LXASO',
+      password: '123',
       photo: 'chandler.jpg',
       age: 47,
       orientation: 'contingency'
@@ -92,10 +92,10 @@ async function seed() {
     User.create({
       firstName: 'Jarvis',
       height: "5'4",
-      email: 'jjolliss6@google.fr',
+      email: 'jarvis@email.com',
       gender: 'Male',
       photo: 'ross.jpg',
-      password: '5j41tXPkY',
+      password: '123',
       age: 21,
       orientation: 'Expanded'
     }),
