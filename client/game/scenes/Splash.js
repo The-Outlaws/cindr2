@@ -7,9 +7,6 @@ const avatarStr = 'avatar';
 export default class Splash extends Phaser.Scene {
   constructor() {
     super({ key: 'Splash' });
-    // this.loadGame = this.loadGame.bind(this);
-    // this.hoverState = this.hoverState.bind(this);
-    // this.restState = this.restState.bind(this);
   }
 
   init() {
@@ -22,7 +19,6 @@ export default class Splash extends Phaser.Scene {
   }
 
   create() {
-    // const userData = store.getState();
     this.backgroundColor = 'black';
 
     this.add.text(
@@ -60,8 +56,7 @@ export default class Splash extends Phaser.Scene {
       this.avatar,
       this.physicsObjectStart,
       () => {
-        // console.log('hello');
-        this.scene.start('QuestionRoom');
+        this.scene.start('QuestionOne');
       },
       null,
       this
@@ -69,17 +64,6 @@ export default class Splash extends Phaser.Scene {
 
     this.cursors = this.input.keyboard.createCursorKeys();
   }
-
-  // loadGame() {
-  //   this.scene.start('QuestionRoom');
-  // }
-  // hoverState() {
-  //   this.clickButton.setStyle({ fill: '#FF5733' });
-  // }
-  // restState() {
-  //   this.clickButton.setStyle({ fill: '#FFC300' });
-  // }
-  // }
 
   update() {
     if (this.cursors.left.isDown) {
@@ -106,6 +90,5 @@ export default class Splash extends Phaser.Scene {
 
       this.avatar.y += this.playerSpeed;
     }
-    // this.input.on('pointerdown', () => this.scene.start('QuestionRoom'));
   }
 }
