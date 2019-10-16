@@ -8,7 +8,7 @@ const LoginForm = props => {
   const { name, handleSubmit } = props;
 
   return (
-    <div className="login-form">
+    <div className="login">
       <form onSubmit={handleSubmit} name={name}>
         <div className="container">
           <div className="img">
