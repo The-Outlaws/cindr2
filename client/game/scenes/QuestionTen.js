@@ -4,16 +4,17 @@ import store from '../../store';
 
 const avatarStr = 'avatar';
 const fontStyleQuestion = {
-  font: '6em Yeon Sung',
-  fill: '#ff2525',
+  font: '5em Yeon Sung',
+  fill: '#250037',
   align: 'center'
 };
 const fontStyleAnswer = {
-  font: '4.5em Lakki Reddy',
-  fill: '#005bd3'
+  font: '3.5em Lakki Reddy',
+  fill: '#005bd3',
+  align: 'center'
 };
 const fontStyleCountdown = {
-  font: '4.5em Yeon Sung',
+  font: '3.5em Yeon Sung',
   fill: '#32a852',
   align: 'center'
 };
@@ -67,7 +68,7 @@ export default class QuestionTen extends Phaser.Scene {
     this.initialTime = 30;
 
     this.countDownText = this.add.text(
-      3.38 * this.bg.displayWidth / 4,
+      3.4 * this.bg.displayWidth / 4,
       this.bg.displayHeight / 13,
       `${this.initialTime}`,
       fontStyleQuestion
@@ -80,28 +81,28 @@ export default class QuestionTen extends Phaser.Scene {
       loop: true
     });
 
-    this.time.addEvent({
-      delay: 30000,
-      callback: () => {
-        this.scene.start('TrollHole');
-      },
-      callbackScope: this
-    });
+    // this.time.addEvent({
+    //   delay: 30000,
+    //   callback: () => {
+    //     this.scene.start('TrollHole');
+    //   },
+    //   callbackScope: this
+    // });
 
     this.add.text(
-      0.5 * this.bg.displayWidth / 4,
-      0.3 * this.bg.displayHeight / 4,
-      `Somehow you've stumbled into a cavernous cave. What next? You:`,
+      1.75 * this.bg.displayWidth / 4,
+      2.6 * this.bg.displayHeight / 4,
+      `Somehow you've \nstumbled into a \ncavernous cave. \nWhat next? You:`,
       fontStyleQuestion
     );
     this.answerA = this.add.text(
-      3.62 * this.bg.displayWidth / 4,
-      2.8 * this.bg.displayHeight / 4,
+      0.6 * this.bg.displayWidth / 4,
+      2 * this.bg.displayHeight / 4,
       'Make some mores',
       fontStyleAnswer
     );
     this.answerB = this.add.text(
-      1.65 * this.bg.displayWidth / 4,
+      2.05 * this.bg.displayWidth / 4,
       1.2 * this.bg.displayHeight / 4,
       'Go deeper',
       fontStyleAnswer
@@ -111,7 +112,7 @@ export default class QuestionTen extends Phaser.Scene {
     this.physicsObjectB = this.physics.add.existing(this.answerB, 'static');
 
     this.avatar = this.physics.add.sprite(
-      0.15 * this.bg.displayWidth / 4,
+      2.85 * this.bg.displayWidth / 4,
       2 * this.bg.displayHeight / 4,
       avatarStr
     );

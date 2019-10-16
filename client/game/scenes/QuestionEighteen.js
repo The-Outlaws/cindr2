@@ -6,16 +6,17 @@ import store from '../../store';
 const avatarStr = 'avatar';
 const fontStyleQuestion = {
   font: '6em Yeon Sung',
-  fill: '#ff2525',
+  fill: 'white',
   align: 'center'
 };
 const fontStyleAnswer = {
   font: '4.5em Lakki Reddy',
-  fill: '#005bd3'
+  fill: 'white',
+  align: 'center'
 };
 const fontStyleCountdown = {
   font: '4.5em Yeon Sung',
-  fill: '#32a852',
+  fill: 'white',
   align: 'center'
 };
 
@@ -59,7 +60,7 @@ export default class QuestionEighteen extends Phaser.Scene {
     );
 
     this.add.text(
-      3.1 * this.bg.displayWidth / 4,
+      3 * this.bg.displayWidth / 4,
       this.bg.displayHeight / 8,
       'seconds\nto answer this question!',
       fontStyleCountdown
@@ -81,30 +82,30 @@ export default class QuestionEighteen extends Phaser.Scene {
       loop: true
     });
 
-    this.time.addEvent({
-      delay: 30000,
-      callback: () => {
-        this.scene.start('TrollHole');
-      },
-      callbackScope: this
-    });
+    // this.time.addEvent({
+    //   delay: 30000,
+    //   callback: () => {
+    //     this.scene.start('TrollHole');
+    //   },
+    //   callbackScope: this
+    // });
 
     this.add.text(
       0.5 * this.bg.displayWidth / 4,
-      0.3 * this.bg.displayHeight / 4,
+      0.08 * this.bg.displayHeight / 4,
       `You spy some friendly looking gnomes. You:`,
       fontStyleQuestion
     );
     this.answerA = this.add.text(
-      3.62 * this.bg.displayWidth / 4,
-      2.8 * this.bg.displayHeight / 4,
-      'Approach and schmooze',
+      1.35 * this.bg.displayWidth / 4,
+      3 * this.bg.displayHeight / 4,
+      'Approach \nand \nschmooze',
       fontStyleAnswer
     );
     this.answerB = this.add.text(
-      1.65 * this.bg.displayWidth / 4,
-      1.2 * this.bg.displayHeight / 4,
-      'Acknowledge them with a nod',
+      0.05 * this.bg.displayWidth / 4,
+      3 * this.bg.displayHeight / 4,
+      'Acknowledge \nthem \nwith a nod',
       fontStyleAnswer
     );
 

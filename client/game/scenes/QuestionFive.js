@@ -133,7 +133,7 @@ export default class QuestionFive extends Phaser.Scene {
       this.avatar,
       this.physicsObjectB,
       () => {
-        this.scene.start('QuestionEleven');
+        this.scene.start('DestinationRoom');
       },
       null,
       this

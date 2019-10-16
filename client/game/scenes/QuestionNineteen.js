@@ -4,17 +4,18 @@ import store from '../../store';
 
 const avatarStr = 'avatar';
 const fontStyleQuestion = {
-  font: '6em Yeon Sung',
+  font: '5em Yeon Sung',
   fill: '#ff2525',
   align: 'center'
 };
 const fontStyleAnswer = {
-  font: '4.5em Lakki Reddy',
-  fill: '#005bd3'
+  font: '3.5em Lakki Reddy',
+  fill: '#fbff00',
+  align: 'center'
 };
 const fontStyleCountdown = {
-  font: '4.5em Yeon Sung',
-  fill: '#32a852',
+  font: '3.5em Yeon Sung',
+  fill: '#fbff00',
   align: 'center'
 };
 
@@ -89,21 +90,21 @@ export default class QuestionNineteen extends Phaser.Scene {
     // });
 
     this.add.text(
-      0.5 * this.bg.displayWidth / 4,
-      0.3 * this.bg.displayHeight / 4,
+      0.4 * this.bg.displayWidth / 4,
+      0.1 * this.bg.displayHeight / 4,
       `Grandma Willow has some wisdom to impart. You:`,
       fontStyleQuestion
     );
     this.answerA = this.add.text(
-      3.62 * this.bg.displayWidth / 4,
-      2.8 * this.bg.displayHeight / 4,
-      'Stay awhile and listen as you imagine all the colors of the wind',
+      0.5 * this.bg.displayWidth / 4,
+      3 * this.bg.displayHeight / 4,
+      'Stay awhile and listen \nas you imagine all the colors \nof the wind',
       fontStyleAnswer
     );
     this.answerB = this.add.text(
-      1.65 * this.bg.displayWidth / 4,
-      1.2 * this.bg.displayHeight / 4,
-      'I already know everything I need to know. Deeper into the forest I go',
+      3.3 * this.bg.displayWidth / 4,
+      2 * this.bg.displayHeight / 4,
+      'I already know \neverything I need \nto know. Deeper \ninto the forest I go',
       fontStyleAnswer
     );
 
