@@ -91,19 +91,19 @@ export default class QuestionNine extends Phaser.Scene {
     this.add.text(
       0.5 * this.bg.displayWidth / 4,
       0.3 * this.bg.displayHeight / 4,
-      `Question #9 Lorem ipsum dolor sit amet, consectetur adipiscing elit `,
+      `The ghosts would love for you to stay, but they have some haunting to do. Busy busy, they can't wait for retirement. They lead you toward two paths, you choose:`,
       fontStyleQuestion
     );
     this.answerA = this.add.text(
       3.62 * this.bg.displayWidth / 4,
       2.8 * this.bg.displayHeight / 4,
-      'Answer in #9 Lorem ipsum dolor sit amet, consectetur adipiscing elit',
+      'The garden path, full of roses',
       fontStyleAnswer
     );
     this.answerB = this.add.text(
       1.65 * this.bg.displayWidth / 4,
       1.2 * this.bg.displayHeight / 4,
-      'Answer in #9 Lorem ipsum dolor sit amet, consectetur adipiscing elit',
+      'The spooky forest. Go gently unto that good night',
       fontStyleAnswer
     );
 
@@ -122,7 +122,7 @@ export default class QuestionNine extends Phaser.Scene {
       this.avatar,
       this.physicsObjectA,
       () => {
-        this.scene.start('DestinationRoom');
+        this.scene.start('QuestionEighteen');
       },
       null,
       this
@@ -132,7 +132,7 @@ export default class QuestionNine extends Phaser.Scene {
       this.avatar,
       this.physicsObjectB,
       () => {
-        this.scene.start('DestinationRoom');
+        this.scene.start('QuestionNineteen');
       },
       null,
       this

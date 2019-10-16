@@ -90,19 +90,19 @@ export default class QuestionTwo extends Phaser.Scene {
     this.add.text(
       0.2 * this.bg.displayWidth / 4,
       0.2 * this.bg.displayHeight / 4,
-      `The friendly ghosts can't imbibe,\nbut as gracious hosts,\nthey invite you to - you choose`,
+      `This castle is filled with ghosts. What to do?`,
       fontStyleQuestion
     );
     this.answerA = this.add.text(
       2.9 * this.bg.displayWidth / 4,
       1.5 * this.bg.displayHeight / 4,
-      'Beer, duh',
+      'Meet some friendly ghosts',
       fontStyleAnswer
     );
     this.answerB = this.add.text(
       this.bg.displayWidth / 4,
       2.4 * this.bg.displayHeight / 4,
-      'Tea, please',
+      'Run the f*** away!',
       fontStyleAnswer
     );
 
