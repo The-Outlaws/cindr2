@@ -37,14 +37,14 @@ export default class QuestionFour extends Phaser.Scene {
     const { user: { avatar } } = store.getState();
     this.load.image(avatarStr, avatar);
     this.load.image('troll', '/troll128.png');
-    this.load.image('mushroom', '/MushroomScene.png');
+    this.load.image('haunted', '/hauntedlair.jpg');
   }
 
   create() {
     this.bg = this.add.image(
       this.game.config.width / 2,
       this.game.config.height / 2,
-      'mushroom'
+      'haunted'
     );
 
     this.bg.displayWidth = this.game.config.width;
@@ -91,19 +91,19 @@ export default class QuestionFour extends Phaser.Scene {
     this.add.text(
       0.5 * this.bg.displayWidth / 4,
       0.3 * this.bg.displayHeight / 4,
-      `There’s a tabby cat blocking your path - when you approach, she gives you a set of instructions for a task she needs help with. You:`,
+      `The friendly ghosts can't imbibe, but as gracious hosts, they invite you to - you choose:`,
       fontStyleQuestion
     );
     this.answerA = this.add.text(
       3.62 * this.bg.displayWidth / 4,
       2.8 * this.bg.displayHeight / 4,
-      'Do everything the cat tells you to do!',
+      'Tea, please!',
       fontStyleAnswer
     );
     this.answerB = this.add.text(
       1.65 * this.bg.displayWidth / 4,
       1.2 * this.bg.displayHeight / 4,
-      'Think, “huh, a talking cat,” and continue along your way.',
+      'Beer, duh',
       fontStyleAnswer
     );
 

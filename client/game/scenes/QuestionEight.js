@@ -37,14 +37,14 @@ export default class QuestionEight extends Phaser.Scene {
     const { user: { avatar } } = store.getState();
     this.load.image(avatarStr, avatar);
     this.load.image('troll', '/troll128.png');
-    this.load.image('mushroom', '/MushroomScene.png');
+    this.load.image('kitchen', '/ColorfulBoringKitchen.png');
   }
 
   create() {
     this.bg = this.add.image(
       this.game.config.width / 2,
       this.game.config.height / 2,
-      'mushroom'
+      'kitchen'
     );
 
     this.bg.displayWidth = this.game.config.width;
@@ -91,19 +91,19 @@ export default class QuestionEight extends Phaser.Scene {
     this.add.text(
       0.5 * this.bg.displayWidth / 4,
       0.3 * this.bg.displayHeight / 4,
-      `Question #8 Lorem ipsum dolor sit amet, consectetur adipiscing elit `,
+      `The ghosts kick you out, they were hoping for something a little more exciting`,
       fontStyleQuestion
     );
     this.answerA = this.add.text(
       3.62 * this.bg.displayWidth / 4,
       2.8 * this.bg.displayHeight / 4,
-      'Answer in #8 Lorem ipsum dolor sit amet, consectetur adipiscing elit',
+      'You take the garden path, you want to smell the roses',
       fontStyleAnswer
     );
     this.answerB = this.add.text(
       1.65 * this.bg.displayWidth / 4,
       1.2 * this.bg.displayHeight / 4,
-      'Answer in #8 Lorem ipsum dolor sit amet, consectetur adipiscing elit',
+      'You try your luck on the spooky forest path',
       fontStyleAnswer
     );
 
@@ -122,7 +122,7 @@ export default class QuestionEight extends Phaser.Scene {
       this.avatar,
       this.physicsObjectA,
       () => {
-        this.scene.start('DestinationRoom');
+        this.scene.start('QuestionSixteen');
       },
       null,
       this
@@ -132,7 +132,7 @@ export default class QuestionEight extends Phaser.Scene {
       this.avatar,
       this.physicsObjectB,
       () => {
-        this.scene.start('DestinationRoom');
+        this.scene.start('QuestionSeventeen');
       },
       null,
       this

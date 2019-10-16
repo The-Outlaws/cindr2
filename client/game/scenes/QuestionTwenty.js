@@ -18,9 +18,9 @@ const fontStyleCountdown = {
   align: 'center'
 };
 
-export default class QuestionFive extends Phaser.Scene {
+export default class QuestionTwenty extends Phaser.Scene {
   constructor() {
-    super({ key: 'QuestionFive' });
+    super({ key: 'QuestionTwenty' });
   }
 
   //decrements seconds every one second and displays countdown
@@ -37,14 +37,14 @@ export default class QuestionFive extends Phaser.Scene {
     const { user: { avatar } } = store.getState();
     this.load.image(avatarStr, avatar);
     this.load.image('troll', '/troll128.png');
-    this.load.image('mistylake', '/MistyLake.png');
+    this.load.image('smores', '/smores.jpg');
   }
 
   create() {
     this.bg = this.add.image(
       this.game.config.width / 2,
       this.game.config.height / 2,
-      'mistylake'
+      'smores'
     );
 
     this.bg.displayWidth = this.game.config.width;
@@ -91,19 +91,19 @@ export default class QuestionFive extends Phaser.Scene {
     this.add.text(
       0.5 * this.bg.displayWidth / 4,
       0.3 * this.bg.displayHeight / 4,
-      `You've run so far, that you've reached the water. Something about this lake seems strange. You:`,
+      `You realize you have no marshmallows. You:`,
       fontStyleQuestion
     );
     this.answerA = this.add.text(
       3.62 * this.bg.displayWidth / 4,
       2.8 * this.bg.displayHeight / 4,
-      'Get in the boat and drift away',
+      `Leave to forage for marshmallows`,
       fontStyleAnswer
     );
     this.answerB = this.add.text(
       1.65 * this.bg.displayWidth / 4,
       1.2 * this.bg.displayHeight / 4,
-      'Go skinny dipping',
+      'Can do without them',
       fontStyleAnswer
     );
 
@@ -122,7 +122,7 @@ export default class QuestionFive extends Phaser.Scene {
       this.avatar,
       this.physicsObjectA,
       () => {
-        this.scene.start('QuestionTen');
+        this.scene.start('QuestionForaging');
       },
       null,
       this
@@ -132,7 +132,7 @@ export default class QuestionFive extends Phaser.Scene {
       this.avatar,
       this.physicsObjectB,
       () => {
-        this.scene.start('QuestionEleven');
+        this.scene.start('QuestionStay');
       },
       null,
       this
