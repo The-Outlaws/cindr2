@@ -4,16 +4,16 @@ import store from '../../store';
 
 const avatarStr = 'avatar';
 const fontStyleQuestion = {
-  font: '6em Yeon Sung',
+  font: '4em Yeon Sung',
   fill: '#ff2525',
   align: 'center'
 };
 const fontStyleAnswer = {
-  font: '4.5em Lakki Reddy',
+  font: '3em Lakki Reddy',
   fill: '#005bd3'
 };
 const fontStyleCountdown = {
-  font: '4.5em Yeon Sung',
+  font: '3em Yeon Sung',
   fill: '#32a852',
   align: 'center'
 };
@@ -51,15 +51,15 @@ export default class QuestionEleven extends Phaser.Scene {
     this.bg.displayHeight = this.game.config.height;
 
     this.add.text(
-      3.3 * this.bg.displayWidth / 4,
-      this.bg.displayHeight / 23,
+      3.2 * this.bg.displayWidth / 4,
+      this.bg.displayHeight / 4,
       'You have: ',
       fontStyleCountdown
     );
 
     this.add.text(
-      3.1 * this.bg.displayWidth / 4,
-      this.bg.displayHeight / 8,
+      3 * this.bg.displayWidth / 4,
+      1.5 * this.bg.displayHeight / 4,
       'seconds\nto answer this question!',
       fontStyleCountdown
     );
@@ -67,8 +67,8 @@ export default class QuestionEleven extends Phaser.Scene {
     this.initialTime = 30;
 
     this.countDownText = this.add.text(
-      3.38 * this.bg.displayWidth / 4,
-      this.bg.displayHeight / 13,
+      3.3 * this.bg.displayWidth / 4,
+      1.2 * this.bg.displayHeight / 4,
       `${this.initialTime}`,
       fontStyleQuestion
     );
@@ -89,15 +89,15 @@ export default class QuestionEleven extends Phaser.Scene {
     });
 
     this.add.text(
-      0.5 * this.bg.displayWidth / 4,
-      0.3 * this.bg.displayHeight / 4,
+      0.1 * this.bg.displayWidth / 4,
+      0.5 * this.bg.displayHeight / 4,
       `Question #11 Lorem ipsum dolor sit amet, consectetur adipiscing elit `,
       fontStyleQuestion
     );
     this.answerA = this.add.text(
       3.62 * this.bg.displayWidth / 4,
-      2.8 * this.bg.displayHeight / 4,
-      'Answer in #11 Lorem ipsum dolor sit amet, consectetur adipiscing elit',
+      2 * this.bg.displayHeight / 4,
+      'Answer in #11 Lorem ipsum dolor \nsit amet, consectetur adipiscing elit',
       fontStyleAnswer
     );
     this.answerB = this.add.text(

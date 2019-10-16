@@ -4,17 +4,18 @@ import store from '../../store';
 
 const avatarStr = 'avatar';
 const fontStyleQuestion = {
-  font: '6em Yeon Sung',
-  fill: '#ff2525',
+  font: '4em Rammetto One',
+  fill: '#212051',
   align: 'center'
 };
 const fontStyleAnswer = {
-  font: '4.5em Lakki Reddy',
-  fill: '#005bd3'
+  font: '3em Rammetto One',
+  fill: '#e54567',
+  align: 'center'
 };
 const fontStyleCountdown = {
-  font: '4.5em Yeon Sung',
-  fill: '#32a852',
+  font: '3em Rammetto One',
+  fill: '#e54567',
   align: 'center'
 };
 
@@ -36,7 +37,7 @@ export default class QuestionSixteen extends Phaser.Scene {
   preload() {
     const { user: { avatar } } = store.getState();
     this.load.image(avatarStr, avatar);
-    this.load.image('troll', '/troll128.png');
+    // this.load.image('troll', '/troll128.png');
     this.load.image('catgarden', '/catgarden.jpg');
   }
 
@@ -52,14 +53,14 @@ export default class QuestionSixteen extends Phaser.Scene {
 
     this.add.text(
       3.3 * this.bg.displayWidth / 4,
-      this.bg.displayHeight / 23,
+      3.2 * this.bg.displayHeight / 23,
       'You have: ',
       fontStyleCountdown
     );
 
     this.add.text(
-      3.1 * this.bg.displayWidth / 4,
-      this.bg.displayHeight / 8,
+      3 * this.bg.displayWidth / 4,
+      2 * this.bg.displayHeight / 8,
       'seconds\nto answer this question!',
       fontStyleCountdown
     );
@@ -68,7 +69,7 @@ export default class QuestionSixteen extends Phaser.Scene {
 
     this.countDownText = this.add.text(
       3.38 * this.bg.displayWidth / 4,
-      this.bg.displayHeight / 13,
+      2.5 * this.bg.displayHeight / 13,
       `${this.initialTime}`,
       fontStyleQuestion
     );
@@ -89,21 +90,21 @@ export default class QuestionSixteen extends Phaser.Scene {
     });
 
     this.add.text(
-      0.5 * this.bg.displayWidth / 4,
-      0.3 * this.bg.displayHeight / 4,
-      `There's a tabby cat blocking your path - when you approach, she gives you a task. You:`,
+      0.8 * this.bg.displayWidth / 4,
+      0.1 * this.bg.displayHeight / 4,
+      `There's a tabby cat blocking your path - \nwhen you approach, she gives you a task. You:`,
       fontStyleQuestion
     );
     this.answerA = this.add.text(
-      3.62 * this.bg.displayWidth / 4,
-      2.8 * this.bg.displayHeight / 4,
-      'Do everything the cat tells you to do',
+      3 * this.bg.displayWidth / 4,
+      3 * this.bg.displayHeight / 4,
+      'Do everything \nthe cat tells \nyou to do',
       fontStyleAnswer
     );
     this.answerB = this.add.text(
-      1.65 * this.bg.displayWidth / 4,
-      1.2 * this.bg.displayHeight / 4,
-      'Think, Huh? A talking cat, and continue along your way',
+      0.2 * this.bg.displayWidth / 4,
+      1.5 * this.bg.displayHeight / 4,
+      'Think, Huh?\nA talking cat, and continue \nalong your way',
       fontStyleAnswer
     );
 
@@ -111,8 +112,8 @@ export default class QuestionSixteen extends Phaser.Scene {
     this.physicsObjectB = this.physics.add.existing(this.answerB, 'static');
 
     this.avatar = this.physics.add.sprite(
-      0.15 * this.bg.displayWidth / 4,
-      2 * this.bg.displayHeight / 4,
+      2 * this.bg.displayWidth / 4,
+      1.2 * this.bg.displayHeight / 4,
       avatarStr
     );
     this.avatar.body.setAllowGravity(false);

@@ -4,23 +4,23 @@ import store from '../../store';
 
 const avatarStr = 'avatar';
 const fontStyleQuestion = {
-  font: '6em Yeon Sung',
-  fill: '#ff2525',
+  font: '4em Yeon Sung',
+  fill: '#e54567',
   align: 'center'
 };
 const fontStyleAnswer = {
-  font: '4.5em Lakki Reddy',
+  font: '3em Lakki Reddy',
   fill: '#005bd3'
 };
 const fontStyleCountdown = {
-  font: '4.5em Yeon Sung',
+  font: '3em Yeon Sung',
   fill: '#32a852',
   align: 'center'
 };
 
-export default class QuestionSixteen extends Phaser.Scene {
+export default class QuestionSeventeen extends Phaser.Scene {
   constructor() {
-    super({ key: 'QuestionSixteen' });
+    super({ key: 'QuestionSeventeen' });
   }
 
   //decrements seconds every one second and displays countdown
@@ -67,7 +67,7 @@ export default class QuestionSixteen extends Phaser.Scene {
     this.initialTime = 30;
 
     this.countDownText = this.add.text(
-      3.38 * this.bg.displayWidth / 4,
+      3.34 * this.bg.displayWidth / 4,
       this.bg.displayHeight / 13,
       `${this.initialTime}`,
       fontStyleQuestion
@@ -89,21 +89,25 @@ export default class QuestionSixteen extends Phaser.Scene {
     });
 
     this.add.text(
-      0.5 * this.bg.displayWidth / 4,
+      0.8 * this.bg.displayWidth / 4,
       0.3 * this.bg.displayHeight / 4,
       `You encounter a table, set with an immaculate feast. You:`,
       fontStyleQuestion
     );
     this.answerA = this.add.text(
-      3.62 * this.bg.displayWidth / 4,
-      2.8 * this.bg.displayHeight / 4,
-      'Start with a slice of pizza, then move on to the mac and cheese',
-      fontStyleAnswer
+      3.2 * this.bg.displayWidth / 4,
+      1.6 * this.bg.displayHeight / 4,
+      'Start with a slice of pizza, \nthen move on to the \nmac and cheese',
+      {
+        font: '3em Lakki Reddy',
+        fill: '#005bd3',
+        align: 'center'
+      }
     );
     this.answerB = this.add.text(
-      1.65 * this.bg.displayWidth / 4,
-      1.2 * this.bg.displayHeight / 4,
-      `This is obviously a trap set with poison - besides, you had a sensible breakfast, and aren't really all that hungry. Move along`,
+      0.1 * this.bg.displayWidth / 4,
+      this.bg.displayHeight / 4,
+      `This is obviously a trap set with poison - \nbesides, you had a sensible breakfast, \nand aren't really all that hungry. \nMove along`,
       fontStyleAnswer
     );
 
@@ -111,8 +115,8 @@ export default class QuestionSixteen extends Phaser.Scene {
     this.physicsObjectB = this.physics.add.existing(this.answerB, 'static');
 
     this.avatar = this.physics.add.sprite(
-      0.15 * this.bg.displayWidth / 4,
-      2 * this.bg.displayHeight / 4,
+      2.3 * this.bg.displayWidth / 4,
+      1.8 * this.bg.displayHeight / 4,
       avatarStr
     );
     this.avatar.body.setAllowGravity(false);
