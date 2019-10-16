@@ -27,6 +27,10 @@ export default class DestinationRoom extends Phaser.Scene {
       return this.load.image(`avatar${idx}`, rm.avatar);
       // this.avatarLoad ++
     });
+    room.forEach((rm, idx) => {
+      return this.load.image(`photo${idx}`, rm.photo);
+      // this.avatarLoad ++
+    });
   }
   create() {
     const { user: { id }, room } = store.getState();
@@ -42,6 +46,7 @@ export default class DestinationRoom extends Phaser.Scene {
     room.map((rm, idx) => {
       console.log(rm);
       const avatarString = `avatar${idx}`;
+      const photoString = `photo${idx}`;
       const userData = {
         x: this.avatarPlacement.x,
         y: this.avatarPlacement.y,
@@ -49,7 +54,7 @@ export default class DestinationRoom extends Phaser.Scene {
         name: rm.firstName,
         gender: rm.gender,
         height: rm.height,
-        photo: rm.photo,
+        photo: photoString,
         orientation: rm.orientation
       };
 
@@ -128,7 +133,7 @@ export default class DestinationRoom extends Phaser.Scene {
       400,
       '0xF0F0F0'
     );
-    const photo = this.add.image(rect.x, rect.y - 100, 'troll');
+    const photo = this.add.image(rect.x, rect.y - 100, userData.photo);
     const name = this.add.text(rect.x - 90, photo.y + 90, userData.name, {
       fill: 'black',
       font: '24px'
