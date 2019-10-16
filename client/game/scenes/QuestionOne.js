@@ -54,23 +54,23 @@ export default class QuestionOne extends Phaser.Scene {
     this.bg.displayHeight = this.game.config.height;
 
     this.add.text(
-      3.3 * this.bg.displayWidth / 4,
+      3.2 * this.bg.displayWidth / 4,
       this.bg.displayHeight / 23,
       'You have: ',
       fontStyleCountdown
     );
 
     this.add.text(
-      3.1 * this.bg.displayWidth / 4,
+      3 * this.bg.displayWidth / 4,
       this.bg.displayHeight / 8,
       'seconds\nto answer this question!',
       fontStyleCountdown
     );
 
-    this.initialTime = 15;
+    this.initialTime = 30;
 
     this.countDownText = this.add.text(
-      3.38 * this.bg.displayWidth / 4,
+      3.33 * this.bg.displayWidth / 4,
       this.bg.displayHeight / 13,
       `${this.initialTime}`,
       fontStyleQuestion
@@ -83,18 +83,18 @@ export default class QuestionOne extends Phaser.Scene {
       loop: true
     });
 
-    this.time.addEvent({
-      delay: 15000,
-      callback: () => {
-        this.scene.start('TrollHole');
-      },
-      callbackScope: this
-    });
+    // this.time.addEvent({
+    //   delay: 30000,
+    //   callback: () => {
+    //     this.scene.start('TrollHole');
+    //   },
+    //   callbackScope: this
+    // });
 
     this.add.text(
-      3.3 * this.bg.displayWidth / 4,
-      this.bg.displayHeight / 23,
-      'Who strikes your fancy?',
+      this.bg.displayWidth / 2,
+      1 * this.bg.displayHeight / 4,
+      'Who strikes \nyour fancy?',
       fontStyleCountdown
     );
 

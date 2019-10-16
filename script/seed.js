@@ -34,6 +34,7 @@ async function seed() {
       gender: 'Female',
       password: '3ZvOycTCrZ',
       age: 21,
+      avatar: '/fairy.png',
       orientation: '6th generation'
     }),
     User.create({
@@ -43,6 +44,7 @@ async function seed() {
       gender: 'Female',
       password: '8ytHCL6LXWvf',
       age: 30,
+      avatar: '/goblin.png',
       orientation: 'projection'
     }),
     User.create({
@@ -52,6 +54,7 @@ async function seed() {
       gender: 'Female',
       password: '7sAuUY2',
       age: 91,
+      avatar: '/dragon.png',
       orientation: 'leverage'
     }),
     User.create({
@@ -275,7 +278,11 @@ async function seed() {
   ]);
 
   const userRooms = await Promise.all([
-    UserRoom.create({ userId: 1, roomId: 1, isActive: true })
+    UserRoom.create({ userId: 1, roomId: 1, isActive: true }),
+    UserRoom.create({ userId: 2, roomId: 7, isActive: true }),
+    UserRoom.create({ userId: 3, roomId: 7, isActive: true }),
+    UserRoom.create({ userId: 4, roomId: 7, isActive: true }),
+    UserRoom.create({ userId: 5, roomId: 7, isActive: true })
   ]);
 
   // const userRooms = await Promise.all([s

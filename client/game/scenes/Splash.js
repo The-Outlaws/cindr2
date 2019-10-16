@@ -16,6 +16,7 @@ export default class Splash extends Phaser.Scene {
   preload() {
     const { user: { avatar } } = store.getState();
     this.load.image(avatarStr, avatar);
+    this.load.image('arrows', 'arrowkeys.png');
   }
 
   create() {
@@ -33,20 +34,38 @@ export default class Splash extends Phaser.Scene {
     );
 
     this.start = this.add.text(
-      1.65 * this.game.config.width / 4,
-      1.6 * this.game.config.height / 4,
+      2.6 * this.game.config.width / 4,
+      3 * this.game.config.height / 4,
       'Start Adventure',
       {
         fill: 'white',
         font: '6em Walter Turncoat'
       }
     );
+    const line = new Phaser.Geom.Line(
+      this.game.config.width / 6,
+      this.game.config.height / 5,
+      this.game.config.width / 6,
+      3 * this.game.config.height / 4
+    );
+    const line2 = new Phaser.Geom.Line(
+      this.game.config.width / 6,
+      3 * this.game.config.height / 4 + 20,
+      2.6 * this.game.config.width / 4 - 20,
+      3 * this.game.config.height / 4 + 20
+    );
+    var graphics = this.add.graphics({
+      lineStyle: { width: 20, color: 0xffffff }
+    });
+
+    graphics.strokeLineShape(line);
+    graphics.strokeLineShape(line2);
 
     this.physicsObjectStart = this.physics.add.existing(this.start, 'static');
 
     this.avatar = this.physics.add.sprite(
-      this.game.config.width / 4,
-      4 * this.game.config.height / 5,
+      this.game.config.width / 6,
+      this.game.config.height / 5,
       avatarStr
     );
     this.avatar.body.setAllowGravity(false);
@@ -61,7 +80,11 @@ export default class Splash extends Phaser.Scene {
       null,
       this
     );
-
+    this.add.image(
+      this.game.config.width / 2,
+      this.game.config.height / 2,
+      'arrows'
+    );
     this.cursors = this.input.keyboard.createCursorKeys();
   }
 

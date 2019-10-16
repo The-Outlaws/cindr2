@@ -1,6 +1,7 @@
 import Phaser from 'phaser';
 // import Avatar from '../sprites/Avatar';
 import store from '../../store';
+// import { getActiveUsers } from '../../store/reducers/room';
 
 const avatarStr = 'avatar';
 const fontStyleQuestion = {
@@ -64,7 +65,7 @@ export default class QuestionEighteen extends Phaser.Scene {
       fontStyleCountdown
     );
 
-    this.initialTime = 15;
+    this.initialTime = 30;
 
     this.countDownText = this.add.text(
       3.38 * this.bg.displayWidth / 4,
@@ -81,7 +82,7 @@ export default class QuestionEighteen extends Phaser.Scene {
     });
 
     this.time.addEvent({
-      delay: 15000,
+      delay: 30000,
       callback: () => {
         this.scene.start('TrollHole');
       },

@@ -64,7 +64,7 @@ export default class QuestionFour extends Phaser.Scene {
       fontStyleCountdown
     );
 
-    this.initialTime = 15;
+    this.initialTime = 30;
 
     this.countDownText = this.add.text(
       3.38 * this.bg.displayWidth / 4,
@@ -80,13 +80,13 @@ export default class QuestionFour extends Phaser.Scene {
       loop: true
     });
 
-    this.time.addEvent({
-      delay: 15000,
-      callback: () => {
-        this.scene.start('TrollHole');
-      },
-      callbackScope: this
-    });
+    // this.time.addEvent({
+    //   delay: 30000,
+    //   callback: () => {
+    //     this.scene.start('TrollHole');
+    //   },
+    //   callbackScope: this
+    // });
 
     this.add.text(
       0.5 * this.bg.displayWidth / 4,
