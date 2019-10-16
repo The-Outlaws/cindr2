@@ -43,6 +43,16 @@ export default class QuestionRoom extends Phaser.Scene {
     this.load.image('/CastleScene.png', '/CastleScene.png');
     this.load.image('/OfficeTrollHole.png', '/OfficeTrollHole.png');
     this.load.image('/CrystalScene.png', '/CrystalScene.png');
+    this.load.image('/hauntedlair.jpg', '/hauntedlair.jpg');
+    this.load.image('/cottage.jpg', '/cottage.jpg');
+    this.load.image('/catgarden.jpg', '/catgarden.jpg');
+    this.load.image('/cloud.jpg', '/cloud.jpg');
+    this.load.image('/bananacat.jpg', '/bananacat.jpg');
+    this.load.image('/smores.jpg', '/smores.jpg');
+    this.load.image('/garden.jpg', '/garden.jpg');
+    this.load.image('/treehouse.jpg', '/treehouse.jpg');
+    this.load.image('/wisetree.jpg', '/wisetree.jpg');
+    this.load.image('/spookyforest.jpg', '/spookyforest.jpg');
     this.load.image(avatarStr, avatar);
   }
 
@@ -51,8 +61,17 @@ export default class QuestionRoom extends Phaser.Scene {
     const userData = store.getState();
     const room = userData.user.rooms[userData.user.rooms.length - 1];
     const roomImg = room.image;
-    const answerA = room.question.answers[0];
-    const answerB = room.question.answers[1];
+    const roomQuestion = room.question ? room.question : { content: ' ' };
+    const answerA = room.question
+      ? room.question.answers[0]
+        ? room.question.answers[0]
+        : { content: ' ', roomRouteId: 16 }
+      : { content: ' ', roomRouteId: 16 };
+    const answerB = room.question
+      ? room.question.answers[1]
+        ? room.question.answers[1]
+        : { content: ' ', roomRouteId: 16 }
+      : { content: ' ', roomRouteId: 16 };
 
     this.bg = this.add.image(
       this.game.config.width / 2,
@@ -103,7 +122,7 @@ export default class QuestionRoom extends Phaser.Scene {
     this.add.text(
       this.bg.displayWidth / 2,
       this.bg.displayHeight / 4,
-      room.question.content,
+      roomQuestion.content,
       fontStyleQuestion
     );
 
@@ -147,9 +166,11 @@ export default class QuestionRoom extends Phaser.Scene {
     this.physics.add.collider(
       this.avatar,
       this.physicsObjectA,
-      () => {
-        store.dispatch(updateUserRooms(userData.user.id, answerA.roomRouteId));
-        this.scene.restart('QuestionRoom');
+      async () => {
+        await store.dispatch(
+          updateUserRooms(userData.user.id, answerA.roomRouteId)
+        );
+        this.scene.start('QuestionRoom');
       },
       null,
       this
@@ -158,9 +179,11 @@ export default class QuestionRoom extends Phaser.Scene {
     this.physics.add.collider(
       this.avatar,
       this.physicsObjectB,
-      () => {
-        store.dispatch(updateUserRooms(userData.user.id, answerB.roomRouteId));
-        this.scene.restart('QuestionRoom');
+      async () => {
+        await store.dispatch(
+          updateUserRooms(userData.user.id, answerB.roomRouteId)
+        );
+        this.scene.start('QuestionRoom');
       },
       null,
       this
