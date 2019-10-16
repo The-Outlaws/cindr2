@@ -80,13 +80,13 @@ export default class QuestionFour extends Phaser.Scene {
       loop: true
     });
 
-    this.time.addEvent({
-      delay: 30000,
-      callback: () => {
-        this.scene.start('TrollHole');
-      },
-      callbackScope: this
-    });
+    // this.time.addEvent({
+    //   delay: 30000,
+    //   callback: () => {
+    //     this.scene.start('TrollHole');
+    //   },
+    //   callbackScope: this
+    // });
 
     this.add.text(
       0.5 * this.bg.displayWidth / 4,

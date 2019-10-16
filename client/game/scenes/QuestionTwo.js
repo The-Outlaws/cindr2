@@ -5,16 +5,16 @@ import store from '../../store';
 const avatarStr = 'avatar';
 
 const fontStyleQuestion = {
-  font: '5.5em Piedra',
+  font: '5em Piedra',
   fill: '#ff2525',
   align: 'center'
 };
 const fontStyleAnswer = {
-  font: '4.5em Piedra',
+  font: '3.5em Piedra',
   fill: '#b81b1b'
 };
 const fontStyleCountdown = {
-  font: '4.5em Piedra',
+  font: '3.5em Piedra',
   fill: '#b81b1b',
   align: 'center'
 };
@@ -50,14 +50,14 @@ export default class QuestionTwo extends Phaser.Scene {
     this.bg.displayHeight = this.game.config.height;
 
     this.add.text(
-      3.3 * this.bg.displayWidth / 4,
+      3.4 * this.bg.displayWidth / 4,
       this.bg.displayHeight / 23,
       'You have: ',
       fontStyleCountdown
     );
 
     this.add.text(
-      3.1 * this.bg.displayWidth / 4,
+      3.2 * this.bg.displayWidth / 4,
       this.bg.displayHeight / 8,
       'seconds\nto answer this question!',
       fontStyleCountdown
@@ -66,7 +66,7 @@ export default class QuestionTwo extends Phaser.Scene {
     this.initialTime = 30;
 
     this.countDownText = this.add.text(
-      3.38 * this.bg.displayWidth / 4,
+      3.48 * this.bg.displayWidth / 4,
       this.bg.displayHeight / 13,
       `${this.initialTime}`,
       fontStyleQuestion
@@ -94,13 +94,13 @@ export default class QuestionTwo extends Phaser.Scene {
       fontStyleQuestion
     );
     this.answerA = this.add.text(
-      2.9 * this.bg.displayWidth / 4,
-      1.5 * this.bg.displayHeight / 4,
+      2.8 * this.bg.displayWidth / 4,
+      1.4 * this.bg.displayHeight / 4,
       'Meet some friendly ghosts',
       fontStyleAnswer
     );
     this.answerB = this.add.text(
-      this.bg.displayWidth / 4,
+      0.7 * this.bg.displayWidth / 4,
       2.4 * this.bg.displayHeight / 4,
       'Run the f*** away!',
       fontStyleAnswer
