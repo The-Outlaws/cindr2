@@ -53,6 +53,10 @@ export default class QuestionRoom extends Phaser.Scene {
     this.load.image('/treehouse.jpg', '/treehouse.jpg');
     this.load.image('/wisetree.jpg', '/wisetree.jpg');
     this.load.image('/spookyforest.jpg', '/spookyforest.jpg');
+    this.load.image('/ColorfulBoringKitchen.png', '/ColorfulBoringKitchen.png');
+    this.load.image('/MistyLake.png', '/MistyLake.png');
+    this.load.image('/SpiderScene.png', '/SpiderScene.png');
+    this.load.image('/SpaceScene.png', '/SpaceScene.png');
     this.load.image(avatarStr, avatar);
   }
 

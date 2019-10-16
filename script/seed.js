@@ -244,9 +244,9 @@ async function seed() {
     }),
     Room.create({
       id: 16,
-      name: 'Fluffy Cloud',
+      name: 'Misty Lake',
       trollRoom: false,
-      image: '/cloud.jpg'
+      image: '/MistyLake.png'
     }),
     Room.create({
       id: 9,
@@ -265,6 +265,12 @@ async function seed() {
       name: 'Awkward Tree House',
       trollRoom: false,
       image: '/treehouse.jpg'
+    }),
+    Room.create({
+      id: 17,
+      name: 'Fluffy Cloud',
+      trollRoom: false,
+      image: '/cloud.jpg'
     })
   ]);
 
