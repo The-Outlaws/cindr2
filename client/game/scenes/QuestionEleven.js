@@ -1,6 +1,7 @@
 import Phaser from 'phaser';
 // import Avatar from '../sprites/Avatar';
 import store from '../../store';
+// import { getActiveUsers } from '../../store/reducers/room';
 
 const avatarStr = 'avatar';
 const fontStyleQuestion = {

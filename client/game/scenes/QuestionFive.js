@@ -51,7 +51,6 @@ export default class QuestionFive extends Phaser.Scene {
     this.bg.displayHeight = this.game.config.height;
 
     this.add.text(
-      3.1 * this.bg.displayWidth / 4,
       this.bg.displayHeight / 23,
       'You have: ',
       fontStyleCountdown
@@ -80,6 +79,7 @@ export default class QuestionFive extends Phaser.Scene {
       loop: true
     });
 
+
     this.time.addEvent({
       delay: 30000,
       callback: () => {
@@ -87,6 +87,7 @@ export default class QuestionFive extends Phaser.Scene {
       },
       callbackScope: this
     });
+
 
     this.add.text(
       0.1 * this.bg.displayWidth / 4,

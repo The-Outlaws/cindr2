@@ -1,5 +1,6 @@
 import Phaser from 'phaser';
 import store from '../../store';
+// import {getUser} from '../../store'
 
 const avatarStr = 'avatar';
 
@@ -15,6 +16,7 @@ export default class Splash extends Phaser.Scene {
   preload() {
     const { user: { avatar } } = store.getState();
     this.load.image(avatarStr, avatar);
+    this.load.image('arrows', 'arrowkeys.png');
   }
 
   create() {
@@ -40,6 +42,24 @@ export default class Splash extends Phaser.Scene {
         font: '6em Walter Turncoat'
       }
     );
+    const line = new Phaser.Geom.Line(
+      this.game.config.width / 6,
+      this.game.config.height / 5,
+      this.game.config.width / 6,
+      3 * this.game.config.height / 4
+    );
+    const line2 = new Phaser.Geom.Line(
+      this.game.config.width / 6,
+      3 * this.game.config.height / 4 + 20,
+      2.6 * this.game.config.width / 4 - 20,
+      3 * this.game.config.height / 4 + 20
+    );
+    var graphics = this.add.graphics({
+      lineStyle: { width: 20, color: 0xffffff }
+    });
+
+    graphics.strokeLineShape(line);
+    graphics.strokeLineShape(line2);
 
     this.physicsObjectStart = this.physics.add.existing(this.start, 'static');
 
@@ -60,7 +80,11 @@ export default class Splash extends Phaser.Scene {
       null,
       this
     );
-
+    this.add.image(
+      this.game.config.width / 2,
+      this.game.config.height / 2,
+      'arrows'
+    );
     this.cursors = this.input.keyboard.createCursorKeys();
   }
 

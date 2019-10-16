@@ -49,8 +49,8 @@ class disconnectedMessagesList extends Component {
     console.log('currMessages', currMessages);
     return (
       <main>
+        <h4>Recent Messages</h4>
         <ul className="media-list">
-          <h4>Recent Messages</h4>
           {currMessages.map(message => (
             <Message
               key={message.id}
@@ -68,33 +68,34 @@ class disconnectedMessagesList extends Component {
                   <img src={filteredConvo[0].user.avatar} /> is awaiting your
                   approval!
                 </h4>
-
                 <div className="match-request">
-
                   <h4>Deets about {filteredConvo[0].user.firstName}:</h4>
                   <img src={filteredConvo[0].user.photo} alt="No photo" />
                   <p>Age: {filteredConvo[0].user.age}</p>
                   <p>Gender: {filteredConvo[0].user.gender}</p>
                   <p>Orientation: {filteredConvo[0].user.orientation}</p>
                   <p>Height: {filteredConvo[0].user.height}</p>
-
-
-                  <button
-                    id="accept"
-                    type="submit"
-                    onClick={evt => this.handleAccept(evt, filteredConvo[0].id)}
-                  >
-                    Accept match request
-                  </button>
-                  <button
-                    id="reject"
-                    type="submit"
-                    onClick={evt => this.handleReject(evt, filteredConvo[0].id)}
-                  >
-                    Decline match request
-                  </button>
+                  <div>
+                    <button
+                      id="accept"
+                      type="submit"
+                      onClick={evt =>
+                        this.handleAccept(evt, filteredConvo[0].id)
+                      }
+                    >
+                      Accept match request
+                    </button>
+                    <button
+                      id="reject"
+                      type="submit"
+                      onClick={evt =>
+                        this.handleReject(evt, filteredConvo[0].id)
+                      }
+                    >
+                      Decline match request
+                    </button>
+                  </div>
                 </div>
-
               </React.Fragment>
             ) : (
               <h4>
@@ -121,7 +122,6 @@ class disconnectedMessagesList extends Component {
               <h4>Your message history is loading</h4>
             )}
           </div>
-
         </ul>
       </main>
     );

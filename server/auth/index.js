@@ -1,6 +1,6 @@
 const router = require('express').Router();
 const User = require('../db/models/user');
-const Room = require('../db/models/room');
+const { Room, UserRoom } = require('../db/models');
 const Question = require('../db/models/question');
 const Answer = require('../db/models/answer');
 
@@ -17,7 +17,8 @@ router.post('/login', async (req, res, next) => {
           model: Room,
           include: [{ model: Question, include: [{ model: Answer }] }]
         }
-      ]
+      ],
+      order: [[Room, UserRoom, 'createdAt', 'ASC']]
     });
     if (!user) {
       console.log('No such user found:', email);
@@ -26,6 +27,7 @@ router.post('/login', async (req, res, next) => {
       console.log('Incorrect password for user:', email);
       res.status(401).send('Wrong username and/or password');
     } else {
+      console.log('USER IN API ROUTE', user);
       req.login(user, err => (err ? next(err) : res.json(user)));
     }
   } catch (err) {
@@ -65,7 +67,8 @@ router.post('/signup', async (req, res, next) => {
           model: Room,
           include: [{ model: Question, include: [{ model: Answer }] }]
         }
-      ]
+      ],
+      order: [[Room, UserRoom, 'createdAt', 'ASC']]
     });
 
     req.login(userToSend, err => (err ? next(err) : res.json(userToSend)));
@@ -84,8 +87,17 @@ router.post('/logout', (req, res) => {
   res.redirect('/');
 });
 
-router.get('/me', (req, res) => {
-  res.json(req.user);
+router.get('/me', async (req, res) => {
+  const user = await User.findByPk(req.user.id, {
+    include: [
+      {
+        model: Room,
+        include: [{ model: Question, include: [{ model: Answer }] }]
+      }
+    ],
+    order: [[Room, UserRoom, 'createdAt', 'ASC']]
+  });
+  res.json(user);
 });
 
 router.use('/google', require('./google'));
