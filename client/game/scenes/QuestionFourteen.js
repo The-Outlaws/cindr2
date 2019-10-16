@@ -1,30 +1,26 @@
-import Phaser, { GameObjects } from 'phaser';
+import Phaser from 'phaser';
 // import Avatar from '../sprites/Avatar';
 import store from '../../store';
-import { updateUserRooms } from '../../store';
 
 const avatarStr = 'avatar';
-
 const fontStyleQuestion = {
-  font: '6em Indie Flower',
-  fill: '#bdd8fa',
+  font: '6em Yeon Sung',
+  fill: '#ff2525',
   align: 'center'
 };
-
 const fontStyleAnswer = {
-  font: '6em Indie Flower',
-  fill: '#b5f7bf'
+  font: '4.5em Lakki Reddy',
+  fill: '#005bd3'
 };
-
 const fontStyleCountdown = {
-  font: '4em Indie Flower',
-  fill: '#9bc2f1',
+  font: '4.5em Yeon Sung',
+  fill: '#32a852',
   align: 'center'
 };
 
-export default class QuestionRoom extends Phaser.Scene {
+export default class QuestionFourteen extends Phaser.Scene {
   constructor() {
-    super({ key: 'QuestionRoom' });
+    super({ key: 'QuestionFourteen' });
   }
 
   //decrements seconds every one second and displays countdown
@@ -39,26 +35,18 @@ export default class QuestionRoom extends Phaser.Scene {
 
   preload() {
     const { user: { avatar } } = store.getState();
-    this.load.image('/MushroomScene.png', '/MushroomScene.png');
-    this.load.image('/CastleScene.png', '/CastleScene.png');
-    this.load.image('/OfficeTrollHole.png', '/OfficeTrollHole.png');
-    this.load.image('/CrystalScene.png', '/CrystalScene.png');
     this.load.image(avatarStr, avatar);
+    this.load.image('troll', '/troll128.png');
+    this.load.image('mushroom', '/MushroomScene.png');
   }
 
   create() {
-    // Background image
-    const userData = store.getState();
-    const room = userData.user.rooms[userData.user.rooms.length - 1];
-    const roomImg = room.image;
-    const answerA = room.question.answers[0];
-    const answerB = room.question.answers[1];
-
     this.bg = this.add.image(
       this.game.config.width / 2,
       this.game.config.height / 2,
-      roomImg
+      'mushroom'
     );
+
     this.bg.displayWidth = this.game.config.width;
     this.bg.displayHeight = this.game.config.height;
 
@@ -101,55 +89,40 @@ export default class QuestionRoom extends Phaser.Scene {
     });
 
     this.add.text(
-      this.bg.displayWidth / 2,
-      this.bg.displayHeight / 4,
-      room.question.content,
+      0.5 * this.bg.displayWidth / 4,
+      0.3 * this.bg.displayHeight / 4,
+      `Question #14 Lorem ipsum dolor sit amet, consectetur adipiscing elit `,
       fontStyleQuestion
     );
-
-    // Game Objects Leading to Different Rooms
     this.answerA = this.add.text(
-      0.7 * this.bg.displayWidth / 4,
-      1.6 * this.bg.displayHeight / 3,
-      answerA.content,
+      3.62 * this.bg.displayWidth / 4,
+      2.8 * this.bg.displayHeight / 4,
+      'Answer in #14 Lorem ipsum dolor sit amet, consectetur adipiscing elit',
       fontStyleAnswer
     );
-
-    // Makes your life choices fall away !! aka adds answerA to physics
-    this.physicsObjectA = this.physics.add.existing(this.answerA, 'static');
-    // this.physicsObjectA.onCollide = true;
-
     this.answerB = this.add.text(
-      2.1 * this.bg.displayWidth / 3,
-      this.bg.displayHeight / 2.2,
-      answerB.content,
+      1.65 * this.bg.displayWidth / 4,
+      1.2 * this.bg.displayHeight / 4,
+      'Answer in #14 Lorem ipsum dolor sit amet, consectetur adipiscing elit',
       fontStyleAnswer
     );
-    this.physicsObjectB = this.physics.add.existing(this.answerB, 'static');
-    // Avatar
-    // this.avatar = new Avatar({
-    //   scene: this.physics,
-    //   x: 100,
-    //   y: 700,
-    //   asset: 'troll'
-    // });
 
-    //adds sprite to physics object, disables gravity so it doesn't fall
+    this.physicsObjectA = this.physics.add.existing(this.answerA, 'static');
+    this.physicsObjectB = this.physics.add.existing(this.answerB, 'static');
+
     this.avatar = this.physics.add.sprite(
-      this.bg.displayWidth / 2,
-      4 * this.bg.displayHeight / 5,
+      0.15 * this.bg.displayWidth / 4,
+      2 * this.bg.displayHeight / 4,
       avatarStr
     );
     this.avatar.body.setAllowGravity(false);
     this.avatar.setCollideWorldBounds(true);
 
-    //creates a collision between sprite and answer, triggers room change
     this.physics.add.collider(
       this.avatar,
       this.physicsObjectA,
       () => {
-        store.dispatch(updateUserRooms(userData.user.id, answerA.roomRouteId));
-        this.scene.restart('QuestionRoom');
+        this.scene.start('DestinationRoom');
       },
       null,
       this
@@ -159,13 +132,12 @@ export default class QuestionRoom extends Phaser.Scene {
       this.avatar,
       this.physicsObjectB,
       () => {
-        store.dispatch(updateUserRooms(userData.user.id, answerB.roomRouteId));
-        this.scene.restart('QuestionRoom');
+        this.scene.start('DestinationRoom');
       },
       null,
       this
     );
-    // Variable containing up/down/right/left keys
+
     this.cursors = this.input.keyboard.createCursorKeys();
   }
 

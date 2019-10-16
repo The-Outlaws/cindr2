@@ -1,26 +1,34 @@
 import Phaser from 'phaser';
-import Avatar from '../sprites/Avatar';
+// import Avatar from '../sprites/Avatar';
 import store from '../../store';
 
 const avatarStr = 'avatar';
 
 const fontStyleQuestion = {
-  font: '6em Walter Turncoat',
-  fill: '#32a852',
+  font: '5.5em Piedra',
+  fill: '#ff2525',
   align: 'center'
 };
-
 const fontStyleAnswer = {
-  font: '3.4em Galindo',
-  fill: '#e54567',
+  font: '4.5em Piedra',
+  fill: '#b81b1b'
+};
+const fontStyleCountdown = {
+  font: '4.5em Piedra',
+  fill: '#b81b1b',
   align: 'center'
-  // backgroundColor: 'white'
 };
 
-export default class TrollHole extends Phaser.Scene {
+export default class QuestionTwo extends Phaser.Scene {
   constructor() {
-    super({ key: 'TrollHole' });
+    super({ key: 'QuestionTwo' });
   }
+
+  onEvent() {
+    this.initialTime -= 1;
+    this.countDownText.setText(`${this.initialTime}`);
+  }
+
   init() {
     this.playerSpeed = 10;
   }
@@ -28,60 +36,82 @@ export default class TrollHole extends Phaser.Scene {
   preload() {
     const { user: { avatar } } = store.getState();
     this.load.image(avatarStr, avatar);
-    // this.load.image('troll', '/troll128.png');
-    this.load.image('officeTrollHole', '/OfficeTrollHole.png');
+    this.load.image('troll', '/troll128.png');
+    this.load.image('evilCastle', '/CastleScene.png');
   }
 
   create() {
     this.bg = this.add.image(
       this.game.config.width / 2,
       this.game.config.height / 2,
-      'officeTrollHole'
+      'evilCastle'
     );
     this.bg.displayWidth = this.game.config.width;
     this.bg.displayHeight = this.game.config.height;
 
     this.add.text(
-      0.4 * this.bg.displayWidth / 4,
-      0.3 * this.bg.displayHeight / 4,
-      `Why are you here?`,
+      3.3 * this.bg.displayWidth / 4,
+      this.bg.displayHeight / 23,
+      'You have: ',
+      fontStyleCountdown
+    );
+
+    this.add.text(
+      3.1 * this.bg.displayWidth / 4,
+      this.bg.displayHeight / 8,
+      'seconds\nto answer this question!',
+      fontStyleCountdown
+    );
+
+    this.initialTime = 15;
+
+    this.countDownText = this.add.text(
+      3.38 * this.bg.displayWidth / 4,
+      this.bg.displayHeight / 13,
+      `${this.initialTime}`,
+      fontStyleQuestion
+    );
+
+    this.time.addEvent({
+      delay: 1000,
+      callback: this.onEvent,
+      callbackScope: this,
+      loop: true
+    });
+
+    this.time.addEvent({
+      delay: 15000,
+      callback: () => {
+        this.scene.start('TrollHole');
+      },
+      callbackScope: this
+    });
+
+    this.add.text(
+      0.2 * this.bg.displayWidth / 4,
+      0.2 * this.bg.displayHeight / 4,
+      `The friendly ghosts can't imbibe,\nbut as gracious hosts,\nthey invite you to - you choose`,
       fontStyleQuestion
     );
     this.answerA = this.add.text(
-      2.8 * this.bg.displayWidth / 4,
-      0.7 * this.bg.displayHeight / 4,
-      `I didn't realize there was a countdown!\nI'll remember for next time.`,
-      fontStyleAnswer
-    );
-
-    this.answerB = this.add.text(
-      0.75 * this.bg.displayWidth / 4,
-      2.1 * this.bg.displayHeight / 4,
-      `Reflection\nAnswer 1`,
-      fontStyleAnswer
-    );
-
-    this.answerC = this.add.text(
-      3.15 * this.bg.displayWidth / 4,
+      2.9 * this.bg.displayWidth / 4,
       1.5 * this.bg.displayHeight / 4,
-      `Reflection Answer 2`,
+      'Beer, duh',
+      fontStyleAnswer
+    );
+    this.answerB = this.add.text(
+      this.bg.displayWidth / 4,
+      2.4 * this.bg.displayHeight / 4,
+      'Tea, please',
       fontStyleAnswer
     );
 
-    this.answerD = this.add.text(
-      1.5 * this.bg.displayWidth / 4,
-      3.4 * this.bg.displayHeight / 4,
-      `Reflection Answer 3`,
-      fontStyleAnswer
-    );
     this.physicsObjectA = this.physics.add.existing(this.answerA, 'static');
     this.physicsObjectB = this.physics.add.existing(this.answerB, 'static');
-    this.physicsObjectC = this.physics.add.existing(this.answerC, 'static');
-    this.physicsObjectD = this.physics.add.existing(this.answerD, 'static');
 
     this.avatar = this.physics.add.sprite(
-      2.2 * this.bg.displayWidth / 4,
-      3 * this.bg.displayHeight / 4,
+      this.bg.displayWidth / 2,
+      4 * this.bg.displayHeight / 5,
       avatarStr
     );
     this.avatar.body.setAllowGravity(false);
@@ -91,7 +121,7 @@ export default class TrollHole extends Phaser.Scene {
       this.avatar,
       this.physicsObjectA,
       () => {
-        this.scene.start('QuestionOne');
+        this.scene.start('QuestionFour');
       },
       null,
       this
@@ -101,27 +131,7 @@ export default class TrollHole extends Phaser.Scene {
       this.avatar,
       this.physicsObjectB,
       () => {
-        this.scene.start('QuestionOne');
-      },
-      null,
-      this
-    );
-
-    this.physics.add.collider(
-      this.avatar,
-      this.physicsObjectC,
-      () => {
-        this.scene.start('QuestionOne');
-      },
-      null,
-      this
-    );
-
-    this.physics.add.collider(
-      this.avatar,
-      this.physicsObjectD,
-      () => {
-        this.scene.start('QuestionOne');
+        this.scene.start('QuestionFive');
       },
       null,
       this
@@ -155,6 +165,5 @@ export default class TrollHole extends Phaser.Scene {
 
       this.avatar.y += this.playerSpeed;
     }
-    this.input.on('pointerdown', () => this.scene.start('DestinationRoom'));
   }
 }

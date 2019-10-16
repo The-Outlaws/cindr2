@@ -3,27 +3,27 @@ import Phaser from 'phaser';
 import store from '../../store';
 
 const avatarStr = 'avatar';
-
 const fontStyleQuestion = {
-  font: '5.5em Piedra',
+  font: '6em Yeon Sung',
   fill: '#ff2525',
   align: 'center'
 };
 const fontStyleAnswer = {
-  font: '4.5em Piedra',
-  fill: '#b81b1b'
+  font: '4.5em Lakki Reddy',
+  fill: '#005bd3'
 };
 const fontStyleCountdown = {
-  font: '4.5em Piedra',
-  fill: '#b81b1b',
+  font: '4.5em Yeon Sung',
+  fill: '#32a852',
   align: 'center'
 };
 
-export default class DestinationRoom2 extends Phaser.Scene {
+export default class QuestionThirteen extends Phaser.Scene {
   constructor() {
-    super({ key: 'DestinationRoom2' });
+    super({ key: 'QuestionThirteen' });
   }
 
+  //decrements seconds every one second and displays countdown
   onEvent() {
     this.initialTime -= 1;
     this.countDownText.setText(`${this.initialTime}`);
@@ -37,71 +37,38 @@ export default class DestinationRoom2 extends Phaser.Scene {
     const { user: { avatar } } = store.getState();
     this.load.image(avatarStr, avatar);
     this.load.image('troll', '/troll128.png');
-    this.load.image('evilCastle', '/CastleScene.png');
+    this.load.image('mushroom', '/MushroomScene.png');
   }
 
   create() {
     this.bg = this.add.image(
       this.game.config.width / 2,
       this.game.config.height / 2,
-      'evilCastle'
+      'mushroom'
     );
+
     this.bg.displayWidth = this.game.config.width;
     this.bg.displayHeight = this.game.config.height;
 
     this.add.text(
-      0.2 * this.bg.displayWidth / 4,
-      0.2 * this.bg.displayHeight / 4,
-      'Would you rather eat \neye of newt or toenail of cat?',
-      fontStyleQuestion
-    );
-    this.add.text(
-      2.9 * this.bg.displayWidth / 4,
-      1.5 * this.bg.displayHeight / 4,
-      'eye eye eye',
-      fontStyleAnswer
-    );
-    this.add.text(
-      this.bg.displayWidth / 4,
-      2.4 * this.bg.displayHeight / 4,
-      'meowth',
-      fontStyleAnswer
-    );
-
-    // this.avatar = new Avatar({
-    //   scene: this,
-    //   x: this.bg.displayWidth / 2,
-    //   y: 4 * this.bg.displayHeight / 5,
-    //   asset: avatarStr
-    // });
-    // this.add.existing(this.avatar);
-
-    this.avatar = this.physics.add.sprite(
-      this.bg.displayWidth / 2,
-      4 * this.bg.displayHeight / 5,
-      avatarStr
-    );
-    this.avatar.body.setAllowGravity(false);
-    this.avatar.setCollideWorldBounds(true);
-
-    this.add.text(
-      3.5 * this.bg.displayWidth / 4,
-      this.bg.displayHeight / 23.5,
+      3.3 * this.bg.displayWidth / 4,
+      this.bg.displayHeight / 23,
       'You have: ',
       fontStyleCountdown
     );
 
     this.add.text(
-      3.33 * this.bg.displayWidth / 4,
+      3.1 * this.bg.displayWidth / 4,
       this.bg.displayHeight / 8,
       'seconds\nto answer this question!',
       fontStyleCountdown
     );
 
     this.initialTime = 15;
+
     this.countDownText = this.add.text(
-      3.6 * this.bg.displayWidth / 4,
-      this.bg.displayHeight / 12.8,
+      3.38 * this.bg.displayWidth / 4,
+      this.bg.displayHeight / 13,
       `${this.initialTime}`,
       fontStyleQuestion
     );
@@ -120,6 +87,56 @@ export default class DestinationRoom2 extends Phaser.Scene {
       },
       callbackScope: this
     });
+
+    this.add.text(
+      0.5 * this.bg.displayWidth / 4,
+      0.3 * this.bg.displayHeight / 4,
+      `Question #13 Lorem ipsum dolor sit amet, consectetur adipiscing elit `,
+      fontStyleQuestion
+    );
+    this.answerA = this.add.text(
+      3.62 * this.bg.displayWidth / 4,
+      2.8 * this.bg.displayHeight / 4,
+      'Answer in #13 Lorem ipsum dolor sit amet, consectetur adipiscing elit',
+      fontStyleAnswer
+    );
+    this.answerB = this.add.text(
+      1.65 * this.bg.displayWidth / 4,
+      1.2 * this.bg.displayHeight / 4,
+      'Answer in #13 Lorem ipsum dolor sit amet, consectetur adipiscing elit',
+      fontStyleAnswer
+    );
+
+    this.physicsObjectA = this.physics.add.existing(this.answerA, 'static');
+    this.physicsObjectB = this.physics.add.existing(this.answerB, 'static');
+
+    this.avatar = this.physics.add.sprite(
+      0.15 * this.bg.displayWidth / 4,
+      2 * this.bg.displayHeight / 4,
+      avatarStr
+    );
+    this.avatar.body.setAllowGravity(false);
+    this.avatar.setCollideWorldBounds(true);
+
+    this.physics.add.collider(
+      this.avatar,
+      this.physicsObjectA,
+      () => {
+        this.scene.start('DestinationRoom');
+      },
+      null,
+      this
+    );
+
+    this.physics.add.collider(
+      this.avatar,
+      this.physicsObjectB,
+      () => {
+        this.scene.start('DestinationRoom');
+      },
+      null,
+      this
+    );
 
     this.cursors = this.input.keyboard.createCursorKeys();
   }
