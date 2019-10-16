@@ -409,7 +409,7 @@ code {
 }
 
 .sidebar ul li a.active {
-  background-color: #5294e2;
+  background-color: tomato;
   color: #d4d5d8;
   border-radius: 0 5px 5px 0;
 }
@@ -514,6 +514,7 @@ code {
 }
 .match-request p {
   margin-top: 2vh;
+  margin-right: 1vw;
 }
 .match-request img {
   margin-top: 2vh;
