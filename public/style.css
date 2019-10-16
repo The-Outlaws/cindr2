@@ -437,6 +437,9 @@ code {
   flex-direction: column;
   align-content: space-evenly;
 }
+.chat main h4 {
+  margin: 0 3vw;
+}
 .chat .media {
   display: flex;
   flex-direction: column;
