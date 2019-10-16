@@ -1,5 +1,6 @@
 import Phaser from 'phaser';
 import store from '../../store';
+import { getActiveUsers } from '../../store/reducers/room';
 
 const avatarStr = 'avatar';
 
@@ -21,6 +22,8 @@ export default class Splash extends Phaser.Scene {
   }
 
   create() {
+    store.dispatch(getActiveUsers(1));
+    const { room } = store.getState();
     this.backgroundColor = 'black';
 
     this.add.text(
@@ -59,7 +62,12 @@ export default class Splash extends Phaser.Scene {
       this.physicsObjectStart,
       () => {
         // console.log('hello');
-        this.scene.start('QuestionRoom');
+        // room.forEach((rm, idx) => {
+        //   this.load.image(`avatar${idx}`, rm.avatar)
+        //   console.log(rm.avatar)
+        //   this.avatarLoad ++
+        // })
+        this.scene.start('DestinationRoom');
       },
       null,
       this

@@ -15,7 +15,7 @@ class DisconnectedGameContainer extends React.Component {
   componentDidMount() {
     // This should return the last active room or create assocation
     // between the current user and the first room
-    this.props.gotActiveRoom(this.props.userId);
+    //this.props.gotActiveRoom(this.props.userId);
 
     this.setState({ game: new Game() });
   }
@@ -36,11 +36,9 @@ const mapStateToProps = state => {
   };
 };
 
-const mapDispatchToProps = dispatch => ({
-  gotActiveRoom: userId => dispatch(gotActiveRoom(userId))
-});
+// const mapDispatchToProps = dispatch => ({
+//   gotActiveRoom: userId => dispatch(gotActiveRoom(userId))
+// });
 
-const GameContainer = connect(mapStateToProps, mapDispatchToProps)(
-  DisconnectedGameContainer
-);
+const GameContainer = connect(mapStateToProps, null)(DisconnectedGameContainer);
 export default GameContainer;

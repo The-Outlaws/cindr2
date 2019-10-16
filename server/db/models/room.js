@@ -11,6 +11,9 @@ const Room = db.define('room', {
   },
   trollRoom: {
     type: Sequelize.BOOLEAN
+  },
+  destinationRoom: {
+    type: Sequelize.BOOLEAN
   }
 });
 

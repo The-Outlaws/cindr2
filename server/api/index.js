@@ -2,6 +2,7 @@ const router = require('express').Router();
 module.exports = router;
 
 router.use('/users', require('./users'));
+router.use('/rooms', require('./rooms'));
 router.use('/messages', require('./messages'));
 router.use('/conversations', require('./conversations'));
 

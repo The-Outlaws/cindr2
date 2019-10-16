@@ -44,6 +44,7 @@ export default class QuestionRoom extends Phaser.Scene {
   }
 
   create() {
+    console.log(store.getState());
     // Background image
     const userData = store.getState();
     const room = userData.user.rooms[userData.user.rooms.length - 1];
@@ -145,7 +146,12 @@ export default class QuestionRoom extends Phaser.Scene {
       this.physicsObjectA,
       () => {
         store.dispatch(updateUserRooms(userData.user.id, answerA.roomRouteId));
-        this.scene.start('questionRoom');
+        if (this.user.rooms[this.user.rooms.length - 1].destinationRoom) {
+          console.log('hi');
+          this.scene.start('DestinationRoom');
+        } else {
+          this.scene.start('questionRoom');
+        }
       },
       null,
       this

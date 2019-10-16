@@ -1,71 +1,37 @@
 import axios from 'axios';
-//import { GET_ROOMS, ADD_FIRST_ROOM } from './index';
-import { GET_ACTIVE_ROOM } from './index';
+import { GOT_ACTIVE_USERS } from './index';
 
-const initialState = {
-  allRooms: [],
-  activeRoom: {}
-};
+const initialState = [];
 
 //ACTION CREATORS
 
-export const getActiveRoom = room => ({
-  type: GET_ACTIVE_ROOM,
+export const gotActiveUsers = room => ({
+  type: GOT_ACTIVE_USERS,
   room
 });
 
-// export function getRooms(room) {
-//   const action = { type: GET_ROOMS, room };
-//   return action;
-// }
-
-// export const addRoom = (room) => ({
-//   type: ADD_FIRST_ROOM,
-//   room
-// })
-
 // //THUNK CREATORS
 
-export const gotActiveRoom = userId => {
+export const getActiveUsers = roomId => {
   return async dispatch => {
     try {
-      const res = axios.get(`/api/rooms/active/${userId}`);
-      console.log('active room data', res.data);
-      dispatch(getActiveRoom(res.data));
+      console.log(roomId);
+      const res = await axios.get(`/api/rooms/${roomId}`);
+      console.log('in get active users', res);
+      dispatch(gotActiveUsers(res.data[0].users));
     } catch (err) {
       next(err);
     }
   };
 };
 
-// export const getRoomsThunk = userId => {
-//   return async dispatch => {
-//     console.log('FLAG ONE')
-//     const response = await axios.get(`/api/rooms/${userId}`);
-//     console.log('IN GET ROOMS THUNK', response.data)
-
-//     dispatch(getRooms(response.data));
-//   };
-// };
-
-// export const addRoomThunk = (userId, roomId) => {
-//   return async dispatch => {
-//     console.log('FLAG TWO')
-//     const res = await axios.post(`/api/rooms/${userId}`, roomId)
-//     dispatch(addRoom(res.data))
-//   }
 // }
 
 //REDUCER
 export default function room(state = initialState, action) {
   switch (action.type) {
-    // case GET_ROOMS:
-    //   state = action.rooms
-    //   return state;
-    // case ADD_FIRST_ROOM:
-    //   return [...state, action.room]
-    case GET_ACTIVE_ROOM:
-      state.activeRoom = action.room;
+    case GOT_ACTIVE_USERS:
+      state = action.room;
       return state;
     default:
       return state;

@@ -7,7 +7,8 @@ const {
   Question,
   Answer,
   Message,
-  Conversation
+  Conversation,
+  UserRoom
 } = require('../server/db/models');
 
 async function seed() {
@@ -164,6 +165,11 @@ async function seed() {
   ]);
   const rooms = await Promise.all([
     Room.create({
+      name: 'Dummy Destination',
+      destinationRoom: true,
+      image: '/centaur.png'
+    }),
+    Room.create({
       name: 'Troll Hole',
       trollRoom: false,
       image: '/OfficeTrollHole.png'
@@ -249,12 +255,14 @@ async function seed() {
   //   UserRoom.create({ userId: 1, roomId: 1, isActive: true })
   // ]);
 
-  // const userRooms = await Promise.all([s
-  //   UserRooms.create({ isActive: true, userId: 2, roomId: 1 }),
-  //   UserRooms.create({ isActive: false, userId: 4, roomId: 2 })
-  // ]);
+  const userRooms = await Promise.all([
+    UserRoom.create({ isActive: true, userId: 2, roomId: 1 }),
+    UserRoom.create({ isActive: true, userId: 4, roomId: 1 }),
+    UserRoom.create({ isActive: true, userId: 1, roomId: 1 })
+  ]);
+
   const questions = await Promise.all([
-    Question.create({ content: 'Who strikes your fancy?', roomId: 1 }),
+    Question.create({ content: 'Who strikes your fancy?', roomId: 2 }),
     Question.create({
       content: 'This castle is filled with ghosts. What to do?',
       roomId: 2
@@ -262,7 +270,7 @@ async function seed() {
     Question.create({
       content:
         'The friendly ghosts can’t imbibe, but as gracious hosts, they invite you to - you choose:',
-      roomId: 3
+      roomId: 4
     }),
     Question.create({
       content:
