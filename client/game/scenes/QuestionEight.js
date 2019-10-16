@@ -4,17 +4,18 @@ import store from '../../store';
 
 const avatarStr = 'avatar';
 const fontStyleQuestion = {
-  font: '6em Yeon Sung',
+  font: '4em Yeon Sung',
   fill: '#ff2525',
   align: 'center'
 };
 const fontStyleAnswer = {
-  font: '4.5em Lakki Reddy',
-  fill: '#005bd3'
+  font: '3em Lakki Reddy',
+  fill: '#1b7c55',
+  align: 'center'
 };
 const fontStyleCountdown = {
-  font: '4.5em Yeon Sung',
-  fill: '#32a852',
+  font: '3em Yeon Sung',
+  fill: '#1b7c55',
   align: 'center'
 };
 
@@ -51,15 +52,15 @@ export default class QuestionEight extends Phaser.Scene {
     this.bg.displayHeight = this.game.config.height;
 
     this.add.text(
-      3.3 * this.bg.displayWidth / 4,
-      this.bg.displayHeight / 23,
+      3.45 * this.bg.displayWidth / 4,
+      this.bg.displayHeight / 4,
       'You have: ',
       fontStyleCountdown
     );
 
     this.add.text(
-      3.1 * this.bg.displayWidth / 4,
-      this.bg.displayHeight / 8,
+      3.25 * this.bg.displayWidth / 4,
+      1.4 * this.bg.displayHeight / 4,
       'seconds\nto answer this question!',
       fontStyleCountdown
     );
@@ -67,8 +68,8 @@ export default class QuestionEight extends Phaser.Scene {
     this.initialTime = 30;
 
     this.countDownText = this.add.text(
-      3.38 * this.bg.displayWidth / 4,
-      this.bg.displayHeight / 13,
+      3.5 * this.bg.displayWidth / 4,
+      1.2 * this.bg.displayHeight / 4,
       `${this.initialTime}`,
       fontStyleQuestion
     );
@@ -89,21 +90,21 @@ export default class QuestionEight extends Phaser.Scene {
     });
 
     this.add.text(
-      0.5 * this.bg.displayWidth / 4,
-      0.3 * this.bg.displayHeight / 4,
+      0.9 * this.bg.displayWidth / 4,
+      0.05 * this.bg.displayHeight / 4,
       `The ghosts kick you out, they were hoping for something a little more exciting`,
       fontStyleQuestion
     );
     this.answerA = this.add.text(
-      3.62 * this.bg.displayWidth / 4,
-      2.8 * this.bg.displayHeight / 4,
-      'You take the garden path, you want to smell the roses',
+      0.9 * this.bg.displayWidth / 4,
+      3 * this.bg.displayHeight / 4,
+      'You take the \ngarden path,\nyou want to \nsmell the roses',
       fontStyleAnswer
     );
     this.answerB = this.add.text(
-      1.65 * this.bg.displayWidth / 4,
-      1.2 * this.bg.displayHeight / 4,
-      'You try your luck on the spooky forest path',
+      2.2 * this.bg.displayWidth / 4,
+      3.2 * this.bg.displayHeight / 4,
+      'You try your luck \non the spooky forest path',
       fontStyleAnswer
     );
 
@@ -112,7 +113,7 @@ export default class QuestionEight extends Phaser.Scene {
 
     this.avatar = this.physics.add.sprite(
       0.15 * this.bg.displayWidth / 4,
-      2 * this.bg.displayHeight / 4,
+      1.5 * this.bg.displayHeight / 4,
       avatarStr
     );
     this.avatar.body.setAllowGravity(false);
