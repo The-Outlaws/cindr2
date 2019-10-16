@@ -22,6 +22,8 @@ import QuestionSixteen from './scenes/QuestionSixteen.js';
 import QuestionSeventeen from './scenes/QuestionSeventeen.js';
 import QuestionEighteen from './scenes/QuestionEighteen.js';
 import QuestionNineteen from './scenes/QuestionNineteen.js';
+import QuestionTwenty from './scenes/QuestionTwenty.js';
+import QuestionTwentyOne from './scenes/QuestionTwentyOne.js';
 import DestinationRoom from './scenes/DestinationRoom.js';
 import TrollHole from './scenes/TrollHole.js';
 
@@ -48,6 +50,8 @@ const gameConfig = Object.assign(config, {
     QuestionSeventeen,
     QuestionEighteen,
     QuestionNineteen,
+    QuestionTwenty,
+    QuestionTwentyOne,
     DestinationRoom,
     TrollHole
   ]
