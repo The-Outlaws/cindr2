@@ -170,34 +170,40 @@ async function seed() {
       image: '/OfficeTrollHole.png'
     }),
     Room.create({
+      id: 1,
       name: 'Quaint Cottage',
       trollRoom: false,
-      image: '/MushroomScene.png'
+      image: '/cottage.jpg'
     }),
     Room.create({
+      id: 2,
       name: 'Evil Castle',
       trollRoom: false,
       image: '/CastleScene.png'
     }),
     Room.create({
+      id: 3,
       name: 'Haunted Lair',
       trollRoom: false,
-      image: '/CrystalScene.png'
+      image: '/hauntedlair.jpg'
     }),
     Room.create({
+      id: 4,
       name: 'Whimsical Meadow',
       trollRoom: false,
       image: '/MushroomScene.png'
     }),
     Room.create({
+      id: 5,
       name: 'Happy Kitchen',
       trollRoom: false,
       image: '/ColorfulBoringKitchen.png'
     }),
     Room.create({
-      name: 'Cozy Hut',
+      id: 6,
+      name: 'Cat Garden',
       trollRoom: false,
-      image: '/MushroomScene.png'
+      image: '/catgarden.jpg'
     }),
     Room.create({
       name: 'Cavernous Cave',
@@ -205,9 +211,10 @@ async function seed() {
       image: '/CrystalScene.png'
     }),
     Room.create({
-      name: 'Limey Cave',
+      id: 11,
+      name: 'Spooky Forest',
       trollRoom: false,
-      image: '/MushroomScene.png'
+      image: '/spookyfeast.gif'
     }),
     Room.create({
       name: 'Frozen the Musical',
@@ -230,14 +237,16 @@ async function seed() {
       image: '/CastleScene.png'
     }),
     Room.create({
+      id: 9,
       name: 'Green Grove',
       trollRoom: false,
-      image: '/MushroomScene.png'
+      image: '/wisetree.jpg'
     }),
     Room.create({
-      name: 'Wise Tree',
+      id: 8,
+      name: 'Garden',
       trollRoom: false,
-      image: '/CrystalScene.png'
+      image: '/garden.jpg'
     }),
     Room.create({
       name: 'Awkward Tree House',
@@ -255,48 +264,57 @@ async function seed() {
   //   UserRooms.create({ isActive: false, userId: 4, roomId: 2 })
   // ]);
   const questions = await Promise.all([
-    Question.create({ content: 'Who strikes your fancy?', roomId: 1 }),
+    Question.create({ id: 1, content: 'Who strikes your fancy?', roomId: 1 }),
     Question.create({
+      id: 2,
       content: 'This castle is filled with ghosts. What to do?',
       roomId: 2
     }),
     Question.create({
+      id: 3,
       content:
         'The friendly ghosts can’t imbibe, but as gracious hosts, they invite you to - you choose:',
       roomId: 3
     }),
     Question.create({
+      id: 4,
       content:
         'The ghosts would love for you to stay, but they have some haunting to do. Busy busy, they can’t wait for retirement. They lead you toward two paths, you choose:',
-      roomId: 5
-    }),
-    Question.create({
-      content:
-        'The ghosts kick you out - they were hoping for something a little more exciting. You:',
-      roomId: 6
-    }),
-    Question.create({
-      content:
-        'There’s a tabby cat blocking your path - when you approach, she gives you a set of instructions for a task she needs help with. You:',
       roomId: 4
     }),
     Question.create({
-      content: 'The cat’s kitten has climbed a tree and can’t get down! You:',
+      id: 5,
+      content:
+        'The ghosts kick you out - they were hoping for something a little more exciting. You:',
+      roomId: 5
+    }),
+    Question.create({
+      id: 6,
+      content:
+        'There’s a tabby cat blocking your path - when you approach, she gives you a set of instructions for a task she needs help with. You:',
+      roomId: 6
+    }),
+    // Question.create({id: 7,
+    //   content: 'The cat’s kitten has climbed a tree and can’t get down! You:',
+    //   roomId: 11
+    // }),
+    Question.create({
+      id: 8,
+      content: 'You encounter a table, set with an immaculate feast. You: ',
       roomId: 11
     }),
     Question.create({
-      content: 'You encounter a table, set with an immaculate feast. You: ',
-      roomId: 7
-    }),
-    Question.create({
+      id: 7,
       content: 'ROOM 8 QUESTION',
-      roomId: 8
+      roomId: 6
     }),
     Question.create({
+      id: 10,
       content: 'ROOM 9 QUESTION, TROLL HOLE????',
       roomId: 9
     }),
     Question.create({
+      id: 11,
       content: 'ROOM 10 QUESTION',
       roomId: 10
     })
@@ -304,7 +322,7 @@ async function seed() {
 
   const answers = await Promise.all([
     Answer.create({ content: 'Friend', roomRouteId: 2, questionId: 1 }),
-    Answer.create({ content: 'Date', roomRouteId: 2, questionId: 1 }),
+    Answer.create({ content: 'Date', roomRouteId: 9, questionId: 1 }),
     Answer.create({
       content: 'Meet some friendly ghosts',
       roomRouteId: 3,
@@ -312,37 +330,37 @@ async function seed() {
     }),
     Answer.create({
       content: 'Run the f*** away',
-      roomRouteId: 4,
+      roomRouteId: 6,
       questionId: 2
     }),
     Answer.create({
       content: 'Beer, duh',
-      roomRouteId: 5,
+      roomRouteId: 4,
       questionId: 3
     }),
     Answer.create({
       content: 'Tea, please',
-      roomRouteId: 6,
+      roomRouteId: 5,
       questionId: 3
     }),
     Answer.create({
       content: 'The garden path, filled with roses',
-      roomRouteId: 7,
-      questionId: 4
-    }),
-    Answer.create({
-      content: 'The spooky forest. Go gently unto that good night',
       roomRouteId: 8,
       questionId: 4
     }),
     Answer.create({
-      content: 'Take the garden path, you want to smell the roses',
+      content: 'The spooky forest. Go gently unto that good night',
       roomRouteId: 9,
+      questionId: 4
+    }),
+    Answer.create({
+      content: 'Take the garden path, you want to smell the roses',
+      roomRouteId: 10,
       questionId: 5
     }),
     Answer.create({
       content: 'Try your luck on the spooky forest path',
-      roomRouteId: 10,
+      roomRouteId: 11,
       questionId: 5
     }),
     Answer.create({
