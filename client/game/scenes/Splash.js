@@ -32,8 +32,8 @@ export default class Splash extends Phaser.Scene {
     );
 
     this.start = this.add.text(
-      1.65 * this.game.config.width / 4,
-      1.6 * this.game.config.height / 4,
+      2.6 * this.game.config.width / 4,
+      3 * this.game.config.height / 4,
       'Start Adventure',
       {
         fill: 'white',
@@ -44,8 +44,8 @@ export default class Splash extends Phaser.Scene {
     this.physicsObjectStart = this.physics.add.existing(this.start, 'static');
 
     this.avatar = this.physics.add.sprite(
-      this.game.config.width / 4,
-      4 * this.game.config.height / 5,
+      this.game.config.width / 6,
+      this.game.config.height / 5,
       avatarStr
     );
     this.avatar.body.setAllowGravity(false);
