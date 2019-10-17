@@ -41,7 +41,7 @@ async function seed() {
     User.create({
       firstName: 'Nicki',
       height: "5'4",
-      email: 'nikki@email.com',
+      email: 'nicki@email.com',
       gender: 'Female',
       password: '123',
       age: 30,
@@ -452,35 +452,30 @@ async function seed() {
 
   const conversations = await Promise.all([
     Conversation.create({
-      id: 1,
       userId: 1,
       matchId: 2,
       isAccepted: true,
       isRejected: false
     }),
     Conversation.create({
-      id: 2,
       userId: 2,
       matchId: 3,
       isAccepted: true,
       isRejected: false
     }),
     Conversation.create({
-      id: 3,
       userId: 1,
       matchId: 3,
       isAccepted: false,
       isRejected: false
     }),
     Conversation.create({
-      id: 4,
       userId: 1,
       matchId: 4,
       isAccepted: true,
       isRejected: false
     }),
     Conversation.create({
-      id: 5,
       userId: 5,
       matchId: 1,
       isAccepted: false,

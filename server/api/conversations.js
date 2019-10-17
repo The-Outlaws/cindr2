@@ -28,13 +28,41 @@ router.get('/', async (req, res, next) => {
 router.post('/request', async (req, res, next) => {
   const { matchId } = req.body;
   try {
-    const conversation = await Conversation.findOrCreate({
+    const [conversation, wasCreated] = await Conversation.findOrCreate({
       where: {
         userId: req.user.id,
         matchId: matchId
-      }
+      },
+      include: [
+        { model: Message, include: [User] },
+        { model: User, as: 'match' },
+        { model: User, as: 'user' }
+      ],
+      order: [[Message, 'updatedAt', 'DESC']]
     });
-    res.json(conversation);
+    const duplicate = await Conversation.findOne({
+      where: {
+        userId: matchId,
+        matchId: req.user.id
+      },
+      include: [
+        { model: Message, include: [User] },
+        { model: User, as: 'match' },
+        { model: User, as: 'user' }
+      ],
+      order: [[Message, 'updatedAt', 'DESC']]
+    });
+    if (!duplicate) {
+      res.json(conversation);
+    } else {
+      await Conversation.destroy({
+        where: {
+          userId: req.user.id,
+          matchId: matchId
+        }
+      });
+      res.json(duplicate);
+    }
   } catch (err) {
     next(err);
   }
@@ -44,7 +72,8 @@ router.post('/accept', async (req, res, next) => {
   try {
     const conversation = await Conversation.findOne({
       where: {
-        id: conversationId
+        id: conversationId,
+        isAccepted: false
       },
       include: [
         { model: Message, include: [User] },
