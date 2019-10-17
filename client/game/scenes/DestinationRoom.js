@@ -34,12 +34,13 @@ export default class DestinationRoom extends Phaser.Scene {
       // this.avatarLoad ++
     });
     room.forEach((rm, idx) => {
+      // console.log(rm.photo)
       return this.load.image(`photo${idx}`, rm.photo);
       // this.avatarLoad ++
     });
   }
   create() {
-    const { user: { id }, room } = store.getState();
+    const { user, room } = store.getState();
     console.log(room);
     this.bg = this.add.image(
       this.game.config.width / 2,

@@ -32,7 +32,8 @@ const User = db.define('user', {
     allowNull: false
   },
   photo: {
-    type: Sequelize.STRING
+    type: Sequelize.STRING,
+    defaultValue: '/defaultphoto.jpg'
   },
   avatar: {
     type: Sequelize.STRING,

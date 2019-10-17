@@ -17,7 +17,7 @@ class SignupForm extends React.Component {
       isEdit: false,
       selectAvatar: false,
       uploadedFile: null,
-      uploadedFileCloudinaryUrl: '',
+      uploadedFileCloudinaryUrl: null,
       image: null
     };
     this.age = Array.from(new Array());
@@ -201,7 +201,7 @@ class SignupForm extends React.Component {
                 </Dropzone>
               </div>
               <div>
-                {this.state.uploadedFileCloudinaryUrl === '' ? null : (
+                {this.state.uploadedFileCloudinaryUrl === null ? null : (
                   <div>
                     <img src={this.state.uploadedFileCloudinaryUrl} />
                   </div>

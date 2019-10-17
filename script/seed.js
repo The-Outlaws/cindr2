@@ -85,7 +85,7 @@ async function seed() {
       email: 'abram@email.com',
       gender: 'Male',
       password: '123',
-      photo: 'chandler.jpg',
+      photo: `/chandler.jpg`,
       age: 47,
       orientation: 'contingency'
     }),
@@ -94,7 +94,7 @@ async function seed() {
       height: "5'4",
       email: 'jarvis@email.com',
       gender: 'Male',
-      photo: 'ross.jpg',
+      photo: `/ross.jpg`,
       password: '123',
       age: 21,
       orientation: 'Expanded'
