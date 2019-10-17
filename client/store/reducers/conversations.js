@@ -78,7 +78,8 @@ export default function conversations(state = [], action) {
       const newState = state.filter(convo => convo.id !== action.convo.id);
       return [...newState, action.convo];
     case REQUEST_CONVERSATION:
-      return [...state, action.convo];
+      const anotherState = state.filter(convo => convo.id !== action.convo.id);
+      return [...anotherState, action.convo];
     default:
       return state;
   }
