@@ -1,6 +1,6 @@
 import Phaser from 'phaser';
 // import Avatar from '../sprites/Avatar';
-import store from '../../store';
+import store, { requestConversation } from '../../store';
 // import { getActiveUsers } from '../../store/reducers/room';
 
 const fontStyleQuestion = {
@@ -62,6 +62,7 @@ export default class DestinationRoom extends Phaser.Scene {
       const avatarString = `avatar${idx}`;
       const photoString = `photo${idx}`;
       const userData = {
+        id: rm.id,
         x: this.avatarPlacement.x,
         y: this.avatarPlacement.y,
         age: rm.age,
@@ -174,17 +175,22 @@ export default class DestinationRoom extends Phaser.Scene {
       `Height ${userData.height}`,
       { fill: 'black', font: '20px' }
     );
+    const matchId = { matchId: userData.id };
     const requestToMatchButton = this.add
       .rectangle(rect.x, height.y + 50, 230, 35, '0xFFC300')
       .setInteractive()
       .on('pointerover', () => this.hover(this.requestToMatch))
-      .on('pointerout', () => this.restState(this.requestToMatch));
+      .on('pointerout', () => this.restState(this.requestToMatch))
+      .on('pointerdown', () => {
+        store.dispatch(requestConversation(matchId));
+      });
     this.requestToMatch = this.add.text(
       name.x,
       requestToMatchButton.y - 10,
       'Request to Match',
       { fill: 'black', font: '20px' }
     );
+
     // .setInteractive()
     // .on('pointerover', () => this.hover(this.requestToMatch))
     const closeButton = this.add
