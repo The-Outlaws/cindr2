@@ -21,6 +21,9 @@ router.get('/:roomId', async (req, res, next) => {
       include: [User]
     });
     const currentRoom = allRooms.filter(room => room.id == req.params.roomId);
+    //get only active users, not including the user herself
+    // const activeUsers = currentRoom.users.filter(user => user !== req.user.id)
+    // res.json(activeUsers)
     res.json(currentRoom);
   } catch (error) {
     next(error);

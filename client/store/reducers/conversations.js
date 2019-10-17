@@ -1,6 +1,11 @@
 import axios from 'axios';
 // import socket from '../../socket';
-import { GET_CONVERSATIONS, ACCEPT_REQUEST, REJECT_REQUEST } from './index';
+import {
+  GET_CONVERSATIONS,
+  ACCEPT_REQUEST,
+  REJECT_REQUEST,
+  REQUEST_CONVERSATION
+} from './index';
 
 // ACTION CREATORS
 
@@ -16,6 +21,10 @@ export function rejectedConversation(convo) {
   const action = { type: REJECT_REQUEST, convo };
   return action;
 }
+const requestedConversation = convo => ({
+  type: REQUEST_CONVERSATION,
+  convo
+});
 // THUNK CREATORS
 export const getConversations = () => {
   return async dispatch => {
@@ -48,6 +57,15 @@ export const rejectConversation = convoInfo => {
     }
   };
 };
+export const requestConversation = match => async dispatch => {
+  try {
+    const { data } = await axios.post('/api/conversations/request', match);
+    dispatch(requestedConversation(data));
+  } catch (err) {
+    console.error(err);
+  }
+};
+
 // REDUCER
 export default function conversations(state = [], action) {
   switch (action.type) {
@@ -59,6 +77,8 @@ export default function conversations(state = [], action) {
     case REJECT_REQUEST:
       const newState = state.filter(convo => convo.id !== action.convo.id);
       return [...newState, action.convo];
+    case REQUEST_CONVERSATION:
+      return [...state, action.convo];
     default:
       return state;
   }

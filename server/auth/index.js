@@ -59,7 +59,7 @@ router.post('/signup', async (req, res, next) => {
       photo: photo,
       avatar: avatar
     });
-    const room = await user.addRoom(1);
+    const room = await user.addRoom(7);
     const userToSend = await User.findOne({
       where: { email: email },
       include: [

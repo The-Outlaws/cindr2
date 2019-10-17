@@ -25,7 +25,20 @@ router.get('/', async (req, res, next) => {
     next(err);
   }
 });
-
+router.post('/request', async (req, res, next) => {
+  const { matchId } = req.body;
+  try {
+    const conversation = await Conversation.findOrCreate({
+      where: {
+        userId: req.user.id,
+        matchId: matchId
+      }
+    });
+    res.json(conversation);
+  } catch (err) {
+    next(err);
+  }
+});
 router.post('/accept', async (req, res, next) => {
   const { isAccepted, isRejected, conversationId } = req.body;
   try {
