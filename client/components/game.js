@@ -18,7 +18,7 @@ class DisconnectedGameContainer extends React.Component {
     // between the current user and the first room
     // this.props.gotActiveRoom(this.props.userId);
     // this.props.gotUser(this.props.userId)
-    this.props.getUsers();
+    this.props.getUsers(7, this.props.userId);
     this.setState({ game: new Game() });
   }
 
@@ -42,7 +42,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => ({
   // gotActiveRoom: userId => dispatch(gotActiveRoom(userId))
   // gotUser: (userId) => dispatch(getUser(userId))
-  getUsers: room => dispatch(getActiveUsers(7))
+  getUsers: (room, userId) => dispatch(getActiveUsers(room, userId))
 });
 
 const GameContainer = connect(mapStateToProps, mapDispatchToProps)(
