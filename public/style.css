@@ -275,7 +275,7 @@ code {
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 50vw;
+  width: 40vw;
 }
 
 .login-form img {
@@ -620,6 +620,10 @@ code {
 
 .sidebar ul li a span:first-child {
   margin-right: 10px;
+}
+.sidebar ul li a span img {
+  height: 50%;
+  width: auto;
 }
 /* main */
 .chat img#main {

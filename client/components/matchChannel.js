@@ -9,6 +9,14 @@ const disconnectedMatchChannel = props => {
     <li>
       <NavLink to={`/matches/${matchId}`} activeClassName="active">
         {props.matchUser ? (
+          props.matchUser.isLoggedIn ? (
+            <span className="badge">
+              <img src={props.matchUser.avatar} />
+            </span>
+          ) : null
+        ) : null}
+
+        {props.matchUser ? (
           <span>{props.matchUser.firstName}</span>
         ) : (
           <span>Loading Match</span>
