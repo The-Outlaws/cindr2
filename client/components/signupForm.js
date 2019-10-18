@@ -136,7 +136,7 @@ class disconnectedSignupForm extends React.Component {
       case 'gender':
         errors.gender =
           event.target.value.length < 1
-            ? `While not required, it could be helpful for others to know how you identify`
+            ? `How you identify your gender is required`
             : '';
         break;
       default:
