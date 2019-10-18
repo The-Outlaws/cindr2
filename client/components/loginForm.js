@@ -46,11 +46,12 @@ const LoginForm = props => {
             <div className="button-container">
               <button type="submit">Login</button>
             </div>
-            <Link to="/">
-              <div className="button-container">
-                <button type="button">Home</button>
-              </div>
-            </Link>
+
+            <div className="button-container">
+              <Link to="/">
+                <button type="submit">Home</button>
+              </Link>
+            </div>
           </div>
         </div>
       </form>

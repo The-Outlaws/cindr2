@@ -27,37 +27,47 @@ class Profile extends React.Component {
     return (
       <div className="login-form">
         <div className="container">
-          <div className="img">
-            <img src={avatar} alt="cute troll" />
-          </div>
-          <img src={photo} alt="no photo added" />
           <div className="heading">
             <h4>{firstName}'s Profile</h4>
           </div>
+          <div className="img">
+            <img src={avatar} alt="cute troll" />
+
+            <img src={photo} alt="no photo added" />
+          </div>
+
           <div className="form-fields">
-            <div>
-              <p className="form-inputs">{firstName}</p>
+            <div className="input-box">
+              <p className="profile-titles">
+                Name: <span>{firstName}</span>
+              </p>
             </div>
-            <div>
-              <p className="form-inputs">{email}</p>
+            <div className="input-box">
+              <p className="profile-titles">
+                Email: <span>{email}</span>
+              </p>
             </div>
-            <div>
-              <p className="form-inputs">***** {password}</p>
+
+            <div className="input-box">
+              <p className="profile-titles">
+                Age: <span>{age}</span>
+              </p>
             </div>
-            <div>
-              <p className="form-inputs">{age}</p>
+            <div className="input-box">
+              <p className="profile-titles">
+                Height: <span>{height}</span>
+              </p>
             </div>
-            <div>
-              <p className="form-inputs">{height}</p>
+            <div className="input-box">
+              <p className="profile-titles">
+                Orientation: <span>{orientation}</span>
+              </p>
             </div>
-            <div>
-              <p className="form-inputs">{orientation}</p>
+            <div className="input-box">
+              <p className="profile-titles">
+                Gender: <span>{gender}</span>
+              </p>
             </div>
-            <div>
-              <p className="form-inputs">{gender}</p>
-            </div>
-            <div>{/* <img src={this.props.photo} /> */}</div>
-            <div>{/* <img src={this.props.avatar} /> */}</div>
           </div>
           <div className="form-fields">
             <div className="submitButton-container">

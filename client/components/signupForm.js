@@ -58,7 +58,7 @@ class disconnectedSignupForm extends React.Component {
         isEdit: false,
         selectAvatar: false,
         uploadedFile: null,
-        uploadedFileCloudinaryUrl: null,
+        uploadedFileCloudinaryUrl: photo,
         image: null,
         firstName: firstName,
         email: email,
@@ -175,6 +175,7 @@ class disconnectedSignupForm extends React.Component {
       this.setState(this.initialState);
     }
   }
+  // eslint-disable-next-line complexity
   render() {
     //age dropdown
     const ages = [];
@@ -347,14 +348,14 @@ class disconnectedSignupForm extends React.Component {
                           !isDragReject &&
                           "Drop it like it's hot!"}
                         {isDragReject && 'File type not accepted, sorry!'}
-                        <ul className="list-group mt-2">
+                        <div className="list-group mt-2">
                           {acceptedFiles.length > 0 &&
                             acceptedFiles.map(acceptedFile => (
-                              <li className="list-group-item list-group-item-success">
+                              <p className="list-group-item list-group-item-success">
                                 {acceptedFile.name}
-                              </li>
+                              </p>
                             ))}
-                        </ul>
+                        </div>
                       </div>
                     );
                   }}
@@ -362,7 +363,7 @@ class disconnectedSignupForm extends React.Component {
               </div>
               <div>
                 {this.state.uploadedFileCloudinaryUrl === null ? null : (
-                  <div>
+                  <div className="photo">
                     <img src={this.state.uploadedFileCloudinaryUrl} />
                   </div>
                 )}
@@ -374,11 +375,13 @@ class disconnectedSignupForm extends React.Component {
                     : 'Select your Avatar'}
                 </button>
               </div>
-              <div className="imgage_picker">
-                {this.state.selectAvatar ? (
-                  <AvatarForm handleAvatar={this.handleAvatar.bind(this)} />
-                ) : null}
-              </div>
+            </div>
+            <div className="image_picker">
+              {this.state.selectAvatar ? (
+                <AvatarForm handleAvatar={this.handleAvatar.bind(this)} />
+              ) : null}
+            </div>
+            <div className="form-fields">
               <div className="errorLarge">
                 {!this.props.error
                   ? null
