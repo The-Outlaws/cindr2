@@ -183,7 +183,9 @@ export default class DestinationRoom extends Phaser.Scene {
       .on('pointerout', () => this.restState(this.requestToMatch))
       .on('pointerdown', () => {
         store.dispatch(requestConversation(matchId));
+        this.requestToMatch.text = 'Request sent!';
       });
+
     this.requestToMatch = this.add.text(
       name.x,
       requestToMatchButton.y - 10,
@@ -191,8 +193,6 @@ export default class DestinationRoom extends Phaser.Scene {
       { fill: 'black', font: '20px' }
     );
 
-    // .setInteractive()
-    // .on('pointerover', () => this.hover(this.requestToMatch))
     const closeButton = this.add
       .rectangle(rect.x, requestToMatchButton.y + 40, 230, 35, '0xFFC300')
       .setInteractive()
@@ -207,6 +207,7 @@ export default class DestinationRoom extends Phaser.Scene {
       .setInteractive()
       .on('pointerover', () => this.hover(this.close))
       .on('pointerdown', () => this.closeWindow(window));
+
     const window = [
       rect,
       photo,

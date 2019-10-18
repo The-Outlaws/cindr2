@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import MatchChannel from './matchChannel';
-// import { fetchMessages } from '../store';
 
 class disconnectedMatchesList extends Component {
   render() {
@@ -32,6 +31,11 @@ class disconnectedMatchesList extends Component {
                   key={convo.id}
                   convoId={convo.id}
                   convo={convo}
+                  matchId={
+                    convo.match.id === this.props.user.id
+                      ? convo.userId
+                      : convo.matchId
+                  }
                   matchUser={
                     convo.match.id === this.props.user.id
                       ? convo.user
@@ -46,12 +50,12 @@ class disconnectedMatchesList extends Component {
         </ul>
         <h4>New Match Requests</h4>
         <ul>
-
           {requestConvos.length > 0 ? (
             requestConvos.map(convo => {
               return (
                 <MatchChannel
                   key={convo.id}
+                  matchId={convo.userId}
                   matchUser={convo.user}
                   convo={convo}
                 />
@@ -68,6 +72,7 @@ class disconnectedMatchesList extends Component {
               return (
                 <MatchChannel
                   key={convo.id}
+                  matchId={convo.matchId}
                   matchUser={convo.match}
                   convo={convo}
                 />

@@ -41,6 +41,55 @@ router.post('/updateRoom', async (req, res, next) => {
   }
 });
 
+router.post('/edit', async (req, res, next) => {
+  try {
+    const {
+      email,
+      password,
+      firstName,
+      age,
+      height,
+      orientation,
+      gender,
+      photo,
+      avatar
+    } = req.body;
+    const user = await User.findOne({
+      where: {
+        id: req.user.id
+      }
+    });
+    if (user.email === req.body.email) {
+      const updatedUser = await user.update({
+        password: password,
+        firstName: firstName,
+        age: age,
+        height: height,
+        orientation: orientation,
+        gender: gender,
+        photo: photo,
+        avatar: avatar
+      });
+      res.json(updatedUser);
+    } else {
+      const updatedUser = await user.update({
+        email: email,
+        password: password,
+        firstName: firstName,
+        age: age,
+        height: height,
+        orientation: orientation,
+        gender: gender,
+        photo: photo,
+        avatar: avatar
+      });
+      res.json(updatedUser);
+    }
+  } catch (err) {
+    next(err);
+  }
+});
+
 router.get('/active/:userId', async (req, res, next) => {
   try {
     const roomData = await User.findOne({

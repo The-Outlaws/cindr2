@@ -403,13 +403,23 @@ code {
   border: none;
   border-radius: 10px;
   /* margin-right: 0px; */
-  width: 50%;
+  /* width: 50%; */
 }
 
 .login-form .container .form-fields .submitButton-container button:hover {
   background-color: #414855;
 }
-
+.login-form .container .form-fields .error {
+  display: flex;
+  margin-top: 1vh;
+  justify-content: flex-end;
+  font-size: 11px;
+  color: tomato;
+}
+.login-form .container .form-fields .errorLarge {
+  font-size: 14px;
+  color: tomato;
+}
 .fileAdd {
   display: flex;
   /* color: #4b8eb2; */
@@ -436,6 +446,7 @@ code {
 }
 
 .error {
+  color: tomato;
   margin-top: 30px;
 }
 .game {
