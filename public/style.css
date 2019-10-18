@@ -403,7 +403,7 @@ code {
   border: none;
   border-radius: 10px;
   /* margin-right: 0px; */
-  width: 50%;
+  /* width: 50%; */
 }
 
 .login-form .container .form-fields .submitButton-container button:hover {
