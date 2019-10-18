@@ -32,7 +32,7 @@ async function seed() {
       height: "5'4",
       email: 'guenna@email.com',
       gender: 'Female',
-      password: '123',
+      password: '123password',
       age: 21,
       avatar: '/fairy.png',
       photo: '/phoebe.jpg',
@@ -41,9 +41,9 @@ async function seed() {
     User.create({
       firstName: 'Nicki',
       height: "5'4",
-      email: 'nikki@email.com',
+      email: 'nicki@email.com',
       gender: 'Female',
-      password: '123',
+      password: '123password',
       age: 30,
       avatar: '/goblin.png',
       photo: '/joey.png',
@@ -54,7 +54,7 @@ async function seed() {
       height: "5'4",
       email: 'lissa@email.com',
       gender: 'Female',
-      password: '123',
+      password: '123password',
       age: 91,
       avatar: '/dragon.png',
       photo: '/rachel.jpg',
@@ -65,7 +65,7 @@ async function seed() {
       height: "5'4",
       email: 'piper@email.com',
       gender: 'Female',
-      password: '123',
+      password: '123password',
       photo: '/monica.jpg',
       age: 59,
       orientation: 'Visionary'
@@ -75,7 +75,7 @@ async function seed() {
       height: "5'4",
       email: 'lyndell@email.com',
       gender: 'Female',
-      password: '123',
+      password: '123password',
       age: 38,
       orientation: 'Innovative'
     }),
@@ -84,8 +84,8 @@ async function seed() {
       height: "5'4",
       email: 'abram@email.com',
       gender: 'Male',
-      password: '123',
-      photo: 'chandler.jpg',
+      password: '123password',
+      photo: `/chandler.jpg`,
       age: 47,
       orientation: 'contingency'
     }),
@@ -94,8 +94,8 @@ async function seed() {
       height: "5'4",
       email: 'jarvis@email.com',
       gender: 'Male',
-      photo: 'ross.jpg',
-      password: '123',
+      photo: `/ross.jpg`,
+      password: '123password',
       age: 21,
       orientation: 'Expanded'
     }),
@@ -452,35 +452,30 @@ async function seed() {
 
   const conversations = await Promise.all([
     Conversation.create({
-      id: 1,
       userId: 1,
       matchId: 2,
       isAccepted: true,
       isRejected: false
     }),
     Conversation.create({
-      id: 2,
       userId: 2,
       matchId: 3,
       isAccepted: true,
       isRejected: false
     }),
     Conversation.create({
-      id: 3,
       userId: 1,
       matchId: 3,
       isAccepted: false,
       isRejected: false
     }),
     Conversation.create({
-      id: 4,
       userId: 1,
       matchId: 4,
       isAccepted: true,
       isRejected: false
     }),
     Conversation.create({
-      id: 5,
       userId: 5,
       matchId: 1,
       isAccepted: false,

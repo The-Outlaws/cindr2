@@ -1,17 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 /**
  * COMPONENT
  */
 class Profile extends React.Component {
-  toggleEdit() {
-    window.location.pathname = '/signup';
-  }
+  // toggleEdit() {
+  //   window.location.pathname = '/signup';
+  // }
 
   render() {
-    console.log('PROFILE! ', this.props);
     const {
       email,
       password,
@@ -19,16 +19,18 @@ class Profile extends React.Component {
       age,
       height,
       orientation,
-      gender
+      gender,
+      avatar,
+      photo
     } = this.props;
 
     return (
       <div className="login-form">
         <div className="container">
           <div className="img">
-            <img src="/troll128.png" alt="cute troll 128" />
+            <img src={avatar} alt="cute troll" />
           </div>
-
+          <img src={photo} alt="no photo added" />
           <div className="heading">
             <h4>{firstName}'s Profile</h4>
           </div>
@@ -60,9 +62,24 @@ class Profile extends React.Component {
           <div className="form-fields">
             <div className="submitButton-container">
               {/* <button type="edit">Edit</button> */}
-              <button type="edit" onClick={this.toggleEdit}>
-                Edit
-              </button>
+              <Link
+                to={{
+                  pathname: '/signup',
+                  state: {
+                    email,
+                    password,
+                    firstName,
+                    age,
+                    height,
+                    orientation,
+                    gender,
+                    avatar,
+                    photo
+                  }
+                }}
+              >
+                <button type="button">Edit</button>
+              </Link>
             </div>
           </div>
         </div>
@@ -82,7 +99,9 @@ const mapState = state => {
     age: state.user.age,
     height: state.user.height,
     orientation: state.user.orientation,
-    gender: state.user.gender
+    gender: state.user.gender,
+    avatar: state.user.avatar,
+    photo: state.user.photo
   };
 };
 

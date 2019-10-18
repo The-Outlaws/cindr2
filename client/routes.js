@@ -8,7 +8,7 @@ import MapHistory from './components/mapHistory';
 import Matches from './components/matches';
 import { ProfileInfo } from './components/profile';
 import { HomePage } from './components/homePage';
-import { Signup } from './components/signupForm';
+import Signup from './components/signupForm';
 import { Login } from './components/loginForm';
 
 /**

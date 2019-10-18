@@ -1,6 +1,6 @@
 import axios from 'axios';
 import history from '../../history';
-import { GET_USER, REMOVE_USER, UPDATE_USER } from './index';
+import { GET_USER, REMOVE_USER, UPDATE_USER, EDIT_USER } from './index';
 
 /**
  * ACTION CREATORS
@@ -78,7 +78,35 @@ export const updateUserRooms = (userId, roomId) => async dispatch => {
     console.error(err);
   }
 };
-
+export const editProfile = (
+  email,
+  password,
+  firstName,
+  age,
+  height,
+  orientation,
+  gender,
+  photo,
+  avatar
+) => async dispatch => {
+  try {
+    const { data } = await axios.post(`/api/users/edit`, {
+      email,
+      password,
+      firstName,
+      age,
+      height,
+      orientation,
+      gender,
+      photo,
+      avatar
+    });
+    dispatch(getUser(data));
+    history.push('/game');
+  } catch (err) {
+    console.error(err);
+  }
+};
 /**
  * REDUCER
  */
@@ -90,6 +118,8 @@ export default function user(state = {}, action) {
       return action.user;
     case REMOVE_USER:
       return {};
+    case EDIT_USER:
+      return action.user;
     default:
       return state;
   }

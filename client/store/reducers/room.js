@@ -9,13 +9,16 @@ export const gotActiveUsers = destinationRoom => ({
   destinationRoom
 });
 // //THUNK CREATORS
-export const getActiveUsers = roomId => {
+export const getActiveUsers = (roomId, userId) => {
   return async dispatch => {
     try {
       console.log(roomId);
       const res = await axios.get(`/api/rooms/${roomId}`);
-      console.log('in get active users', res);
-      dispatch(gotActiveUsers(res.data[0].users));
+      // console.log('in get active users', res);
+      // dispatch(gotActiveUsers(res.data));
+      dispatch(
+        gotActiveUsers(res.data[0].users.filter(user => user.id !== userId))
+      );
     } catch (err) {
       console.error(err);
     }
