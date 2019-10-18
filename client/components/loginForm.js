@@ -36,7 +36,13 @@ const LoginForm = props => {
                 name="password"
               />
             </div>
-
+            <span className="error">
+              {!props.error
+                ? null
+                : props.error.message === 'Wrong username and/or password'
+                  ? 'Wrong username and/or password'
+                  : 'Wrong username and/or password'}
+            </span>
             <div className="button-container">
               <button type="submit">Login</button>
             </div>

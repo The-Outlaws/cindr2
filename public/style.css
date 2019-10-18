@@ -409,7 +409,14 @@ code {
 .login-form .container .form-fields .submitButton-container button:hover {
   background-color: #414855;
 }
-
+.login-form .container .form-fields .error {
+  font-size: 11px;
+  color: tomato;
+}
+.login-form .container .form-fields .errorLarge {
+  font-size: 14px;
+  color: tomato;
+}
 .fileAdd {
   display: flex;
   /* color: #4b8eb2; */
@@ -436,6 +443,7 @@ code {
 }
 
 .error {
+  color: tomato;
   margin-top: 30px;
 }
 .game {

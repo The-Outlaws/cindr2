@@ -10,17 +10,31 @@ import AvatarForm from './avatarForm';
 const CLOUDINARY_UPLOAD_PRESET = 'drxd8wpf';
 const CLOUDINARY_UPLOAD_URL = `https://api.cloudinary.com/v1_1/dxllpi9sq/image/upload`;
 
-class SignupForm extends React.Component {
+const initialState = {
+  isEdit: false,
+  selectAvatar: false,
+  uploadedFile: null,
+  uploadedFileCloudinaryUrl: null,
+  image: null,
+  firstName: '',
+  email: '',
+  password: '',
+  orientation: '',
+  gender: '',
+  errors: {
+    firstName: 'Required',
+    email: 'Required',
+    password: 'Passwords must be at least 6 characteres long',
+    orientation: '',
+    gender: ''
+  }
+};
+class disconnectedSignupForm extends React.Component {
   constructor() {
     super();
-    this.state = {
-      isEdit: false,
-      selectAvatar: false,
-      uploadedFile: null,
-      uploadedFileCloudinaryUrl: null,
-      image: null
-    };
-    this.age = Array.from(new Array());
+    this.state = initialState;
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
     this.onImageDrop = this.onImageDrop.bind(this);
     this.chooseAvatar = this.chooseAvatar.bind(this);
   }
@@ -55,12 +69,62 @@ class SignupForm extends React.Component {
       avatar: image.src
     });
   }
+  handleChange(event) {
+    let errors = this.state.errors;
+    const validEmailRegex = RegExp(
+      /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i
+    );
+    switch (event.target.name) {
+      case 'firstName':
+        errors.firstName =
+          event.target.value.length < 1 ? 'Your first name is required' : '';
+        break;
+      case 'email':
+        errors.email = validEmailRegex.test(event.target.value)
+          ? ''
+          : 'Email is not valid';
+        break;
+      case 'password':
+        errors.password =
+          event.target.value.length < 6
+            ? 'Password must be 6 characters long'
+            : '';
+        break;
+      case 'orientation':
+        errors.orientation =
+          event.target.value.length < 1
+            ? `While not required, it could be helpful for others to know how you identify`
+            : '';
+        break;
+      case 'gender':
+        errors.gender =
+          event.target.value.length < 1
+            ? `While not required, it could be helpful for others to know how you identify`
+            : '';
+        break;
+      default:
+        break;
+    }
+    this.setState({ errors, [event.target.name]: event.target.value });
+  }
+  handleSubmit(evt) {
+    evt.preventDefault();
+    this.props.authorize(
+      this.props.name,
+      this.state.email,
+      this.state.password,
+      this.state.firstName,
+      evt.target.age.value,
+      `${evt.target.feet.value} ${evt.target.inches.value}`,
+      this.state.orientation.value,
+      this.state.gender.value,
+      this.state.uploadedFileCloudinaryUrl,
+      this.state.avatar
+    );
+    this.setState(initialState);
+  }
 
-  getAges() {}
-  // eslint-disable-next-line complexity
   render() {
-    const { name, handleSubmit } = this.props;
-
     //age dropdown
     const ages = [];
     for (let i = 18; i <= 100; i++) {
@@ -86,10 +150,10 @@ class SignupForm extends React.Component {
     const heightInchesSelection = inches.map(inch => {
       return <option key={inch}>{inch}</option>;
     });
-
+    const { errors } = this.state;
     return (
       <div className="login-form">
-        <form onSubmit={handleSubmit.bind(this)} name={name}>
+        <form onSubmit={this.handleSubmit}>
           <div className="container">
             <div className="img">
               <img src="/troll256.png" alt="cute troll 128" />
@@ -107,25 +171,35 @@ class SignupForm extends React.Component {
                   // placeholder="Nye"
                   className="form-control"
                   name="firstName"
+                  onChange={this.handleChange}
                 />
+                {errors.firstName.length > 0 && (
+                  <span className="error">{errors.firstName}</span>
+                )}
               </div>
               <div className="input-box">
                 <p className="field-titles">Email</p>
                 <input
                   type="text"
-                  // placeholder="Nye@email.com"
                   className="form-control"
                   name="email"
+                  onChange={this.handleChange}
                 />
+                {errors.email.length > 0 && (
+                  <span className="error">{errors.email}</span>
+                )}
               </div>
               <div className="input-box">
                 <p className="field-titles">Password</p>
                 <input
                   type="password"
-                  // placeholder="NxeFr2"
                   className="form-control"
                   name="password"
+                  onChange={this.handleChange}
                 />
+                {errors.password.length > 0 && (
+                  <span className="error">{errors.password}</span>
+                )}
               </div>
               <div className="input-box">
                 <p className="field-titles">Select your age</p>
@@ -144,23 +218,34 @@ class SignupForm extends React.Component {
                   {heightInchesSelection}
                 </select>
               </div>
+              <div className="inclusivity-note">
+                ** Here at Cinder, inclusivity is important to us. Orientation
+                and gender are open fields for you to enter what you feel best
+                represents you.
+              </div>
               <div className="input-box">
                 <p className="field-titles">Orientation **</p>
                 <input
                   type="text"
-                  // placeholder="Orientation *"
+                  onChange={this.handleChange}
                   className="form-control"
                   name="orientation"
                 />
+                {errors.orientation.length > 0 && (
+                  <span className="error">{errors.orientation}</span>
+                )}
               </div>
               <div className="input-box">
                 <p className="field-titles">Gender **</p>
                 <input
                   type="text"
-                  // placeholder="Gender *"
+                  onChange={this.handleChange}
                   className="form-control"
                   name="gender"
                 />
+                {errors.gender.length > 0 && (
+                  <span className="error">{errors.gender}</span>
+                )}
               </div>
               <div className="fileAdd">
                 <Dropzone
@@ -219,7 +304,14 @@ class SignupForm extends React.Component {
                   <AvatarForm handleAvatar={this.handleAvatar.bind(this)} />
                 ) : null}
               </div>
-
+              <div className="errorLarge">
+                {!this.props.error
+                  ? null
+                  : this.props.error.message ===
+                    'Request failed with status code 401'
+                    ? 'Hmm - it looks like this user already exists!'
+                    : 'Hmm - your profile was not created. Try checking the information you entered to make sure it is correct.'}
+              </div>
               <div className="submitButton-container">
                 <button type="submit">Submit</button>
               </div>
@@ -229,19 +321,6 @@ class SignupForm extends React.Component {
                   <button type="submit">Home</button>
                 </div>
               </Link>
-              <div className="error">
-                {!this.props.error
-                  ? null
-                  : this.props.error.message ===
-                    'Request failed with status code 401'
-                    ? 'Hmm - it looks like this user already exists!'
-                    : 'Hmm - your profile was not created. Try checking the information you entered to make sure it is correct.'}
-              </div>
-              <div className="inclusivity-note">
-                ** Here at Cinder, inclusivity is important to us. Orientation
-                and gender are open fields for you to enter what you feel best
-                represents you.
-              </div>
             </div>
           </div>
         </form>
@@ -254,42 +333,14 @@ const mapSignup = state => {
   return { name: 'signup', displayName: 'Sign Up', error: state.user.error };
 };
 
-const mapDispatch = dispatch => {
-  return {
-    handleSubmit(evt) {
-      evt.preventDefault();
-      const formName = evt.target.name;
-      const email = evt.target.email.value;
-      const password = evt.target.password.value;
-      const firstName = evt.target.firstName.value;
-      const age = evt.target.age.value;
-      const height = `${evt.target.feet.value} ${evt.target.inches.value}`;
-      const orientation = evt.target.orientation.value;
-      const gender = evt.target.gender.value;
-      dispatch(
-        auth(
-          formName,
-          email,
-          password,
-          firstName,
-          age,
-          height,
-          orientation,
-          gender,
-          this.state.uploadedFileCloudinaryUrl,
-          this.state.avatar
-        )
-      );
-    }
-  };
-};
+const mapDispatch = dispatch => ({
+  authorize: (...args) => dispatch(auth(...args))
+});
 
-export const Signup = connect(mapSignup, mapDispatch)(SignupForm);
-
+const SignupForm = connect(mapSignup, mapDispatch)(disconnectedSignupForm);
+export default SignupForm;
 //PROP TYPES
 SignupForm.propTypes = {
-  name: PropTypes.string.isRequired,
-  displayName: PropTypes.string.isRequired,
-  handleSubmit: PropTypes.func.isRequired,
+  // name: PropTypes.string.isRequired,
   error: PropTypes.object
 };
