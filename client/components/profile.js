@@ -29,16 +29,19 @@ class Profile extends React.Component {
         <div className="container">
           <div className="img">
             <img src={avatar} alt="cute troll" />
+
+            <img src={photo} alt="no photo added" />
           </div>
-          <img src={photo} alt="no photo added" />
           <div className="heading">
             <h4>{firstName}'s Profile</h4>
           </div>
           <div className="form-fields">
-            <div>
+            <div className="input-box">
+              <p className="field-titles">First Name</p>
               <p className="form-inputs">{firstName}</p>
             </div>
-            <div>
+            <div className="input-box">
+              <p className="field-titles">Email</p>
               <p className="form-inputs">{email}</p>
             </div>
             <div>

@@ -35,7 +35,6 @@ async function seed() {
       password: '123password',
       age: 21,
       avatar: '/fairy.png',
-      photo: '/phoebe.jpg',
       orientation: '6th generation'
     }),
     User.create({
@@ -46,7 +45,6 @@ async function seed() {
       password: '123password',
       age: 30,
       avatar: '/goblin.png',
-      photo: '/joey.png',
       orientation: 'projection'
     }),
     User.create({
@@ -57,7 +55,6 @@ async function seed() {
       password: '123password',
       age: 91,
       avatar: '/dragon.png',
-      photo: '/rachel.jpg',
       orientation: 'leverage'
     }),
     User.create({
@@ -66,7 +63,6 @@ async function seed() {
       email: 'piper@email.com',
       gender: 'Female',
       password: '123password',
-      photo: '/monica.jpg',
       age: 59,
       orientation: 'Visionary'
     }),
@@ -85,7 +81,7 @@ async function seed() {
       email: 'abram@email.com',
       gender: 'Male',
       password: '123password',
-      photo: `/chandler.jpg`,
+      photo: ``,
       age: 47,
       orientation: 'contingency'
     }),

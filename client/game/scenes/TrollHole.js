@@ -91,7 +91,7 @@ export default class TrollHole extends Phaser.Scene {
       this.avatar,
       this.physicsObjectA,
       () => {
-        this.scene.start('QuestionOne');
+        this.scene.start('QuestionSeventeen');
       },
       null,
       this
@@ -101,7 +101,7 @@ export default class TrollHole extends Phaser.Scene {
       this.avatar,
       this.physicsObjectB,
       () => {
-        this.scene.start('QuestionOne');
+        this.scene.start('QuestionSeventeen');
       },
       null,
       this
@@ -111,7 +111,7 @@ export default class TrollHole extends Phaser.Scene {
       this.avatar,
       this.physicsObjectC,
       () => {
-        this.scene.start('QuestionOne');
+        this.scene.start('QuestionSeventeen');
       },
       null,
       this
@@ -121,7 +121,7 @@ export default class TrollHole extends Phaser.Scene {
       this.avatar,
       this.physicsObjectD,
       () => {
-        this.scene.start('QuestionOne');
+        this.scene.start('QuestionSeventeen');
       },
       null,
       this

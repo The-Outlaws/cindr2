@@ -33,7 +33,7 @@ code {
 }
 
 .test {
-  color: #fbff00;
+  color: #dde9ec;
 }
 
 .App-link {
@@ -209,8 +209,9 @@ code {
 
 .login .container .form-fields .button-container {
   display: flex;
-  /* border: 1px solid transparent; */
-  /* margin-bottom: 20px; */
+  border: 1px solid transparent;
+  justify-content: center;
+  justify-items: center;
 }
 
 .login .container .form-fields .button-container button {
@@ -221,10 +222,12 @@ code {
   border: none;
   border-radius: 10px;
   width: 100%;
-  margin-top: 25px;
+  margin-top: 8px;
   margin-bottom: 8px;
 }
-
+.login .container .form-fields .button-container a {
+  width: 100%;
+}
 .login .container .form-fields .button-container button:hover {
   background-color: #414855;
 }
@@ -262,6 +265,7 @@ code {
   display: flex;
   justify-content: center;
   overflow: scroll;
+  align-items: center;
 }
 
 .login-form .container {
@@ -271,12 +275,12 @@ code {
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 100%;
+  width: 50vw;
 }
 
-.login-form .container .img {
-  display: flex;
-  justify-content: center;
+.login-form img {
+  margin-left: 0.5vw;
+  margin-right: 0.5vw;
 }
 
 .login-form .container .heading h4 {
@@ -295,9 +299,12 @@ code {
 }
 
 .login-form .container .form-fields .input-box {
+  display: flex;
+  flex-direction: column;
   margin-bottom: 10px;
   width: 96%;
 }
+
 .login-form .container .form-fields .field-titles {
   /* position: relative; */
   color: #1d1d1d;
@@ -363,6 +370,9 @@ code {
 
 .login-form .container .form-fields .button-container {
   display: flex;
+  flex-direction: row;
+  justify-content: center;
+  justify-items: center;
   /* border: 1px solid transparent; */
   /* margin-bottom: 20px; */
 }
@@ -374,7 +384,19 @@ code {
   background-color: #4b8eb2;
   border: none;
   border-radius: 10px;
-  width: 100%;
+  width: 20vw;
+  margin-top: 25px;
+  margin-bottom: 8px;
+}
+.login-form .container .form-fields .button-container a {
+  justify-self: center;
+  color: #ffffff;
+  font-size: 16px;
+  padding: 15px;
+  background-color: #4b8eb2;
+  border: none;
+  border-radius: 10px;
+  width: 20vw;
   margin-top: 25px;
   margin-bottom: 8px;
 }
@@ -403,7 +425,13 @@ code {
   border: none;
   border-radius: 10px;
   /* margin-right: 0px; */
-  /* width: 50%; */
+  width: 50%;
+}
+.login-form .container .form-fields .submitButton-container a {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  text-decoration: none;
 }
 
 .login-form .container .form-fields .submitButton-container button:hover {
@@ -427,7 +455,7 @@ code {
   border-radius: 8px;
   text-align: center;
   margin-top: 20px;
-  height: 3em;
+  /* height: 3em; */
   font-size: 16px;
   justify-content: center;
   align-items: center;
@@ -438,7 +466,12 @@ code {
   /* background-color: #4b8eb2; */
   color: #4b8eb2;
 }
-
+.photo {
+  display: flex;
+  margin-top: 20px;
+  justify-content: center;
+  align-items: center;
+}
 .inclusivity-note {
   margin-top: 30px;
   font-style: italic;
