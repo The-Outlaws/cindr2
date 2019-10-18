@@ -2,7 +2,7 @@ import React from 'react';
 
 export const MatchRequest = props => {
   console.log(props);
-  const { filteredConvo } = props;
+  const { filteredConvo, handleAccept, handleReject } = props;
   return (
     <div className="match-req-container">
       <div className="match-request">
@@ -25,14 +25,14 @@ export const MatchRequest = props => {
               <button
                 id="accept"
                 type="submit"
-                onClick={evt => this.handleAccept(evt, filteredConvo[0].id)}
+                onClick={evt => handleAccept(evt, filteredConvo[0].id)}
               >
                 Accept match request
               </button>
               <button
                 id="reject"
                 type="submit"
-                onClick={evt => this.handleReject(evt, filteredConvo[0].id)}
+                onClick={evt => handleReject(evt, filteredConvo[0].id)}
               >
                 Decline match request
               </button>

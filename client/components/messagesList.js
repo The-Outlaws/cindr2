@@ -66,7 +66,11 @@ class disconnectedMessagesList extends Component {
               <Chat conversationId={filteredConvo[0].id} />
             </div>
           ) : filteredConvo[0].matchId === this.props.user.id ? (
-            <MatchRequest filteredConvo={filteredConvo} />
+            <MatchRequest
+              handleAccept={this.handleAccept}
+              handleReject={this.handleReject}
+              filteredConvo={filteredConvo}
+            />
           ) : (
             <h4>
               Your request to chat with {filteredConvo[0].match.firstName}
