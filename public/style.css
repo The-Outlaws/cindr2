@@ -627,6 +627,10 @@ code {
 .sidebar ul li a span:first-child {
   margin-right: 10px;
 }
+.sidebar ul li a span img {
+  height: 50%;
+  width: auto;
+}
 /* main */
 .chat img#main {
   position: fixed;
