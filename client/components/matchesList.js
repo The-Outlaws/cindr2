@@ -31,6 +31,11 @@ class disconnectedMatchesList extends Component {
                   key={convo.id}
                   convoId={convo.id}
                   convo={convo}
+                  matchId={
+                    convo.match.id === this.props.user.id
+                      ? convo.userId
+                      : convo.matchId
+                  }
                   matchUser={
                     convo.match.id === this.props.user.id
                       ? convo.user
@@ -50,6 +55,7 @@ class disconnectedMatchesList extends Component {
               return (
                 <MatchChannel
                   key={convo.id}
+                  matchId={convo.userId}
                   matchUser={convo.user}
                   convo={convo}
                 />
