@@ -410,6 +410,9 @@ code {
   background-color: #414855;
 }
 .login-form .container .form-fields .error {
+  display: flex;
+  margin-top: 1vh;
+  justify-content: flex-end;
   font-size: 11px;
   color: tomato;
 }
