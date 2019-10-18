@@ -275,7 +275,7 @@ code {
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 50vw;
+  width: 40vw;
 }
 
 .login-form img {
@@ -497,25 +497,31 @@ code {
   justify-content: center;
   font-family: 'Press Start 2P', cursive;
 }
-
+/* .login-form .container .form-fields .avatar-picker {
+  justify-self: center;
+} */
 .image_picker {
   display: grid;
-  grid-template-columns: 42% 42% 42%;
+  grid-template-columns: auto auto auto;
   grid-row-gap: 5px;
+  grid-column-gap: 10px;
   margin-top: 20px;
-  margin-left: 6px;
-  justify-content: center;
+  /* align-content: center; */
+  /* margin-right: 15px;
+  margin-left: 0px; */
+  /* justify-content: center; */
 }
 .image_picker .responsive {
-  position: relative;
+  /* position: relative; */
   /* float: left; */
   opacity: 1;
+  /* justify-content: center; */
 }
 .image_picker .responsive .thumbnail {
   border: 1px solid #ddd;
   border-radius: 4px;
-  padding: 5px;
   width: 150px;
+  padding: 5px 5px;
   opacity: 1;
   margin: 0;
 }

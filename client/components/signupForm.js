@@ -175,6 +175,7 @@ class disconnectedSignupForm extends React.Component {
       this.setState(this.initialState);
     }
   }
+  // eslint-disable-next-line complexity
   render() {
     //age dropdown
     const ages = [];
@@ -374,11 +375,13 @@ class disconnectedSignupForm extends React.Component {
                     : 'Select your Avatar'}
                 </button>
               </div>
-              <div className="image_picker">
-                {this.state.selectAvatar ? (
-                  <AvatarForm handleAvatar={this.handleAvatar.bind(this)} />
-                ) : null}
-              </div>
+            </div>
+            <div className="image_picker">
+              {this.state.selectAvatar ? (
+                <AvatarForm handleAvatar={this.handleAvatar.bind(this)} />
+              ) : null}
+            </div>
+            <div className="form-fields">
               <div className="errorLarge">
                 {!this.props.error
                   ? null
