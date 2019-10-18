@@ -292,12 +292,12 @@ class disconnectedSignupForm extends React.Component {
                 </select>
               </div>
               <div className="inclusivity-note">
-                ** Here at Cinder, inclusivity is important to us. Orientation
+                ** Here at Cinder, inclusivity is important to us.** Orientation
                 and gender are open fields for you to enter what you feel best
                 represents you.
               </div>
               <div className="input-box">
-                <p className="field-titles">Orientation **</p>
+                <p className="field-titles">Orientation</p>
                 <input
                   type="text"
                   value={this.state.orientation}
@@ -310,7 +310,7 @@ class disconnectedSignupForm extends React.Component {
                 )}
               </div>
               <div className="input-box">
-                <p className="field-titles">Gender **</p>
+                <p className="field-titles">Gender</p>
                 <input
                   type="text"
                   value={this.state.gender}
@@ -391,11 +391,11 @@ class disconnectedSignupForm extends React.Component {
                 <button type="submit">Submit</button>
               </div>
 
-              <Link to="/">
-                <div className="submitButton-container">
+              <div className="submitButton-container">
+                <Link to="/">
                   <button type="submit">Home</button>
-                </div>
-              </Link>
+                </Link>
+              </div>
             </div>
           </div>
         </form>
