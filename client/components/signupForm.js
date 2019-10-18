@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { auth } from '../store';
+import { auth, editProfile } from '../store';
 import { Link } from 'react-router-dom';
 import Dropzone from 'react-dropzone';
 import request from 'superagent';
@@ -10,28 +10,28 @@ import AvatarForm from './avatarForm';
 const CLOUDINARY_UPLOAD_PRESET = 'drxd8wpf';
 const CLOUDINARY_UPLOAD_URL = `https://api.cloudinary.com/v1_1/dxllpi9sq/image/upload`;
 
-const initialState = {
-  isEdit: false,
-  selectAvatar: false,
-  uploadedFile: null,
-  uploadedFileCloudinaryUrl: null,
-  image: null,
-  firstName: '',
-  email: '',
-  password: '',
-  orientation: '',
-  gender: '',
-  errors: {
-    firstName: 'Required',
-    email: 'Required',
-    password: 'Passwords must be at least 6 characteres long',
-    orientation: '',
-    gender: ''
-  }
-};
 class disconnectedSignupForm extends React.Component {
   constructor() {
     super();
+    const initialState = {
+      isEdit: false,
+      selectAvatar: false,
+      uploadedFile: null,
+      uploadedFileCloudinaryUrl: null,
+      image: null,
+      firstName: '',
+      email: '',
+      password: '',
+      orientation: '',
+      gender: '',
+      errors: {
+        firstName: 'Required',
+        email: 'Required',
+        password: 'Passwords must be at least 6 characteres long',
+        orientation: '',
+        gender: ''
+      }
+    };
     this.state = initialState;
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -39,6 +39,43 @@ class disconnectedSignupForm extends React.Component {
     this.chooseAvatar = this.chooseAvatar.bind(this);
   }
 
+  componentDidMount() {
+    console.log('componentdidmount', this.props);
+    if (this.props.location.state) {
+      const {
+        email,
+        password,
+        firstName,
+        age,
+        height,
+        orientation,
+        gender,
+        avatar,
+        photo
+      } = this.props.location.state;
+
+      const editState = {
+        isEdit: false,
+        selectAvatar: false,
+        uploadedFile: null,
+        uploadedFileCloudinaryUrl: null,
+        image: null,
+        firstName: firstName,
+        email: email,
+        password: password,
+        orientation: orientation,
+        gender: gender,
+        errors: {
+          firstName: 'Required',
+          email: 'Required',
+          password: 'Passwords must be at least 6 characteres long',
+          orientation: '',
+          gender: ''
+        }
+      };
+      this.setState(editState);
+    }
+  }
   onImageDrop(files) {
     this.setState({
       uploadedFile: files[0]
@@ -109,21 +146,35 @@ class disconnectedSignupForm extends React.Component {
   }
   handleSubmit(evt) {
     evt.preventDefault();
-    this.props.authorize(
-      this.props.name,
-      this.state.email,
-      this.state.password,
-      this.state.firstName,
-      evt.target.age.value,
-      `${evt.target.feet.value} ${evt.target.inches.value}`,
-      this.state.orientation.value,
-      this.state.gender.value,
-      this.state.uploadedFileCloudinaryUrl,
-      this.state.avatar
-    );
-    this.setState(initialState);
+    if (this.props.location.state) {
+      this.props.edit(
+        this.state.email,
+        this.state.password,
+        this.state.firstName,
+        evt.target.age.value,
+        `${evt.target.feet.value} ${evt.target.inches.value}`,
+        this.state.orientation,
+        this.state.gender,
+        this.state.uploadedFileCloudinaryUrl,
+        this.state.avatar
+      );
+      this.setState(this.initialState);
+    } else {
+      this.props.authorize(
+        this.props.name,
+        this.state.email,
+        this.state.password,
+        this.state.firstName,
+        evt.target.age.value,
+        `${evt.target.feet.value} ${evt.target.inches.value}`,
+        this.state.orientation,
+        this.state.gender,
+        this.state.uploadedFileCloudinaryUrl,
+        this.state.avatar
+      );
+      this.setState(this.initialState);
+    }
   }
-
   render() {
     //age dropdown
     const ages = [];
@@ -160,7 +211,11 @@ class disconnectedSignupForm extends React.Component {
             </div>
 
             <div className="heading">
-              <h4>Profile</h4>
+              {this.props.location.state ? (
+                <h4>Edit Profile</h4>
+              ) : (
+                <h4>Sign up</h4>
+              )}
             </div>
 
             <div className="form-fields">
@@ -168,7 +223,7 @@ class disconnectedSignupForm extends React.Component {
                 <p className="field-titles">First Name</p>
                 <input
                   type="text"
-                  // placeholder="Nye"
+                  value={this.state.firstName}
                   className="form-control"
                   name="firstName"
                   onChange={this.handleChange}
@@ -181,6 +236,7 @@ class disconnectedSignupForm extends React.Component {
                 <p className="field-titles">Email</p>
                 <input
                   type="text"
+                  value={this.state.email}
                   className="form-control"
                   name="email"
                   onChange={this.handleChange}
@@ -190,7 +246,11 @@ class disconnectedSignupForm extends React.Component {
                 )}
               </div>
               <div className="input-box">
-                <p className="field-titles">Password</p>
+                {this.props.location.state ? (
+                  <p className="field-titles">Re-enter your password: </p>
+                ) : (
+                  <p className="field-titles">Password</p>
+                )}
                 <input
                   type="password"
                   className="form-control"
@@ -202,15 +262,28 @@ class disconnectedSignupForm extends React.Component {
                 )}
               </div>
               <div className="input-box">
-                <p className="field-titles">Select your age</p>
+                {this.props.location.state ? (
+                  <p className="field-titles">
+                    Are you younger than {this.props.location.state.age} now?
+                  </p>
+                ) : (
+                  <p className="field-titles">Select your age</p>
+                )}
                 <select className="select-box-age" name="age">
                   {ageSelection}
                 </select>
               </div>
               <div className="input-box">
-                <p className="field-titles">
-                  Select your height in feet and inches
-                </p>
+                {this.props.location.state ? (
+                  <p className="field-titles">
+                    Are you taller than {this.props.location.state.height} now?
+                  </p>
+                ) : (
+                  <p className="field-titles">
+                    Select your height in feet and inches
+                  </p>
+                )}
+
                 <select className="select-box" name="feet">
                   {heightFeetSelection}
                 </select>
@@ -227,6 +300,7 @@ class disconnectedSignupForm extends React.Component {
                 <p className="field-titles">Orientation **</p>
                 <input
                   type="text"
+                  value={this.state.orientation}
                   onChange={this.handleChange}
                   className="form-control"
                   name="orientation"
@@ -239,6 +313,7 @@ class disconnectedSignupForm extends React.Component {
                 <p className="field-titles">Gender **</p>
                 <input
                   type="text"
+                  value={this.state.gender}
                   onChange={this.handleChange}
                   className="form-control"
                   name="gender"
@@ -334,7 +409,8 @@ const mapSignup = state => {
 };
 
 const mapDispatch = dispatch => ({
-  authorize: (...args) => dispatch(auth(...args))
+  authorize: (...args) => dispatch(auth(...args)),
+  edit: (...args) => dispatch(editProfile(...args))
 });
 
 const SignupForm = connect(mapSignup, mapDispatch)(disconnectedSignupForm);

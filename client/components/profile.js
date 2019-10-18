@@ -1,17 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 /**
  * COMPONENT
  */
 class Profile extends React.Component {
-  toggleEdit() {
-    window.location.pathname = '/signup';
-  }
+  // toggleEdit() {
+  //   window.location.pathname = '/signup';
+  // }
 
   render() {
-    console.log('PROFILE! ', this.props);
     const {
       email,
       password,
@@ -62,9 +62,24 @@ class Profile extends React.Component {
           <div className="form-fields">
             <div className="submitButton-container">
               {/* <button type="edit">Edit</button> */}
-              <button type="edit" onClick={this.toggleEdit}>
-                Edit
-              </button>
+              <Link
+                to={{
+                  pathname: '/signup',
+                  state: {
+                    email,
+                    password,
+                    firstName,
+                    age,
+                    height,
+                    orientation,
+                    gender,
+                    avatar,
+                    photo
+                  }
+                }}
+              >
+                <button type="button">Edit</button>
+              </Link>
             </div>
           </div>
         </div>

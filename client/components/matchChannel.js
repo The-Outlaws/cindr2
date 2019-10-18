@@ -3,12 +3,16 @@ import { withRouter, NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 const disconnectedMatchChannel = props => {
-  const matchId = props.matchUser.id;
-  const name = props.matchUser.firstName;
+  const matchId = props.matchId;
+
   return (
     <li>
       <NavLink to={`/matches/${matchId}`} activeClassName="active">
-        <span>{name}</span>
+        {props.matchUser ? (
+          <span>{props.matchUser.firstName}</span>
+        ) : (
+          <span>Loading Match</span>
+        )}
         <span className="badge">
           {props.newMessages
             ? [...new Set(props.newMessages)].filter(
