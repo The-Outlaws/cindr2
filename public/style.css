@@ -299,8 +299,6 @@ code {
 }
 
 .login-form .container .form-fields .input-box {
-  display: flex;
-  flex-direction: column;
   margin-bottom: 10px;
   width: 96%;
 }
@@ -312,7 +310,18 @@ code {
   text-align: left;
   margin-bottom: 2px;
 }
-
+.login-form .container .form-fields .profile-titles {
+  /* position: relative; */
+  color: #757373;
+  font-size: 18px;
+  justify-self: center;
+  margin-bottom: 2px;
+}
+.login-form .container .form-fields .profile-titles span {
+  /* position: relative; */
+  font-weight: normal;
+  color: #4b8eb2;
+}
 .login-form .container .form-fields .form-control {
   height: 38px;
   width: 100%;
