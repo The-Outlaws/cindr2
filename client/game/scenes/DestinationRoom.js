@@ -146,7 +146,7 @@ export default class DestinationRoom extends Phaser.Scene {
       userData.y - 270,
       250,
       400,
-      '0xF0F0F0'
+      '0xdde9ec'
     );
     const photo = this.add.image(rect.x, rect.y - 100, userData.photo);
     const name = this.add.text(rect.x - 90, photo.y + 90, userData.name, {
@@ -166,7 +166,7 @@ export default class DestinationRoom extends Phaser.Scene {
     const orientation = this.add.text(
       name.x,
       gender.y + 30,
-      `Likes ${userData.orientation}`,
+      `${userData.orientation}`,
       { fill: 'black', font: '20px' }
     );
     const height = this.add.text(

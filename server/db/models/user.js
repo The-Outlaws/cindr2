@@ -40,7 +40,7 @@ const User = db.define('user', {
   },
   photo: {
     type: Sequelize.STRING,
-    defaultValue: '/defaultphoto.jpg'
+    defaultValue: '/user-profile-default.png'
   },
   avatar: {
     type: Sequelize.STRING,
