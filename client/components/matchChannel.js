@@ -17,7 +17,7 @@ const disconnectedMatchChannel = props => {
         ) : null}
 
         {props.matchUser ? (
-          <span>{props.matchUser.firstName}</span>
+          <span>{props.matchUser.firstName} </span>
         ) : (
           <span>Loading Match</span>
         )}

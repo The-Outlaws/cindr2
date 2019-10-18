@@ -609,12 +609,13 @@ code {
   display: list-item;
   height: 100%;
   width: 100%;
+  text-decoration: none;
 }
 
 .sidebar ul li a:hover,
 .sidebar ul li a:focus {
   color: #afb1b6;
-  background-color: #303641;
+  background-color: tomato;
   text-decoration: none;
 }
 
@@ -622,6 +623,7 @@ code {
   background-color: tomato;
   color: #d4d5d8;
   border-radius: 0 5px 5px 0;
+  text-decoration: none;
 }
 
 .sidebar ul li a span:first-child {
