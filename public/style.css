@@ -669,11 +669,23 @@ code {
 /* match requests */
 .match-request {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   flex-wrap: wrap;
   justify-content: space-evenly;
   align-content: center;
+  border: solid;
+  border-color: tomato;
+  border-width: 1px;
+  border-radius: 10px 10px 10px 10px;
+  align-items: left;
+  /* margin-left: 2em */
 }
+
+.match-req-container {
+  align-self: center;
+  margin-left: 2em;
+}
+
 .match-request p {
   margin-top: 2vh;
   margin-right: 1vw;
@@ -705,6 +717,12 @@ code {
   height: 60px;
   margin: 2px;
 }
+
+.chat-av {
+  width: 30px;
+  height: 30px;
+}
+
 /* message form */
 
 #new-message-form {
@@ -727,4 +745,17 @@ code {
   font-size: 1em;
   color: #4b8eb2;
   margin: 1vh;
+}
+
+#heading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 0.75em;
+}
+
+.match-req-info {
+  margin-left: 2em;
+  align-items: left;
+  margin-right: 9em;
 }

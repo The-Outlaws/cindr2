@@ -37,7 +37,7 @@ export default class QuestionFour extends Phaser.Scene {
     const { user: { avatar } } = store.getState();
     this.load.image(avatarStr, avatar);
     this.load.image('troll', '/troll128.png');
-    this.load.image('haunted', '/hauntedlair.jpg');
+    this.load.image('haunted', '/friendlyGhost.png');
   }
 
   create() {
