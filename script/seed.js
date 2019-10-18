@@ -280,7 +280,7 @@ async function seed() {
   ]);
 
   const userRooms = await Promise.all([
-    UserRoom.create({ userId: 1, roomId: 1, isActive: true }),
+    UserRoom.create({ userId: 1, roomId: 7, isActive: true }),
     UserRoom.create({ userId: 2, roomId: 7, isActive: true }),
     UserRoom.create({ userId: 3, roomId: 7, isActive: true }),
     UserRoom.create({ userId: 4, roomId: 7, isActive: true }),

@@ -89,20 +89,20 @@ export default class QuestionFour extends Phaser.Scene {
     });
 
     this.add.text(
-      0.05 * this.bg.displayWidth / 4,
+      1.3 * this.bg.displayWidth / 4,
       0.3 * this.bg.displayHeight / 4,
       `The friendly ghosts can't imbibe,\nbut as gracious hosts,\n they invite you to - you choose:`,
       fontStyleQuestion
     );
     this.answerA = this.add.text(
-      2.4 * this.bg.displayWidth / 4,
-      2 * this.bg.displayHeight / 4,
+      2.2 * this.bg.displayWidth / 4,
+      1.4 * this.bg.displayHeight / 4,
       'Tea, please!',
       fontStyleAnswer
     );
     this.answerB = this.add.text(
-      1.3 * this.bg.displayWidth / 4,
-      1.3 * this.bg.displayHeight / 4,
+      1.5 * this.bg.displayWidth / 4,
+      2.9 * this.bg.displayHeight / 4,
       'Beer, duh',
       fontStyleAnswer
     );
