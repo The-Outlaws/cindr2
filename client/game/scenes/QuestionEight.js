@@ -9,7 +9,7 @@ const fontStyleQuestion = {
   align: 'center'
 };
 const fontStyleAnswer = {
-  font: '3em Lakki Reddy',
+  font: '4em Lakki Reddy',
   fill: '#1b7c55',
   align: 'center'
 };
@@ -52,7 +52,7 @@ export default class QuestionEight extends Phaser.Scene {
     this.bg.displayHeight = this.game.config.height;
 
     this.add.text(
-      3.45 * this.bg.displayWidth / 4,
+      3.45 * this.bg.displayWidth / 4 - 70,
       this.bg.displayHeight / 4,
       'You have: ',
       fontStyleCountdown
@@ -68,7 +68,7 @@ export default class QuestionEight extends Phaser.Scene {
     this.initialTime = 30;
 
     this.countDownText = this.add.text(
-      3.5 * this.bg.displayWidth / 4,
+      3.5 * this.bg.displayWidth / 4 - 70,
       1.2 * this.bg.displayHeight / 4,
       `${this.initialTime}`,
       fontStyleQuestion

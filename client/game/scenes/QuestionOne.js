@@ -70,7 +70,7 @@ export default class QuestionOne extends Phaser.Scene {
     this.initialTime = 30;
 
     this.countDownText = this.add.text(
-      3.33 * this.bg.displayWidth / 4,
+      3.33 * this.bg.displayWidth / 4 - 60,
       this.bg.displayHeight / 13,
       `${this.initialTime}`,
       fontStyleQuestion
@@ -83,17 +83,17 @@ export default class QuestionOne extends Phaser.Scene {
       loop: true
     });
 
-    // this.time.addEvent({
-    //   delay: 30000,
-    //   callback: () => {
-    //     this.scene.start('TrollHole');
-    //   },
-    //   callbackScope: this
-    // });
+    this.time.addEvent({
+      delay: 30000,
+      callback: () => {
+        this.scene.start('TrollHole');
+      },
+      callbackScope: this
+    });
 
     this.add.text(
-      this.bg.displayWidth / 2,
-      1 * this.bg.displayHeight / 4,
+      this.bg.displayWidth / 2 + 40,
+      this.bg.displayHeight / 4 + 30,
       'Who strikes \nyour fancy?',
       fontStyleCountdown
     );

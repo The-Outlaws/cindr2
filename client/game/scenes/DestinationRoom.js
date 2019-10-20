@@ -53,7 +53,7 @@ export default class DestinationRoom extends Phaser.Scene {
     this.add.text(
       this.bg.displayWidth / 3,
       0.1 * this.bg.displayHeight / 4,
-      'Meet some new friends!',
+      'Click to meet some new friends!',
       fontStyleQuestion
     );
 

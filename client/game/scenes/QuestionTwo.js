@@ -50,7 +50,7 @@ export default class QuestionTwo extends Phaser.Scene {
     this.bg.displayHeight = this.game.config.height;
 
     this.add.text(
-      3.4 * this.bg.displayWidth / 4,
+      3.4 * this.bg.displayWidth / 4 - 60,
       this.bg.displayHeight / 23,
       'You have: ',
       fontStyleCountdown
@@ -66,7 +66,7 @@ export default class QuestionTwo extends Phaser.Scene {
     this.initialTime = 30;
 
     this.countDownText = this.add.text(
-      3.48 * this.bg.displayWidth / 4,
+      3.48 * this.bg.displayWidth / 4 - 60,
       this.bg.displayHeight / 13,
       `${this.initialTime}`,
       fontStyleQuestion
@@ -94,8 +94,8 @@ export default class QuestionTwo extends Phaser.Scene {
       fontStyleQuestion
     );
     this.answerA = this.add.text(
-      2.8 * this.bg.displayWidth / 4,
-      1.4 * this.bg.displayHeight / 4,
+      2.8 * this.bg.displayWidth / 4 - 200,
+      1.4 * this.bg.displayHeight / 4 + 190,
       'Meet some friendly ghosts',
       fontStyleAnswer
     );
