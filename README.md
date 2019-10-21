@@ -1,6 +1,6 @@
 ## CINDR v.2
 
-<iframe src="https://giphy.com/embed/VCmlHaWSMBLH9pysgD" width="480" height="231" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p><a href="https://giphy.com/gifs/VCmlHaWSMBLH9pysgD">via GIPHY</a></p>
+![](https://media.giphy.com/media/VCmlHaWSMBLH9pysgD/giphy.gif)
 
 Cindr is a choose-your-own-adventure style dating app. Cindr can be used to find a date or a friend!
 
