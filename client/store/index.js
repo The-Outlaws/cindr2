@@ -4,6 +4,7 @@ import thunkMiddleware from 'redux-thunk';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import rootReducer from './reducers';
 import { getMessages, getMessage } from './reducers/messages';
+// import {getActiveUsers} from './reducers/room'
 import socket from '../socket';
 
 const middleware = composeWithDevTools(
@@ -28,3 +29,4 @@ export default store;
 export * from './reducers/user';
 export * from './reducers/messages';
 export * from './reducers/conversations';
+export * from './reducers/room';

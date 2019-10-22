@@ -7,28 +7,34 @@ const avatarStr = 'avatar';
 export default class Splash extends Phaser.Scene {
   constructor() {
     super({ key: 'Splash' });
-    // this.loadGame = this.loadGame.bind(this);
-    // this.hoverState = this.hoverState.bind(this);
-    // this.restState = this.restState.bind(this);
   }
 
   init() {
     this.playerSpeed = 10;
+    this.usedCursor = false;
   }
 
   preload() {
     const { user: { avatar } } = store.getState();
     this.load.image(avatarStr, avatar);
+    this.load.image('arrows', 'arrowkeys.png');
+    //this.load.image('graaass', 'graaass.png')
   }
 
   create() {
-    // const userData = store.getState();
     this.backgroundColor = 'black';
+    this.bg = this.add.image(
+      this.game.config.width / 2,
+      this.game.config.height / 2,
+      'starryNight'
+    );
+    this.bg.displayWidth = this.game.config.width;
+    this.bg.displayHeight = this.game.config.height;
 
-    this.add.text(
-      1.57 * this.game.config.width / 4,
+    this.instructions = this.add.text(
+      this.game.config.width / 6,
       1.1 * this.game.config.height / 4,
-      'Move your avatar with \nup/down arrow keys\nMove into text to make selection',
+      'Use arrow keys to move your avatar',
       {
         fill: 'white',
         font: '4em Walter Turncoat',
@@ -37,22 +43,41 @@ export default class Splash extends Phaser.Scene {
     );
 
     this.start = this.add.text(
-      1.65 * this.game.config.width / 4,
-      1.6 * this.game.config.height / 4,
+      2.6 * this.game.config.width / 4,
+      3 * this.game.config.height / 4,
       'Start Adventure',
       {
         fill: 'white',
         font: '6em Walter Turncoat'
       }
     );
+    // const line = new Phaser.Geom.Line(
+    //   this.game.config.width / 6,
+    //   this.game.config.height / 5,
+    //   this.game.config.width / 6,
+    //   3 * this.game.config.height / 4
+    // );
+    // const line2 = new Phaser.Geom.Line(
+    //   this.game.config.width / 6,
+    //   3 * this.game.config.height / 4 + 20,
+    //   2.6 * this.game.config.width / 4 - 20,
+    //   3 * this.game.config.height / 4 + 20
+    // );
+    // var graphics = this.add.graphics({
+    //   lineStyle: { width: 10, color: 0xffffff }
+    // });
+
+    // graphics.strokeLineShape(line);
+    // graphics.strokeLineShape(line2);
 
     this.physicsObjectStart = this.physics.add.existing(this.start, 'static');
 
     this.avatar = this.physics.add.sprite(
-      this.game.config.width / 4,
-      4 * this.game.config.height / 5,
+      this.game.config.width / 6,
+      3 * this.game.config.height / 4,
       avatarStr
     );
+
     this.avatar.body.setAllowGravity(false);
     this.avatar.setCollideWorldBounds(true);
 
@@ -60,28 +85,43 @@ export default class Splash extends Phaser.Scene {
       this.avatar,
       this.physicsObjectStart,
       () => {
-        // console.log('hello');
-        this.scene.start('QuestionRoom');
+        this.scene.start('QuestionOne');
       },
       null,
       this
     );
-
+    // this.add.image(
+    //   this.game.config.width / 2 + 100,
+    //   this.game.config.height / 2 + 40,
+    //   'arrows'
+    // );
     this.cursors = this.input.keyboard.createCursorKeys();
   }
 
-  // loadGame() {
-  //   this.scene.start('QuestionRoom');
-  // }
-  // hoverState() {
-  //   this.clickButton.setStyle({ fill: '#FF5733' });
-  // }
-  // restState() {
-  //   this.clickButton.setStyle({ fill: '#FFC300' });
-  // }
-  // }
-
   update() {
+    if (
+      this.cursors.left.isDown ||
+      this.cursors.right.isDown ||
+      this.cursors.up.isDown ||
+      this.cursors.down.isDown
+    ) {
+      this.usedCursor = true;
+    }
+
+    if (this.usedCursor) {
+      this.instructions.destroy();
+      this.add.text(
+        this.game.config.width / 6,
+        1.1 * this.game.config.height / 4,
+        'To start your adventure, glide into "Start Adventure" portal',
+        {
+          fill: 'white',
+          font: '4em Walter Turncoat',
+          align: 'center'
+        }
+      );
+    }
+
     if (this.cursors.left.isDown) {
       if (this.cursors.up.isDown) this.avatar.y -= this.playerSpeed;
       else if (this.cursors.down.isDown) this.avatar.y += this.playerSpeed;
@@ -106,6 +146,5 @@ export default class Splash extends Phaser.Scene {
 
       this.avatar.y += this.playerSpeed;
     }
-    // this.input.on('pointerdown', () => this.scene.start('QuestionRoom'));
   }
 }

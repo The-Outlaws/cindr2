@@ -8,7 +8,7 @@ const LoginForm = props => {
   const { name, handleSubmit } = props;
 
   return (
-    <div className="login-form">
+    <div className="login">
       <form onSubmit={handleSubmit} name={name}>
         <div className="container">
           <div className="img">
@@ -36,15 +36,22 @@ const LoginForm = props => {
                 name="password"
               />
             </div>
-
+            <span className="error">
+              {!props.error
+                ? null
+                : props.error.message === 'Wrong username and/or password'
+                  ? 'Wrong username and/or password'
+                  : 'Wrong username and/or password'}
+            </span>
             <div className="button-container">
               <button type="submit">Login</button>
             </div>
-            <Link to="/">
-              <div className="button-container">
-                <button type="button">Home</button>
-              </div>
-            </Link>
+
+            <div className="button-container">
+              <Link to="/">
+                <button type="submit">Home</button>
+              </Link>
+            </div>
           </div>
         </div>
       </form>

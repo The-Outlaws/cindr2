@@ -1,17 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 /**
  * COMPONENT
  */
 class Profile extends React.Component {
-  toggleEdit() {
-    window.location.pathname = '/signup';
-  }
+  // toggleEdit() {
+  //   window.location.pathname = '/signup';
+  // }
 
   render() {
-    console.log('PROFILE! ', this.props);
     const {
       email,
       password,
@@ -19,50 +19,77 @@ class Profile extends React.Component {
       age,
       height,
       orientation,
-      gender
+      gender,
+      avatar,
+      photo
     } = this.props;
 
     return (
       <div className="login-form">
         <div className="container">
-          <div className="img">
-            <img src="/troll128.png" alt="cute troll 128" />
-          </div>
-
           <div className="heading">
             <h4>{firstName}'s Profile</h4>
           </div>
+          <div className="img">
+            <img src={avatar} alt="cute troll" />
+
+            <img src={photo} alt="no photo added" />
+          </div>
+
           <div className="form-fields">
-            <div>
-              <p className="form-inputs">{firstName}</p>
+            <div className="input-box">
+              <p className="profile-titles">
+                Name: <span>{firstName}</span>
+              </p>
             </div>
-            <div>
-              <p className="form-inputs">{email}</p>
+            <div className="input-box">
+              <p className="profile-titles">
+                Email: <span>{email}</span>
+              </p>
             </div>
-            <div>
-              <p className="form-inputs">***** {password}</p>
+
+            <div className="input-box">
+              <p className="profile-titles">
+                Age: <span>{age}</span>
+              </p>
             </div>
-            <div>
-              <p className="form-inputs">{age}</p>
+            <div className="input-box">
+              <p className="profile-titles">
+                Height: <span>{height}</span>
+              </p>
             </div>
-            <div>
-              <p className="form-inputs">{height}</p>
+            <div className="input-box">
+              <p className="profile-titles">
+                Orientation: <span>{orientation}</span>
+              </p>
             </div>
-            <div>
-              <p className="form-inputs">{orientation}</p>
+            <div className="input-box">
+              <p className="profile-titles">
+                Gender: <span>{gender}</span>
+              </p>
             </div>
-            <div>
-              <p className="form-inputs">{gender}</p>
-            </div>
-            <div>{/* <img src={this.props.photo} /> */}</div>
-            <div>{/* <img src={this.props.avatar} /> */}</div>
           </div>
           <div className="form-fields">
             <div className="submitButton-container">
               {/* <button type="edit">Edit</button> */}
-              <button type="edit" onClick={this.toggleEdit}>
-                Edit
-              </button>
+              <Link
+                to={{
+                  pathname: '/signup',
+                  state: {
+                    email,
+                    password,
+                    firstName,
+                    age,
+                    height,
+                    orientation,
+                    gender,
+                    avatar,
+                    photo
+                  }
+                }}
+              >
+                <button type="button">Edit</button>
+              </Link>
             </div>
           </div>
         </div>
@@ -82,7 +109,9 @@ const mapState = state => {
     age: state.user.age,
     height: state.user.height,
     orientation: state.user.orientation,
-    gender: state.user.gender
+    gender: state.user.gender,
+    avatar: state.user.avatar,
+    photo: state.user.photo
   };
 };
 

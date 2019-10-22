@@ -3,6 +3,7 @@ import Message from './Message';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import Chat from './newMessageEntry';
+import { MatchRequest } from './matchRequest';
 import {
   getConversations,
   acceptConversation,
@@ -49,24 +50,76 @@ class disconnectedMessagesList extends Component {
     console.log('currMessages', currMessages);
     return (
       <main>
-        <h4>Recent Messages</h4>
-        <ul className="media-list">
-          {currMessages.map(message => (
-            <Message
-              key={message.id}
-              message={message}
-              user={this.props.user}
+        {filteredConvo.length ? (
+          filteredConvo[0].isAccepted ? (
+            <div>
+              <h4>Recent Messages</h4>
+              <ul className="media-list">
+                {currMessages.map(message => (
+                  <Message
+                    key={message.id}
+                    message={message}
+                    user={this.props.user}
+                  />
+                ))}
+              </ul>
+              <Chat conversationId={filteredConvo[0].id} />
+            </div>
+          ) : filteredConvo[0].matchId === this.props.user.id ? (
+            <MatchRequest
+              handleAccept={this.handleAccept}
+              handleReject={this.handleReject}
+              filteredConvo={filteredConvo}
             />
-          ))}
+          ) : (
+            <h4>
+              Your request to chat with {filteredConvo[0].match.firstName}
+              <img src={filteredConvo[0].match.avatar} /> is still pending!
+            </h4>
+          )
+        ) : null}
+
+        <div className="message-archive">
           {filteredConvo.length ? (
             filteredConvo[0].isAccepted ? (
-              <Chat conversationId={filteredConvo[0].id} />
-            ) : filteredConvo[0].matchId === this.props.user.id ? (
-              <React.Fragment>
-                <h4>
-                  Your request to chat from {filteredConvo[0].user.firstName}
-                  <img src={filteredConvo[0].user.avatar} /> is awaiting your
-                  approval!
+              <h4 id="archive-header">Messages of Old</h4>
+            ) : null
+          ) : null}
+
+          {filteredConvo.length ? (
+            filteredConvo[0].messages
+              .filter(message => {
+                return moment(message.createdAt).isBefore(today, 'minute');
+              })
+              .map(message => <Message key={message.id} message={message} />)
+          ) : (
+            <h4>Your message history is loading</h4>
+          )}
+        </div>
+      </main>
+    );
+  }
+}
+
+const mapStateToProps = state => ({
+  conversations: state.conversations,
+  messages: state.messages,
+  user: state.user
+});
+const mapDispatchToProps = dispatch => ({
+  fetchConvos: () => dispatch(getConversations()),
+  acceptRequest: convoId => dispatch(acceptConversation(convoId)),
+  rejectRequest: convoId => dispatch(rejectConversation(convoId))
+});
+
+const MessagesList = withRouter(
+  connect(mapStateToProps, mapDispatchToProps)(disconnectedMessagesList)
+);
+export default MessagesList;
+
+{
+  /* <h4>
+                <img className='chat-av' src={filteredConvo[0].user.avatar} /> Your request to chat from {filteredConvo[0].user.firstName} is awaiting your approval!
                 </h4>
                 <div className="match-request">
                   <h4>Deets about {filteredConvo[0].user.firstName}:</h4>
@@ -95,51 +148,5 @@ class disconnectedMessagesList extends Component {
                       Decline match request
                     </button>
                   </div>
-                </div>
-              </React.Fragment>
-            ) : (
-              <h4>
-                Your request to chat with {filteredConvo[0].match.firstName}
-                <img src={filteredConvo[0].match.avatar} /> is still pending!
-              </h4>
-            )
-          ) : null}
-
-          <div className="message-archive">
-            {filteredConvo.length ? (
-              filteredConvo[0].isAccepted ? (
-                <h4 id="archive-header">Messages of Yesterday and Beyond</h4>
-              ) : null
-            ) : null}
-
-            {filteredConvo.length ? (
-              filteredConvo[0].messages
-                .filter(message => {
-                  return moment(message.createdAt).isBefore(today, 'hour');
-                })
-                .map(message => <Message key={message.id} message={message} />)
-            ) : (
-              <h4>Your message history is loading</h4>
-            )}
-          </div>
-        </ul>
-      </main>
-    );
-  }
+                </div> */
 }
-
-const mapStateToProps = state => ({
-  conversations: state.conversations,
-  messages: state.messages,
-  user: state.user
-});
-const mapDispatchToProps = dispatch => ({
-  fetchConvos: () => dispatch(getConversations()),
-  acceptRequest: convoId => dispatch(acceptConversation(convoId)),
-  rejectRequest: convoId => dispatch(rejectConversation(convoId))
-});
-
-const MessagesList = withRouter(
-  connect(mapStateToProps, mapDispatchToProps)(disconnectedMessagesList)
-);
-export default MessagesList;

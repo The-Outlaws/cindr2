@@ -5,13 +5,13 @@ import store from '../../store';
 const avatarStr = 'avatar';
 
 const fontStyleQuestion = {
-  font: '6em Walter Turncoat',
+  font: '4em Walter Turncoat',
   fill: '#32a852',
   align: 'center'
 };
 
 const fontStyleAnswer = {
-  font: '3.4em Galindo',
+  font: '3em Galindo',
   fill: '#e54567',
   align: 'center'
   // backgroundColor: 'white'
@@ -48,30 +48,30 @@ export default class TrollHole extends Phaser.Scene {
       fontStyleQuestion
     );
     this.answerA = this.add.text(
-      2.8 * this.bg.displayWidth / 4,
+      2.7 * this.bg.displayWidth / 4,
       0.7 * this.bg.displayHeight / 4,
       `I didn't realize there was a countdown!\nI'll remember for next time.`,
       fontStyleAnswer
     );
 
     this.answerB = this.add.text(
-      0.75 * this.bg.displayWidth / 4,
+      0.65 * this.bg.displayWidth / 4,
       2.1 * this.bg.displayHeight / 4,
-      `Reflection\nAnswer 1`,
+      `Choices make \nme anxious`,
       fontStyleAnswer
     );
 
     this.answerC = this.add.text(
       3.15 * this.bg.displayWidth / 4,
-      1.5 * this.bg.displayHeight / 4,
-      `Reflection Answer 2`,
+      1.4 * this.bg.displayHeight / 4,
+      `I hate surprises!`,
       fontStyleAnswer
     );
 
     this.answerD = this.add.text(
       1.5 * this.bg.displayWidth / 4,
       3.4 * this.bg.displayHeight / 4,
-      `Reflection Answer 3`,
+      `I'm watching my waistline`,
       fontStyleAnswer
     );
     this.physicsObjectA = this.physics.add.existing(this.answerA, 'static');
@@ -91,7 +91,7 @@ export default class TrollHole extends Phaser.Scene {
       this.avatar,
       this.physicsObjectA,
       () => {
-        this.scene.restart('QuestionRoom');
+        this.scene.start('QuestionSeventeen');
       },
       null,
       this
@@ -101,7 +101,7 @@ export default class TrollHole extends Phaser.Scene {
       this.avatar,
       this.physicsObjectB,
       () => {
-        this.scene.restart('QuestionRoom');
+        this.scene.start('QuestionSeventeen');
       },
       null,
       this
@@ -111,7 +111,7 @@ export default class TrollHole extends Phaser.Scene {
       this.avatar,
       this.physicsObjectC,
       () => {
-        this.scene.start('QuestionRoom');
+        this.scene.start('QuestionSeventeen');
       },
       null,
       this
@@ -121,7 +121,7 @@ export default class TrollHole extends Phaser.Scene {
       this.avatar,
       this.physicsObjectD,
       () => {
-        this.scene.start('QuestionRoom');
+        this.scene.start('QuestionSeventeen');
       },
       null,
       this

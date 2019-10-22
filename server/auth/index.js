@@ -59,7 +59,7 @@ router.post('/signup', async (req, res, next) => {
       photo: photo,
       avatar: avatar
     });
-    const room = await user.addRoom(1);
+    const room = await user.addRoom(7);
     const userToSend = await User.findOne({
       where: { email: email },
       include: [
@@ -81,7 +81,11 @@ router.post('/signup', async (req, res, next) => {
   }
 });
 
-router.post('/logout', (req, res) => {
+router.post('/logout', async (req, res) => {
+  const user = await User.findByPk(req.user.id);
+  await user.update({
+    isLoggedIn: false
+  });
   req.logout();
   req.session.destroy();
   res.redirect('/');
@@ -96,6 +100,9 @@ router.get('/me', async (req, res) => {
       }
     ],
     order: [[Room, UserRoom, 'createdAt', 'ASC']]
+  });
+  user.update({
+    isLoggedIn: true
   });
   res.json(user);
 });

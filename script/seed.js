@@ -30,63 +30,68 @@ async function seed() {
     User.create({
       firstName: 'Guenna',
       height: "5'4",
-      email: 'gcaizley0@mail.ru',
+      email: 'guenna@email.com',
       gender: 'Female',
-      password: '3ZvOycTCrZ',
+      password: '123password',
       age: 21,
+      avatar: '/fairy.png',
       orientation: '6th generation'
     }),
     User.create({
       firstName: 'Nicki',
       height: "5'4",
-      email: 'nwanka1@ftc.gov',
+      email: 'nicki@email.com',
       gender: 'Female',
-      password: '8ytHCL6LXWvf',
+      password: '123password',
       age: 30,
+      avatar: '/goblin.png',
       orientation: 'projection'
     }),
     User.create({
       firstName: 'Lissa',
       height: "5'4",
-      email: 'lfitzsimons2@barnesandnoble.com',
+      email: 'lissa@email.com',
       gender: 'Female',
-      password: '7sAuUY2',
+      password: '123password',
       age: 91,
+      avatar: '/dragon.png',
       orientation: 'leverage'
     }),
     User.create({
       firstName: 'Piper',
       height: "5'4",
-      email: 'plakenton3@goo.gl',
+      email: 'piper@email.com',
       gender: 'Female',
-      password: 'Hh4A5o3n70',
+      password: '123password',
       age: 59,
       orientation: 'Visionary'
     }),
     User.create({
       firstName: 'Lyndell',
       height: "5'4",
-      email: 'lcasassa4@guardian.co.uk',
+      email: 'lyndell@email.com',
       gender: 'Female',
-      password: 'TUe0UJ',
+      password: '123password',
       age: 38,
       orientation: 'Innovative'
     }),
     User.create({
       firstName: 'Abram',
       height: "5'4",
-      email: 'abernholt5@va.gov',
+      email: 'abram@email.com',
       gender: 'Male',
-      password: 'zdw2LXASO',
+      password: '123password',
+      photo: ``,
       age: 47,
       orientation: 'contingency'
     }),
     User.create({
       firstName: 'Jarvis',
       height: "5'4",
-      email: 'jjolliss6@google.fr',
+      email: 'jarvis@email.com',
       gender: 'Male',
-      password: '5j41tXPkY',
+      photo: `/ross.jpg`,
+      password: '123password',
       age: 21,
       orientation: 'Expanded'
     }),
@@ -244,9 +249,9 @@ async function seed() {
     }),
     Room.create({
       id: 16,
-      name: 'Fluffy Cloud',
+      name: 'Misty Lake',
       trollRoom: false,
-      image: '/cloud.jpg'
+      image: '/MistyLake.png'
     }),
     Room.create({
       id: 9,
@@ -265,11 +270,21 @@ async function seed() {
       name: 'Awkward Tree House',
       trollRoom: false,
       image: '/treehouse.jpg'
+    }),
+    Room.create({
+      id: 17,
+      name: 'Fluffy Cloud',
+      trollRoom: false,
+      image: '/cloud.jpg'
     })
   ]);
 
   const userRooms = await Promise.all([
-    UserRoom.create({ userId: 1, roomId: 1, isActive: true })
+    UserRoom.create({ userId: 1, roomId: 7, isActive: true }),
+    UserRoom.create({ userId: 2, roomId: 7, isActive: true }),
+    UserRoom.create({ userId: 3, roomId: 7, isActive: true }),
+    UserRoom.create({ userId: 4, roomId: 7, isActive: true }),
+    UserRoom.create({ userId: 5, roomId: 7, isActive: true })
   ]);
 
   // const userRooms = await Promise.all([s
@@ -433,35 +448,30 @@ async function seed() {
 
   const conversations = await Promise.all([
     Conversation.create({
-      id: 1,
       userId: 1,
       matchId: 2,
       isAccepted: true,
       isRejected: false
     }),
     Conversation.create({
-      id: 2,
       userId: 2,
       matchId: 3,
       isAccepted: true,
       isRejected: false
     }),
     Conversation.create({
-      id: 3,
       userId: 1,
       matchId: 3,
       isAccepted: false,
       isRejected: false
     }),
     Conversation.create({
-      id: 4,
       userId: 1,
       matchId: 4,
       isAccepted: true,
       isRejected: false
     }),
     Conversation.create({
-      id: 5,
       userId: 5,
       matchId: 1,
       isAccepted: false,

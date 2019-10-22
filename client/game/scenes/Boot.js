@@ -17,6 +17,8 @@ export default class Boot extends Phaser.Scene {
     this.load.image('troll', '/troll128.png');
     this.load.image('crystalBackground', '/CrystalScene.png');
     this.load.image('officeTrollHole', '/OfficeTrollHole.png');
+    this.load.image('starryNight', '/starry night.png');
+    //this.load.image('graaass', 'graaass.png')
 
     WebFont.load({
       google: {
@@ -32,7 +34,8 @@ export default class Boot extends Phaser.Scene {
           'Galindo',
           'Piedra',
           'Lakki Reddy',
-          'Yeon Sung'
+          'Yeon Sung',
+          'Rammetto One'
         ]
       },
       active: this.fontsLoaded
