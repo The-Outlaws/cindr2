@@ -13,15 +13,19 @@ Instead of filling out lengthy profiles with basic information, users are matche
 ### Team
 
 * Julia Catalano
+
   LinkedIn: [juliacatalano](https://www.linkedin.com/in/juliacatalano/)
 
 * Petra Laohakul
+
   LinkedIn: [petra-laohakul](https://www.linkedin.com/in/petra-laohakul/)
 
 * Darshin Van Parijs
+
   LinkedIn: [darshinvanparijs](https://www.linkedin.com/in/darshinvanparijs)
 
 * Kimberly Zawacki
+
   LinkedIn: [kimberly-zawacki](https://www.linkedin.com/in/kimberly-zawacki/)
 
 ### Getting Started
@@ -55,7 +59,7 @@ A playable online version of the game can be found at cindr.herokuapp.com!
 
 ### Stack:
 
-Phaser3, React, Redux, Node, Express, PostreSQL, Sequelize, Socket.io.
+Phaser3, React-Redux, Node.js, Express, PostreSQL, Sequelize, Socket.io.
 
 ### Link to CINDR v.1
 
