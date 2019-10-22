@@ -83,7 +83,7 @@ code {
   justify-content: center;
   background: none;
   padding: 20px;
-  overflow: hidden;
+  /* overflow: hidden; */
 }
 
 /* Style the links inside the navigation bar */
