@@ -82,29 +82,38 @@ router.post('/signup', async (req, res, next) => {
 });
 
 router.post('/logout', async (req, res) => {
-  const user = await User.findByPk(req.user.id);
-  await user.update({
-    isLoggedIn: false
-  });
-  req.logout();
-  req.session.destroy();
-  res.redirect('/');
+  try {
+    const user = await User.findByPk(req.user.id);
+    await user.update({
+      isLoggedIn: false
+    });
+    req.logout();
+    req.session.destroy();
+    res.redirect('/');
+  } catch (err) {
+    next(err);
+  }
 });
 
 router.get('/me', async (req, res) => {
-  const user = await User.findByPk(req.user.id, {
-    include: [
-      {
-        model: Room,
-        include: [{ model: Question, include: [{ model: Answer }] }]
-      }
-    ],
-    order: [[Room, UserRoom, 'createdAt', 'ASC']]
-  });
-  user.update({
-    isLoggedIn: true
-  });
-  res.json(user);
+  console.log(req.user);
+  try {
+    const user = await User.findByPk(req.user.id, {
+      include: [
+        {
+          model: Room,
+          include: [{ model: Question, include: [{ model: Answer }] }]
+        }
+      ],
+      order: [[Room, UserRoom, 'createdAt', 'ASC']]
+    });
+    user.update({
+      isLoggedIn: true
+    });
+    res.json(user);
+  } catch (err) {
+    next(err);
+  }
 });
 
 router.use('/google', require('./google'));

@@ -16,14 +16,18 @@ const Message = db.define(
   }
 );
 Message.createMessage = async (content, sender, receiver) => {
-  const [message, conversation] = await Promise.all([
-    Message.create({
-      content,
-      userId: sender.id
-    }),
-    Conversation.findOrCreateConversation(sender.id, receiver.id)
-  ]);
-  return message.setConversation(conversation);
+  try {
+    const [message, conversation] = await Promise.all([
+      Message.create({
+        content,
+        userId: sender.id
+      }),
+      Conversation.findOrCreateConversation(sender.id, receiver.id)
+    ]);
+    return message.setConversation(conversation);
+  } catch (error) {
+    console.error(error);
+  }
 };
 
 module.exports = Message;
