@@ -1,1 +1,1 @@
-web: node server
+web: node server -e html,js,scss --ignore public --ignore client
