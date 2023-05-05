@@ -12,6 +12,7 @@ const app = express();
 const socketio = require('socket.io');
 
 module.exports = app;
+app.set('port', PORT);
 
 // This is a global Mocha hook, used for resource cleanup.
 // Otherwise, Mocha v4+ never quits after tests.
