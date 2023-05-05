@@ -1,1 +1,1 @@
-web: node server -e html,js,scss
+web: node server
