@@ -1,1 +1,1 @@
-web: node server -e html,js,scss --ignore public --ignore client
+web: nodemon server -e html,js,scss --ignore public --ignore client
