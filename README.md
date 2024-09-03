@@ -30,7 +30,7 @@ Instead of filling out lengthy profiles with basic information, users are matche
 
 ### Getting Started
 
-Thanks for visiting us! Cindr is still under construction - to view the code we are currently working on, please visit our development branch. To view the code used in our currently deployed site, please visit our Conceptual branch. The deployed site for the Conceptual branch lives at: http://cindr.herokuapp.com/
+Thanks for visiting us! Cindr is still under construction - to view the code we are currently working on, please visit our development branch. <!-- To view the code used in our currently deployed site, please visit our Conceptual branch. The deployed site for the Conceptual branch lives at: http://cindr.herokuapp.com/ -->
 
 Install all the dependencies to run the app on your local machine:
 
@@ -55,9 +55,9 @@ Open localhost:8080 in your browser to view and run the app.
 * Click on a user who appeals to you and request to match.
 * Once the user accepts, click on the matches link in the navbar to begin chatting.
 
-### Live Demo
+<!-- ### Live Demo
 
-A playable online version of the game can be found at cindr.herokuapp.com!
+A playable online version of the game can be found at cindr.herokuapp.com! -->
 
 ### Stack:
 
